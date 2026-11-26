@@ -33,6 +33,17 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     repeating-linear-gradient(115deg,transparent 0 14px,#ffffff05 14px 15px),
     linear-gradient(180deg,var(--cover2),var(--cover) 40%)}
 .wrap{max-width:520px;margin:0 auto}
+@media (min-width:700px){
+  .wrap{max-width:min(880px,100%)}
+  .tabbar{width:min(calc(100% - 24px),600px)}
+  .stamps{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+  .visas{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+  .tgrid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+  .seals{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .astats{grid-template-columns:repeat(4,1fr);max-width:640px;margin-left:auto;margin-right:auto}
+  .sheet{max-width:640px}
+  .facts{max-width:640px;margin-left:auto;margin-right:auto}
+}
 .gold{background:linear-gradient(100deg,#f6dfa4,#d9b061 35%,#fff0c2 50%,#c99a45 70%,#f0d48f);-webkit-background-clip:text;background-clip:text;color:transparent}
 .typ{font-family:var(--type)}
 
@@ -412,7 +423,8 @@ body{padding-bottom:120px}
 .mapc .mh{position:absolute;left:16px;top:14px;z-index:2}
 .mapc .mh .k{font:700 10px var(--sans);letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
 .mapc .mh b{display:block;font:700 22px var(--serif);color:#fff;margin-top:4px}
-.mapc svg{display:block;width:100%;height:auto;margin-top:40px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 88%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 88%,transparent)}
+.mapc #mapSvg{height:clamp(220px,62vw,460px);margin-top:40px}
+.mapc svg{display:block;width:100%;height:100%;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 88%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 88%,transparent)}
 .mapc .land{fill:#1e2a4d;stroke:#e3c27a66;stroke-linejoin:round}
 .mapc .grid line{stroke:#ffffff10;stroke-width:.5}
 .mapc .rt{fill:none;stroke-width:1.6;stroke-linecap:round}
@@ -592,7 +604,9 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .atlas-hd .sb{font:12px var(--type);color:#ffffffb3;letter-spacing:.06em}
 .globe{position:relative;margin-top:16px;border-radius:24px;overflow:hidden;border:1px solid #e3c27a33;box-shadow:0 22px 40px -22px #000c;
   background:radial-gradient(120% 90% at 30% 10%,#1d2c55,#0b1229 70%)}
-.globe svg{display:block;width:100%;height:auto;touch-action:manipulation}
+#globeSvg{height:clamp(230px,62vw,560px)}
+.globe svg{display:block;width:100%;height:100%;touch-action:manipulation}
+@media (min-aspect-ratio:1/1){#globeSvg{height:clamp(240px,54vh,560px)}.mapc #mapSvg{height:clamp(220px,50vh,460px)}}
 .globe .land{fill:#26325c;stroke:#0b1229;stroke-width:.25;transition:fill .3s}
 .globe .land.vis{fill:url(#gvis);stroke:#fff3cf;stroke-width:.35;filter:url(#gglow)}
 .globe .land.home{fill:#6b5a30;stroke:#e3c27a;stroke-width:.5}
@@ -1207,8 +1221,8 @@ function renderMap(place){
   const pts=L.filter(okLL);if(!pts.length||!WORLD){$("mapc").classList.add("hidden");return}$("mapc").classList.remove("hidden");
   const all=[...pts.map(l=>proj(l.lon,l.lat)),...(okLL(H)?[proj(H.lon,H.lat)]:[])];
   let x0=Math.min(...all.map(p=>p[0])),x1=Math.max(...all.map(p=>p[0])),y0=Math.min(...all.map(p=>p[1])),y1=Math.max(...all.map(p=>p[1]));
-  let w=Math.max(x1-x0,14),h=Math.max(y1-y0,10);const cx=(x0+x1)/2,cy=(y0+y1)/2;w*=1.35;h*=1.5;if(w/h<1.45)w=h*1.45;else h=w/1.45;
-  const vb=[cx-w/2,cy-h/2,w,h],k=w/360;
+  const ME2=$("mapSvg"),ar=Math.max(.7,Math.min(3,(ME2.clientWidth||360)/(ME2.clientHeight||245)));let w=Math.max(x1-x0,14),h=Math.max(y1-y0,10);const cx=(x0+x1)/2,cy=(y0+y1)/2;w*=1.35;h*=1.5;if(w/h<ar)w=h*ar;else h=w/ar;
+  const vb=[cx-w/2,cy-h/2,w,h],k=Math.min(w,h*1.45)/360;
   const been=p=>{const l=legOf(p);return l?l.from<=T:(place[p]||0)>0};
   const fills={};L.forEach(l=>{if(l.country)fills[l.country]=mix(pcol(l.place),"#1e2a4d",been(l.place)?.38:.16)});if(H.country)fills[H.country]=mix("#e3c27a","#1e2a4d",.22);
   const P=o=>proj(o.lon,o.lat);
@@ -1223,7 +1237,7 @@ function renderMap(place){
     grads+=`<radialGradient id="${id}"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset=".45" stop-color="${c}" stop-opacity=".35"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
     const up=i%2===0,ly=up?y-11*k:y+15*k;
     dots+=`${b&&v?`<circle class="halo" cx="${x}" cy="${y}" r="${(r*1.9).toFixed(2)}" fill="url(#${id})"/>`:""}<circle cx="${x}" cy="${y}" r="${(b?3:2.2)*k}" fill="${b?c:"#ffffff55"}" stroke="#fff" stroke-width="${(l.place===cur?1.4:.6)*k}"/>${l.place===cur?`<circle cx="${x}" cy="${y}" r="${7*k}" fill="none" stroke="#fff" stroke-width="${.8*k}"><animate attributeName="r" values="${4*k};${12*k}" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/></circle><text x="${x+6*k}" y="${y-6*k}" style="font-size:${11*k}px">✈️</text>`:""}<text class="lbl" x="${x}" y="${ly}" text-anchor="middle" opacity="${b?1:.55}" style="font-size:${7.5*k}px">${esc(l.city||l.place)}</text>${v?`<text class="amt" x="${x}" y="${ly+9*k}" text-anchor="middle" style="font-size:${7*k}px">₹${v>=1000?fmt(v/1000,v<10000?1:0)+"k":fmt(v)}</text>`:""}`});
-  $("mapSvg").innerHTML=`<svg viewBox="${vb.map(v=>v.toFixed(1)).join(" ")}"><defs>${grads}<linearGradient id="mgold" x1="0" x2="1"><stop offset="0" stop-color="#f6dfa4"/><stop offset="1" stop-color="#c99a45"/></linearGradient><filter id="mglow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${1.4*k}" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g style="stroke-width:${(.5*k).toFixed(2)}">${landPaths(vb,fills)}</g>${paths}${dots}</svg>`;
+  $("mapSvg").innerHTML=`<svg preserveAspectRatio="xMidYMid slice" viewBox="${vb.map(v=>v.toFixed(1)).join(" ")}"><defs>${grads}<linearGradient id="mgold" x1="0" x2="1"><stop offset="0" stop-color="#f6dfa4"/><stop offset="1" stop-color="#c99a45"/></linearGradient><filter id="mglow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${1.4*k}" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g style="stroke-width:${(.5*k).toFixed(2)}">${landPaths(vb,fills)}</g>${paths}${dots}</svg>`;
   const nb=pts.filter(l=>been(l.place)).length;
   $("mapT").textContent=home?"Journey complete":cur?`Now in ${cityOf(cur)}`:"Where you've been";
   $("mapL").innerHTML=`<span><b>${nb}</b> of ${pts.length} stop${pts.length===1?"":"s"}</span><span>Glow = spend</span>`;
@@ -1390,8 +1404,8 @@ function tripState(t){const T=today();return T<t.start?"up":t.end&&T>t.end?"done
 function visited(iso){const b=ATLAS.byIso[iso];return b&&b.trips.some(t=>t.start&&t.start<=today())}
 function renderAtlas(){if(!$("v-atlas"))return;const vis=Object.keys(ATLAS.byIso).filter(visited),wish=ATLAS.wish.filter(i=>!vis.includes(i));
   /* globe */
-  if(WORLD){const W=530,H=250;if(!atlasFit){const ids=[...vis,...wish,ATLAS.home];const bs=WORLD.filter(o=>ids.includes(o.iso)).map(o=>o.b);if(bs.length>1){atlasFit=1;const x0=Math.min(...bs.map(b=>b[0])),x1=Math.max(...bs.map(b=>b[2])),y0=Math.min(...bs.map(b=>b[1])),y1=Math.max(...bs.map(b=>b[3]));GZ=Math.max(1,Math.min(4,Math.min(W/((x1-x0)*1.5),H/((y1-y0)*1.6))));GC=[(x0+x1)/2,(y0+y1)/2]}}
-    const vw=W/GZ,vh=H/GZ;let cx=GC?GC[0]:10,cy=GC?GC[1]:-8;cx=Math.max(-265+vw/2,Math.min(265-vw/2,cx));cy=Math.max(-130+vh/2,Math.min(108-vh/2,cy));GC=[cx,cy];
+  if(WORLD){const GE=$("globeSvg"),ar=Math.max(.6,Math.min(3.2,(GE.clientWidth||370)/(GE.clientHeight||200)));const H=Math.max(238,530/ar),W=H*ar;if(!atlasFit){const ids=[...vis,...wish,ATLAS.home];const bs=WORLD.filter(o=>ids.includes(o.iso)).map(o=>o.b);if(bs.length>1){atlasFit=1;const x0=Math.min(...bs.map(b=>b[0])),x1=Math.max(...bs.map(b=>b[2])),y0=Math.min(...bs.map(b=>b[1])),y1=Math.max(...bs.map(b=>b[3]));GZ=Math.max(1,Math.min(4,Math.min(W/((x1-x0)*1.5),H/((y1-y0)*1.6))));GC=[(x0+x1)/2,(y0+y1)/2]}}
+    const vw=W/GZ,vh=H/GZ;let cx=GC?GC[0]:5,cy=GC?GC[1]:-11;cx=vw>=530?0:Math.max(-265+vw/2,Math.min(265-vw/2,cx));cy=vh>=238?-11:Math.max(-130+vh/2,Math.min(108-vh/2,cy));GC=[cx,cy];
     const vb=[cx-vw/2,cy-vh/2,vw,vh],k=1/GZ;
     const land=WORLD.filter(o=>o.b[2]>=vb[0]&&o.b[0]<=vb[0]+vw&&o.b[3]>=vb[1]&&o.b[1]<=vb[1]+vh).map(o=>{const c=o.iso===ATLAS.home?"home":vis.includes(o.iso)?"vis":wish.includes(o.iso)?"wish":"";return`<path d="${o.d}" class="land ${c} ${o.iso===atlasSel?"sel":""}" data-iso="${o.iso}" style="stroke-width:${c?"":(.25*k).toFixed(2)}"/>`}).join("");
     const pins=[...vis,...wish].map(iso=>{const o=WORLD.find(x=>x.iso===iso);if(!o)return"";const small=(o.b[2]-o.b[0])*(o.b[3]-o.b[1])<6;if(!small&&GZ<2)return"";const[x,y]=o.c,v=vis.includes(iso);
@@ -1485,6 +1499,11 @@ async function createTrip(){const t=NDRAFT;if(!t||!db)return;t.name=($("dName").
     thud();closeNew();$("scrim").classList.remove("on");toast("New passport issued 🛂");setTimeout(()=>openTrip(slug),700)}
   catch(err){$("nErr").textContent="Couldn't save: "+(err&&err.message||"check your connection");$("dGo").disabled=false;$("dGo").textContent="Create passport ✈️"}}
 
+/* ---------- fold / unfold / rotate ---------- */
+let rsT=null,lastW=innerWidth,lastH=innerHeight;
+function onResize(){if(Math.abs(innerWidth-lastW)<4&&Math.abs(innerHeight-lastH)<60)return;lastW=innerWidth;lastH=innerHeight;clearTimeout(rsT);rsT=setTimeout(()=>{atlasFit=0;GC=null;GZ=1;if(CUR==="atlas")renderAtlas();if(ready.e&&ready.f)render()},180)}
+addEventListener("resize",onResize);addEventListener("orientationchange",()=>setTimeout(onResize,250));
+try{if(window.ResizeObserver){let lw=0;new ResizeObserver(es=>{const w=Math.round(es[0].contentRect.width);if(Math.abs(w-lw)>8){lw=w;onResize()}}).observe(document.querySelector(".wrap"))}}catch{}
 /* ---------- maths ---------- */
 function inrRates(){return ratesFor(FX)}
 function ratesFor(FXL){const r={INR:1},cs=new Set();FXL.forEach(x=>{cs.add(x.toCur);cs.add(x.fromCur)});
