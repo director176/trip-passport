@@ -2,7 +2,7 @@
   "name": "Trip Passport",
   "short_name": "Passport",
   "description": "Satish's China · Hong Kong · Singapore trip passport",
-  "start_url": "./#today",
+  "start_url": "./#atlas",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

@@ -168,5 +168,11 @@
       return null; // room / sample / tts are Claude-only
     },
   };
+  window.TP_INVOKE = async (name, body) => {
+    if (!sb) throw new Error("not configured");
+    const { data, error } = await sb.functions.invoke(name, { body });
+    if (error) { let msg = error.message || "Request failed"; try { const j = await error.context.json(); if (j && j.error) msg = j.error; } catch {} throw new Error(msg); }
+    return data;
+  };
   window.TP_SIGN_OUT = async () => { try { await sb.auth.signOut(); } catch {} try { localStorage.removeItem(LS_WHO); localStorage.removeItem(LS_CACHE); } catch {} location.reload(); };
 })();

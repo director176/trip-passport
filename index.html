@@ -25,9 +25,6 @@
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{background:var(--cover)}
-html[data-c="China"]{--cover:#5e1717;--cover2:#7f231d}
-html[data-c="Hong Kong"]{--cover:#33195a;--cover2:#4a2779}
-html[data-c="Singapore"]{--cover:#0b3f3b;--cover2:#11605a}
 body::before{transition:background-color .8s}
 html,body{margin:0;min-height:100%}
 body{color:var(--paper);font:15px/1.4 var(--sans);padding:18px 14px 110px;position:relative;-webkit-text-size-adjust:100%;overflow-x:hidden}
@@ -76,9 +73,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
   -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.9'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
   mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.9'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
 .st::before{content:"";position:absolute;inset:4px;border:1px solid var(--c);border-radius:inherit;pointer-events:none}
-.st.China{--c:var(--cn);border-radius:50%;aspect-ratio:1;min-height:0;padding:14px}
-.st.HongKong{--c:var(--hk);border-radius:14px}
-.st.Singapore{--c:var(--sg);border-radius:50%/38%}
+.st.s0{border-radius:50%;aspect-ratio:1;min-height:0;padding:14px}
+.st.s1{border-radius:14px}
+.st.s2{border-radius:50%/38%}
+.st.s3{border-radius:4px;border-style:double;border-width:5px}
 .st.Travel{--c:var(--tr);border-style:dashed;border-radius:4px}
 .st.fx{--c:var(--fx);border-radius:10px;border-style:double;border-width:5px}
 .st .t{font:700 9px var(--sans);letter-spacing:.18em;text-transform:uppercase}
@@ -360,7 +358,7 @@ body{padding-bottom:120px}
 .recent{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 16px;margin:0 -4px;scrollbar-width:none}
 .recent::-webkit-scrollbar{display:none}
 .recent .st{flex:none;width:136px;min-height:132px;scroll-snap-align:start}
-.recent .st.China{width:136px;min-height:0}
+.recent .st.s0{width:136px;min-height:0}
 .recent .blank{flex:1}
 /* wallet */
 .walletv{margin-top:6px}
@@ -415,7 +413,7 @@ body{padding-bottom:120px}
 .mapc .mh .k{font:700 10px var(--sans);letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
 .mapc .mh b{display:block;font:700 22px var(--serif);color:#fff;margin-top:4px}
 .mapc svg{display:block;width:100%;height:auto;margin-top:40px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 88%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 88%,transparent)}
-.mapc .land{fill:#1e2a4d;stroke:#e3c27a66;stroke-width:.7;stroke-linejoin:round}
+.mapc .land{fill:#1e2a4d;stroke:#e3c27a66;stroke-linejoin:round}
 .mapc .grid line{stroke:#ffffff10;stroke-width:.5}
 .mapc .rt{fill:none;stroke-width:1.6;stroke-linecap:round}
 .mapc .rt.done{stroke:url(#mgold);filter:url(#mglow);stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 2.2s .3s cubic-bezier(.6,.1,.3,1) forwards}
@@ -463,7 +461,7 @@ body{padding-bottom:120px}
 .story .nums span{font:700 10px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#ffffffb3}
 .story .minis{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 8px;max-width:340px}
 .story .minis .st{width:104px;min-height:104px;background:var(--paper);border-radius:12px;padding:8px 6px}
-.story .minis .st.China{border-radius:50%;width:104px}
+.story .minis .st.s0{border-radius:50%;width:104px}
 .story .minis .st .a{font-size:19px}.story .minis .st .d{font-size:10px}.story .minis .st .t{font-size:7px}
 .story .acts{list-style:none;padding:0;margin:14px 0 0;text-align:left;max-width:330px;width:100%}
 .story .acts li{padding:9px 12px;border-radius:12px;background:#ffffff12;margin-bottom:7px;font:600 14px var(--sans)}
@@ -531,7 +529,7 @@ body{padding-bottom:120px}
 .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tx{position:relative;border:0;text-align:left;border-radius:16px;padding:30px 12px 12px;color:#fff;min-height:118px;overflow:hidden;box-shadow:0 14px 24px -14px #000c;
   background:linear-gradient(160deg,var(--tc1),var(--tc2))}
-.tx.China{--tc1:#d23b2f;--tc2:#8a1d16}.tx.HongKong{--tc1:#e0453b;--tc2:#a11d1d}.tx.Singapore{--tc1:#1aa58f;--tc2:#0b6457}
+
 .tx .roof{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#fff7d6;color:#2a1e08;font:800 9px var(--sans);letter-spacing:.2em;padding:4px 12px;border-radius:0 0 9px 9px;box-shadow:0 0 14px #fff7d6aa;white-space:nowrap}
 .tx .zh{display:block;font:700 22px/1.15 "Noto Sans SC","Noto Sans TC","PingFang SC","PingFang HK",sans-serif;letter-spacing:.02em}
 .tx .en{display:block;font:600 11px/1.3 var(--sans);opacity:.85;margin-top:6px}
@@ -586,6 +584,111 @@ body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:
 .gate .gsw{display:block;width:100%;margin-top:12px;border:0;background:none;color:var(--cover);font:700 13px var(--sans)}
 .gate .gnote{margin:0;font:14px/1.5 var(--sans)}
 .signout{display:block;margin:14px auto 0;border:0;background:none;color:#ffffff80;font:600 12px var(--sans)}
+
+/* ================= ATLAS ================= */
+body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
+.atlas-hd{text-align:center;padding:6px 0 4px}
+.atlas-hd h1{font:700 46px/1 var(--serif);letter-spacing:.24em;margin:10px 0 6px}
+.atlas-hd .sb{font:12px var(--type);color:#ffffffb3;letter-spacing:.06em}
+.globe{position:relative;margin-top:16px;border-radius:24px;overflow:hidden;border:1px solid #e3c27a33;box-shadow:0 22px 40px -22px #000c;
+  background:radial-gradient(120% 90% at 30% 10%,#1d2c55,#0b1229 70%)}
+.globe svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.globe .land{fill:#26325c;stroke:#0b1229;stroke-width:.25;transition:fill .3s}
+.globe .land.vis{fill:url(#gvis);stroke:#fff3cf;stroke-width:.35;filter:url(#gglow)}
+.globe .land.home{fill:#6b5a30;stroke:#e3c27a;stroke-width:.5}
+.globe .land.wish{fill:url(#ghatch);stroke:#e3c27a;stroke-width:.45;stroke-dasharray:1.2 1}
+.globe .land.sel{stroke:#fff;stroke-width:.9}
+.globe .pin{cursor:pointer}
+.globe .grat{stroke:#ffffff0d;stroke-width:.3;fill:none}
+.globe .gtools{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.globe .gtools button{width:34px;height:34px;border-radius:10px;border:1px solid #e3c27a44;background:#0b1229cc;color:var(--gold);font:700 16px var(--sans)}
+.glegend{display:flex;gap:14px;justify-content:center;padding:10px 12px 12px;font:600 11px var(--sans);color:#ffffffb3;flex-wrap:wrap}
+.glegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.astats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.astats div{border:1px solid #e3c27a40;border-radius:16px;padding:10px 4px;text-align:center;background:#ffffff08}
+.astats b{display:block;font:700 22px var(--serif);color:var(--gold)}
+.astats span{font:700 9px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#ffffffa8}
+.flagrow{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 2px 2px}
+.flagrow::-webkit-scrollbar{display:none}
+.flagrow button{flex:none;border:1px solid #e3c27a40;background:#ffffff0a;color:#fff;border-radius:999px;padding:6px 12px 6px 8px;font:600 12px var(--sans);display:flex;gap:6px;align-items:center}
+.flagrow button.w{border-style:dashed}
+.flagrow button span{font-size:18px}
+.shelf-h{display:flex;justify-content:space-between;align-items:baseline;margin:26px 4px 12px}
+.shelf-h b{font:700 24px var(--serif);color:#fff}
+.shelf-h span{font:11px var(--type);color:#ffffffa8}
+.shelf{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 26px;margin:0 -4px;scrollbar-width:none}
+.shelf::-webkit-scrollbar{display:none}
+.book{flex:none;width:168px;height:236px;border-radius:6px 16px 16px 6px;position:relative;scroll-snap-align:start;cursor:pointer;border:0;padding:0;text-align:center;color:#fff;
+  background:linear-gradient(160deg,var(--b1),var(--b2));box-shadow:-6px 0 0 -2px var(--b2),0 18px 30px -14px #000d,inset 8px 0 14px -8px #0008;transition:transform .25s}
+.book:active{transform:scale(.97) rotate(-1deg)}
+.book::before{content:"";position:absolute;inset:0;border-radius:inherit;background:repeating-radial-gradient(circle at 50% -10%,transparent 0 14px,#ffffff08 14px 15px);pointer-events:none}
+.book .in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 12px 14px}
+.book .bn{font:700 8px var(--sans);letter-spacing:.26em;color:var(--gold);opacity:.9}
+.book .bc{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;font:700 15px var(--serif);color:var(--gold);box-shadow:inset 0 0 0 3px var(--b1),inset 0 0 0 4px #e3c27a66}
+.book .bt{font:700 17px/1.15 var(--serif);color:#fff6dc}
+.book .bd{font:10px var(--type);color:#ffffffb3}
+.book .bf{font-size:15px;letter-spacing:2px}
+.book .bv{font:700 15px var(--type);color:var(--gold)}
+.book .rib{position:absolute;top:12px;right:-6px;background:var(--cn);color:#fff;font:800 8px var(--sans);letter-spacing:.18em;padding:4px 10px;border-radius:4px 0 0 4px;box-shadow:0 2px 6px #0006}
+.book .rib.up{background:#2a63b8}
+.book .done{position:absolute;left:50%;top:79%;transform:translate(-50%,-50%) rotate(-16deg);border:2.5px double #e3c27aaa;color:#e3c27acc;font:800 11px var(--sans);letter-spacing:.2em;padding:4px 9px;border-radius:8px;pointer-events:none}
+.book.new{background:none;border:2px dashed #e3c27a77;box-shadow:none;color:var(--gold)}
+.book.new::before{display:none}
+.book.new .in{justify-content:center;gap:10px}
+.book.new b{font:700 44px var(--serif)}
+.book.new span{font:600 13px/1.35 var(--sans)}
+#atlasBtn{position:fixed;left:14px;top:calc(env(safe-area-inset-top) + 12px);z-index:14;width:42px;height:42px;border-radius:50%;border:1px solid #e3c27a66;background:color-mix(in srgb,var(--cover) 70%,#000);color:var(--gold);font-size:20px;box-shadow:0 8px 18px -8px #000c}
+/* country sheet */
+.csheet .chd{display:flex;align-items:center;gap:14px;margin:4px 0 6px}
+.csheet .cf{font-size:52px;line-height:1}
+.csheet .cn{font:700 28px/1.05 var(--serif)}
+.csheet .pill{display:inline-block;margin-top:6px;font:800 9px var(--sans);letter-spacing:.2em;padding:4px 9px;border-radius:999px;background:var(--sg);color:#fff}
+.csheet .pill.w{background:var(--gold);color:#2a1e08}.csheet .pill.n{background:var(--paper2);color:var(--mute)}.csheet .pill.h{background:#e3c27a;color:#2a1e08}
+.csheet .ctot{text-align:center;margin:14px 0 4px}
+.csheet .ctot b{display:block;font:700 46px/1 var(--serif);color:var(--cover)}
+.csheet .ctot span{font:12px var(--type);color:var(--mute)}
+.csheet .ctrip{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1.5px solid var(--line);border-radius:14px;background:#fffaf0;margin-top:9px;cursor:pointer}
+.csheet .ctrip i{width:10px;align-self:stretch;border-radius:4px;background:var(--b1)}
+.csheet .ctrip .tx2{flex:1;min-width:0}.csheet .ctrip .tx2 b{display:block;font:700 15px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.csheet .ctrip .tx2 span{font:11px var(--type);color:var(--mute)}
+.csheet .ctrip .am{font:700 15px var(--type)}
+.csheet .ccats{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.csheet .ccats span{background:var(--paper2);border-radius:999px;padding:6px 10px;font:600 12px var(--sans)}
+.csheet .nv{text-align:center;padding:10px 0 4px}
+.csheet .nv .ds{width:120px;height:120px;margin:6px auto 10px;border-radius:50%;border:3px dashed #b8924a88;display:grid;place-items:center;font:700 40px var(--serif);color:#b8924a}
+.csheet .nv p{margin:0;font:14px/1.5 var(--sans);color:var(--mute)}
+
+/* ---------- new passport (plan reader) ---------- */
+.nsheet h3{font:700 26px var(--serif);margin:4px 0 2px}
+.nsheet .ns{font:13px/1.45 var(--sans);color:var(--mute);margin:0 0 14px}
+.drop{display:block;border:2px dashed #b8924a99;border-radius:18px;padding:22px 14px;text-align:center;background:#fffaf0;cursor:pointer;position:relative}
+.drop input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;padding:0;border:0}
+.drop b{display:block;font:700 18px var(--serif);margin-top:6px}
+.drop span{font:12px var(--sans);color:var(--mute)}
+.drop .ic{font-size:34px}
+.flist{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.flist div{display:flex;align-items:center;gap:10px;background:var(--paper2);border-radius:12px;padding:8px 10px;font:600 13px var(--sans)}
+.flist div i{font-style:normal;font-size:18px}.flist div span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flist div button{border:0;background:none;color:var(--mute);font-size:16px}
+.reading{text-align:center;padding:18px 0 8px}
+.reading .scan{width:120px;height:150px;margin:0 auto 16px;border-radius:6px 14px 14px 6px;background:linear-gradient(160deg,#2c3c6e,#121a36);position:relative;overflow:hidden;border:1.5px solid var(--gold)}
+.reading .scan::after{content:"";position:absolute;left:0;right:0;height:30%;background:linear-gradient(180deg,transparent,#e3c27a66,transparent);animation:scanl 1.4s ease-in-out infinite}
+@keyframes scanl{0%{top:-30%}100%{top:100%}}
+.reading .scan b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px var(--serif);color:var(--gold)}
+.reading p{font:600 14px var(--sans);margin:0;min-height:20px}
+.prev2{border-radius:18px;overflow:hidden;background:#fffaf0;border:1.5px solid var(--line)}
+.prev2 .ph2{padding:16px;color:#fff;background:linear-gradient(160deg,var(--b1),var(--b2))}
+.prev2 .ph2 .k{font:800 9px var(--sans);letter-spacing:.26em;color:var(--gold)}
+.prev2 .ph2 input{margin-top:6px;background:#ffffff14;border:1px solid #ffffff33;color:#fff;font:700 22px var(--serif);padding:8px 10px}
+.prev2 .ph2 .d{font:12px var(--type);color:#ffffffc0;margin-top:8px}
+.prev2 .legs{padding:6px 14px}
+.prev2 .lg{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.prev2 .lg:last-child{border-bottom:0}
+.prev2 .lg .f{font-size:24px}.prev2 .lg b{display:block;font:700 14px var(--sans)}.prev2 .lg span{font:11px var(--type);color:var(--mute)}
+.prev2 .lg .c{margin-left:auto;font:700 12px var(--type);background:var(--paper2);padding:3px 8px;border-radius:999px}
+.prev2 .cnt{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:4px 12px 14px}
+.prev2 .cnt div{text-align:center;background:var(--paper2);border-radius:12px;padding:8px 2px}
+.prev2 .cnt b{display:block;font:700 20px var(--serif)}.prev2 .cnt span{font:700 8px var(--sans);letter-spacing:.14em;color:var(--mute)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -606,6 +709,18 @@ body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:
 </div></div>
 <div class="opener" id="opener"><div class="ocover"><div class="nation gold">Republic of Wanderlust</div><div class="crest"><span class="mono2 gold">SK</span></div><div class="ot gold">PASSPORT</div></div></div>
 <div class="wrap">
+  <main class="view" id="v-atlas">
+    <div class="atlas-hd"><div class="nation gold">Republic of Wanderlust</div><h1 class="gold">ATLAS</h1><div class="sb" id="atlasSub">Every trip, every stamp</div></div>
+    <section class="globe"><div id="globeSvg"></div>
+      <div class="gtools"><button id="gzIn" aria-label="Zoom in">＋</button><button id="gzOut" aria-label="Zoom out">−</button><button id="gzW" aria-label="Whole world" style="font-size:15px">🌐</button></div>
+      <div class="glegend"><span><i style="background:linear-gradient(135deg,#f6dfa4,#c99a45)"></i>Visited</span><span><i style="border:1.5px dashed #e3c27a"></i>Wishlist</span><span><i style="background:#e3c27a55;border:1px solid #e3c27a"></i>Home</span></div>
+    </section>
+    <div class="flagrow" id="flagrow"></div>
+    <div class="astats" id="astats"></div>
+    <div class="shelf-h"><b>Passports</b><span id="shelfN"></span></div>
+    <div class="shelf" id="shelf"></div>
+  </main>
+
   <main class="view" id="v-today">
   <header class="cover">
     <div class="nation gold">Republic of Wanderlust</div>
@@ -713,6 +828,7 @@ body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:
   </main>
 </div>
 
+<button id="atlasBtn" aria-label="Atlas">🌍</button>
 <nav class="tabbar" id="tabbar">
   <button data-tab="today" class="on"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><circle cx="12" cy="10" r="3.2"/><path d="M8.5 16.5h7"/></svg><span>Today</span></button>
   <button data-tab="stamps"><svg viewBox="0 0 24 24"><circle cx="12" cy="11" r="7.5"/><circle cx="12" cy="11" r="5" stroke-dasharray="2 2"/><path d="M5 21h14"/></svg><span>Stamps</span></button>
@@ -764,6 +880,8 @@ body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:
 <div class="story" id="story"></div>
 <div class="sealpop" id="sealpop"></div>
 <div class="drv" id="drv"></div>
+<div class="sheet nsheet" id="nsheet"><div class="grab"></div><div id="nBody"></div></div>
+<div class="sheet csheet" id="csheet"><div class="grab"></div><div id="cBody"></div></div>
 <div class="sheet addsheet" id="addsheet">
   <div class="grab"></div>
   <span class="lbl" style="margin-top:4px">New taxi card</span>
@@ -779,10 +897,28 @@ body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:
 </div>
 
 <script>
-const PLACES=[["China","RMB","🇨🇳","#c8352b"],["Hong Kong","HKD","🇭🇰","#7b3fb0"],["Singapore","SGD","🇸🇬","#0e8a78"],["Travel",null,"✈️","#2a63b8"]];
-const PC=Object.fromEntries(PLACES.map(p=>[p[0],p[3]]));
-const CURS=["RMB","HKD","SGD","USD","INR"];
-const SYM={RMB:"¥",HKD:"HK$",SGD:"S$",USD:"$",INR:"₹"};
+/* ---------- trip context: everything below adapts to the trip's own countries ---------- */
+const PALETTE=["#c8352b","#7b3fb0","#0e8a78","#d0861b","#2a63b8","#b0306a","#3d8b37","#8a5a2b"];
+const SYMS={RMB:"¥",CNY:"¥",HKD:"HK$",SGD:"S$",USD:"$",INR:"₹",EUR:"€",GBP:"£",JPY:"¥",THB:"฿",AED:"AED ",MYR:"RM",IDR:"Rp",VND:"₫",KRW:"₩",AUD:"A$",NZD:"NZ$",CAD:"C$",CHF:"CHF ",LKR:"Rs ",NPR:"Rs ",MVR:"Rf ",QAR:"QR ",SAR:"SR ",TRY:"₺",ZAR:"R ",PHP:"₱",TWD:"NT$",MOP:"MOP$",KHR:"៛",EGP:"E£",BTN:"Nu ",OMR:"OMR ",KWD:"KD ",BHD:"BD ",RUB:"₽",BRL:"R$",MXN:"MX$",SEK:"kr ",NOK:"kr ",DKK:"kr ",PLN:"zł ",HUF:"Ft ",CZK:"Kč ",ISK:"kr "};
+const SYM=new Proxy({},{get:(t,k)=>SYMS[k]??(String(k)+" ")});
+const flagOf=iso=>typeof iso==="string"&&/^[A-Za-z]{2}$/.test(iso)?String.fromCodePoint(...[...iso.toUpperCase()].map(c=>127397+c.charCodeAt(0))):"📍";
+let PLACES=[["Travel",null,"✈️","#2a63b8"]],PC={Travel:"#2a63b8"},CURS=["INR","USD"];
+let TRIPID=null;try{TRIPID=localStorage.getItem("tp-trip")||null}catch{}
+const TP=()=>TRIPID?`t/${TRIPID}/`:"";
+const LK=k=>k+(TRIPID?"-"+TRIPID:"");
+function legsU(){const m=new Map();(TRIP.legs||[]).forEach(l=>{if(l&&typeof l.place==="string"&&!m.has(l.place))m.set(l.place,l)});return[...m.values()]}
+const legOf=p=>legsU().find(l=>l.place===p);
+const cityOf=p=>{const l=legOf(p);return l&&l.city||p};
+const pidx=p=>Math.max(0,PLACES.findIndex(x=>x[0]===p));
+const stCls=p=>p==="Travel"?"Travel":"s"+(pidx(p)%4);
+const pcol=p=>PC[p]||"#8a7f6a";
+function hex2(c){const m=/^#?([0-9a-f]{6})$/i.exec(c||"");return m?[0,2,4].map(i=>parseInt(m[1].slice(i,i+2),16)):[42,99,184]}
+function mix(c,base,t){const a=hex2(c),b=hex2(base);return"#"+a.map((v,i)=>Math.round(v*t+b[i]*(1-t)).toString(16).padStart(2,"0")).join("")}
+function buildPlaces(){const L=legsU();
+  PLACES=L.map((l,i)=>[l.place,l.currency||null,flagOf(l.country),/^#[0-9a-f]{6}$/i.test(l.color||"")?l.color:PALETTE[i%PALETTE.length]]).concat([["Travel",null,"✈️","#2a63b8"]]);
+  PC=Object.fromEntries(PLACES.map(p=>[p[0],p[3]]));
+  const cs=new Set(L.map(l=>l.currency).filter(Boolean));EXP.forEach(e=>e.cur&&cs.add(e.cur));FX.forEach(x=>{cs.add(x.fromCur);cs.add(x.toCur)});["USD","INR"].forEach(c=>cs.add(c));
+  CURS=[...cs].filter(c=>typeof c==="string"&&c.length<6)}
 const CATS=[["Food","🍜"],["Transport","🚕"],["Shopping","🛍️"],["Stay","🏨"],["Visa & fees","🛂"],["Fun","🎢"],["Drinks","🍹"],["Other","✨"]];
 const PAYS=["Cash","Card","UPI"];
 const $=id=>document.getElementById(id);
@@ -799,7 +935,7 @@ const rot=id=>{let h=0;for(const c of String(id))h=(h*31+c.charCodeAt(0))|0;retu
 let db=null,EXP=[],FX=[],ready={e:false,f:false},fresh=null;
 let crewWriting=false,USER=null,ME=null,IS_OWNER=false,PROF={},ROOM=null,LIVE=new Set(),profKey="",firstExp=true;
 let flt={place:null,cat:null,pay:null},RET=null,PACE=null,TRIP={};
-let st={mode:"exp",place:"China",cat:"Food",pay:"Cash",cur:"RMB",editE:null,editF:null};
+let st={mode:"exp",place:"Travel",cat:"Food",pay:"Cash",cur:"INR",editE:null,editF:null};
 
 function toast(t){const el=$("toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),1800)}
 function banner(t){const b=$("banner");b.textContent=t||"";b.style.display=t?"block":"none"}
@@ -809,28 +945,34 @@ function openSheet(){$("sheet").classList.add("on");$("scrim").classList.add("on
 function closeSheet(){$("sheet").classList.remove("on");$("scrim").classList.remove("on");document.activeElement?.blur?.()}
 $("fab").onclick=()=>{resetE();resetF();setMode("exp");st.by=ME;renderPbys();const lg=legOn(today());if(lg){st.place=lg.place;const c=PLACES.find(p=>p[0]===lg.place);if(c&&c[1])st.cur=c[1];sync()}openSheet();try{$("eAmt").focus({preventScroll:true})}catch{}};
 let sy=0,stopT;addEventListener("scroll",()=>{const y=scrollY;$("fab").classList.toggle("mini",y>sy&&y>120);$("fab2").classList.toggle("mini",y>sy&&y>120);sy=y;clearTimeout(stopT);stopT=setTimeout(()=>{$("fab").classList.remove("mini");$("fab2").classList.remove("mini")},900)},{passive:true});
-function remember(){try{localStorage.setItem("tripLast",JSON.stringify({place:st.place,cur:st.cur,cat:st.cat,pay:st.pay}))}catch{}}
-try{const L=JSON.parse(localStorage.getItem("tripLast")||"null");if(L&&PLACES.some(p=>p[0]===L.place)&&CURS.includes(L.cur)&&PAYS.includes(L.pay)){st.place=L.place;st.cur=L.cur;st.pay=L.pay;if(CATS.some(c=>c[0]===L.cat))st.cat=L.cat}}catch{}
+function remember(){try{localStorage.setItem(LK("tripLast"),JSON.stringify({place:st.place,cur:st.cur,cat:st.cat,pay:st.pay}))}catch{}}
+try{const L=JSON.parse(localStorage.getItem(LK("tripLast"))||"null");if(L&&typeof L.place==="string"&&typeof L.cur==="string"&&PAYS.includes(L.pay)){st.place=L.place;st.cur=L.cur;st.pay=L.pay;if(CATS.some(c=>c[0]===L.cat))st.cat=L.cat}}catch{}
 sync();
-$("scrim").onclick=()=>{closeAdd();closeSheet();resetE();resetF()};
+$("scrim").onclick=()=>{closeAdd();closeC();if(typeof closeNew==="function")closeNew();closeSheet();resetE();resetF()};
 
 /* ---------- form ---------- */
-$("where").innerHTML=PLACES.map(([v,,f,c])=>`<button type="button" class="wb" style="--c:${c}" data-v="${v}"><span class="f">${f}</span>${v}</button>`).join("");
-$("curs").innerHTML=CURS.map(c=>`<button type="button" class="cur" data-v="${c}">${c}</button>`).join("");
+let formKey="";
+function setupForm(){const k=JSON.stringify([PLACES,CURS]);if(k===formKey)return;formKey=k;
+  $("where").innerHTML=PLACES.map(([v,,f,c])=>`<button type="button" class="wb" style="--c:${c}" data-v="${esc(v)}"><span class="f">${f}</span>${esc(v.length>11&&legOf(v)?legOf(v).country:v)}</button>`).join("");
+  $("curs").innerHTML=CURS.map(c=>`<button type="button" class="cur" data-v="${esc(c)}">${esc(c)}</button>`).join("");
+  for(const s of["fFromCur","fToCur"]){const v=$(s).value;$(s).innerHTML=CURS.map(c=>`<option>${esc(c)}</option>`).join("");if(CURS.includes(v))$(s).value=v}
+  if(!PLACES.some(p=>p[0]===st.place)){const f=PLACES[0];st.place=f[0];if(f[1])st.cur=f[1]}
+  if(!CURS.includes(st.cur))st.cur=CURS[0];
+  const L=legsU();if(L[0]&&L[0].currency&&!formKey.fx){$("fFromCur").value=CURS.includes("USD")?"USD":"INR";$("fToCur").value=L[0].currency}
+  sync()}
 $("cats").innerHTML=CATS.map(([v,e])=>`<button type="button" class="cb" data-v="${v}"><span class="e">${e}</span>${v}</button>`).join("");
 $("pays").innerHTML=PAYS.map(p=>`<button type="button" class="pb" data-v="${p}">${p}</button>`).join("");
-$("where").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;st.place=b.dataset.v;const c=PLACES.find(p=>p[0]===st.place)[1];if(c)st.cur=c;sync()};
+$("where").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;st.place=b.dataset.v;const c=(PLACES.find(p=>p[0]===st.place)||[])[1];if(c&&CURS.includes(c))st.cur=c;sync()};
 $("curs").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;st.cur=b.dataset.v;sync()};
 $("cats").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;st.cat=b.dataset.v;sync()};
 $("pays").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;st.pay=b.dataset.v;sync()};
 function sync(){
   for(const[id,key]of[["where","place"],["curs","cur"],["cats","cat"],["pays","pay"]])
     $(id).querySelectorAll("[data-v]").forEach(b=>b.classList.toggle("on",b.dataset.v===st[key]));
-  $("eSym").textContent=SYM[st.cur];$("sheet").style.setProperty("--accent",PC[st.place]);
+  $("eSym").textContent=SYM[st.cur];$("sheet").style.setProperty("--accent",pcol(st.place));
   $("inrBox").style.visibility=st.pay==="Cash"?"hidden":"visible";
 }
-for(const s of["fFromCur","fToCur"])$(s).innerHTML=CURS.map(c=>`<option>${c}</option>`).join("");
-$("fFromCur").value="USD";$("fToCur").value="HKD";
+setupForm();
 $("eDate").value=$("fDate").value=today();
 sync();
 $("modeSeg").onclick=e=>{const b=e.target.closest("button");if(!b)return;setMode(b.dataset.m)};
@@ -855,10 +997,11 @@ function coins(){
 
 
 /* ---------- personal ---------- */
-const STOPS=[["India","🇮🇳"],["China","🇨🇳"],["Hong Kong","🇭🇰"],["Singapore","🇸🇬"],["Home","🏠"]];
+let STOPS=[];
 function legOn(d){let m=null;for(const l of (TRIP.legs||[]))if(l&&l.from<=d&&d<=l.to)m=l;return m}
 const dm=s=>new Date(s+"T00:00").getDate(), mon=s=>new Date(s+"T00:00").toLocaleDateString("en-GB",{month:"short"});
 function personal(){
+  buildPlaces();STOPS=[[(TRIP.home&&TRIP.home.city)||"Home",flagOf((TRIP.home&&TRIP.home.country)||"IN")],...legsU().map(l=>[l.place,flagOf(l.country)]),["Home","🏠"]];
   const T=today(),h=new Date().getHours(),hi=h<5?"Burning the midnight oil":h<12?"Good morning":h<17?"Good afternoon":"Good evening";
   const legs=TRIP.legs||[],home=RET&&T>RET;
   let now=null;
@@ -866,8 +1009,7 @@ function personal(){
   else{const lands=EXP.filter(e=>e.place!=="Travel").sort((a,b)=>a.date.localeCompare(b.date)||(a.created||0)-(b.created||0));now=lands.length?lands[lands.length-1].place:null}
   const been=new Set(EXP.filter(e=>e.place!=="Travel").map(e=>e.place));
   const fl=(PLACES.find(p=>p[0]===now)||[])[2]||"";
-  document.documentElement.dataset.c=now&&now!=="Home"?now:"";
-  try{document.querySelector('meta[name=theme-color]').content=getComputedStyle(document.documentElement).getPropertyValue("--cover").trim()}catch{}
+  {const R=document.documentElement.style;if(now&&now!=="Home"&&PC[now]){const c=PC[now],a=mix(c,"#0b0b16",.45),b=mix(c,"#0b0b16",.62);R.setProperty("--cover",a);R.setProperty("--cover2",b);try{document.querySelector('meta[name=theme-color]').content=a}catch{}}else{R.removeProperty("--cover");R.removeProperty("--cover2");try{document.querySelector('meta[name=theme-color]').content="#22305a"}catch{}}}
   $("greet").innerHTML=`${hi}, ${esc(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:"Satish")}${now&&now!=="Home"?` · <span>in ${esc(now)} ${fl}</span>`:now==="Home"?" · <span>welcome home 🏠</span>":""}`;
   const pl=TRIP.plan&&typeof TRIP.plan[T]==="string"?TRIP.plan[T]:"";
   const nx=legs.filter(l=>l&&l.from>T).sort((a,b)=>a.from.localeCompare(b.from))[0];
@@ -876,9 +1018,9 @@ function personal(){
   else if(RET&&T<RET){const n=dayDiff(T,RET);bits.push(`Flying home ${n===1?"tomorrow":"in "+n+" days"}`)}
   $("plan").innerHTML=bits.join("<br>");
   const lg=p=>legs.find(l=>l&&l.place===p);
-  const sub=i=>{const s=STOPS[i][0];if(i===0)return TRIP.start?`${dm(TRIP.start)} ${mon(TRIP.start)}`:"";if(s==="Home")return RET?`${dm(RET)} ${mon(RET)}`:"";const l=lg(s);return l?`${dm(l.from)}–${dm(l.to)}`:""};
+  const sub=i=>{const s=STOPS[i][0];if(i===0||i===STOPS.length-1&&s==="Home"){if(i===0)return TRIP.start?`${dm(TRIP.start)} ${mon(TRIP.start)}`:"";return RET?`${dm(RET)} ${mon(RET)}`:""}const l=lg(s);return l?`${dm(l.from)}–${dm(l.to)}`:""};
   const done=i=>{if(i===0)return true;const s=STOPS[i][0];if(s==="Home")return home;const l=lg(s);return l?l.from<=T:been.has(s)};
-  $("route").innerHTML=STOPS.map((s,i)=>(i?`<span class="ln ${done(i)?"done":""}"></span>`:"")+`<div class="stop ${done(i)?"done":""} ${s[0]===now?"now":""}"><span class="dot">${s[1]}</span>${s[0]==="Hong Kong"?"HK":s[0]}<small>${sub(i)}</small></div>`).join("");
+  $("route").innerHTML=STOPS.map((s,i)=>(i?`<span class="ln ${done(i)?"done":""}"></span>`:"")+`<div class="stop ${done(i)?"done":""} ${s[0]===now?"now":""}"><span class="dot">${s[1]}</span>${esc(s[0]==="Hong Kong"?"HK":s[0].length>9&&legOf(s[0])?legOf(s[0]).country:s[0])}<small>${sub(i)}</small></div>`).join("");
 }
 personal();
 
@@ -910,12 +1052,12 @@ function homeChip(T){
   $("homeTxt").innerHTML=n>1?`🏠 Home in<b>${n} days</b>`:n===1?`🏠 Home<b>tomorrow</b>`:n===0?`🏠 Home<b>today ✈️</b>`:`🏠 Back home<b>✓</b>`;
 }
 $("retDate").addEventListener("change",async e=>{const v=e.target.value;if(!v||!db)return;RET=v;render();
-  await write(()=>db.doc("settings/trip").set({...TRIP,returnDate:v}),"Return date saved")});
+  await write(()=>db.doc(TP()+"settings/trip").set({...TRIP,returnDate:v}),"Return date saved")});
 
 
 /* ---------- itinerary sheet ---------- */
 let CHECKS={},popId=null,noteOpen=null;
-const PCOL={China:"var(--cn)","Hong Kong":"var(--hk)",Singapore:"var(--sg)"};
+
 function openIt(){go("trip")}
 function _openIt(){
   setTimeout(()=>{const t=document.querySelector(".tday.today")||document.querySelector(".tday:not(.past)");if(t)$("ibody").scrollTo({top:t.offsetTop-14,behavior:"smooth"})},380)}
@@ -933,7 +1075,7 @@ function renderItin(){
   $("iSm").textContent=`${nd} of ${acts.length} stamped · ${pct}%`;
   $("iPath").innerHTML=`<span class="tr"></span><span class="dn" style="width:${pct}%"></span><span class="e" style="left:-4px">🇮🇳</span><span class="e" style="right:-4px">🏠</span><span class="pl" style="left:${Math.min(94,Math.max(6,pct))}%">✈️</span>`;
   const leg=d=>legOn(d);
-  $("itList").innerHTML=days.map(d=>{const L=leg(d),c=L?PCOL[L.place]||"var(--ink)":"var(--ink)",dt=new Date(d+"T00:00");
+  $("itList").innerHTML=days.map(d=>{const L=leg(d),c=L?pcol(L.place):"var(--ink)",dt=new Date(d+"T00:00");
     return `<div class="tday ${d===T?"today":""} ${d<T?"past":""}" style="--c:${c}"><div class="dstamp"><span>${dt.toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase()}</span><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"}).toUpperCase()}</span></div><div class="dcol"><div class="dl">Day ${dayDiff(st0,d)+1}${L?" · "+esc(L.place):""}${d===T?'<span class="here">YOU ARE HERE</span>':""}</div>${acts.filter(a=>a.date===d).map(a=>{const k=CHECKS[a.id]||{};
       return `<div class="tix2 ${k.done?"done":""}"><span class="em">${esc(a.e||"•")}</span><div class="bd" data-nt="${esc(a.id)}"><b>${esc(a.t)}</b>${a.s?`<span class="pu">${esc(a.s)}</span>`:""}${k.note&&noteOpen!==a.id?`<div class="nt">“${esc(k.note)}”</div>`:""}${noteOpen===a.id?`<input class="ni" id="ni" placeholder="Add a memory… (Enter to save)" value="${esc(k.note||"")}">`:""}</div>${k.done?`<span class="stp ${popId===a.id?"pop":""}">DONE</span>`:""}<button class="ck" data-ck="${esc(a.id)}" aria-label="Mark done">✓</button></div>`}).join("")}</div></div>`}).join("");
   $("iEnd").textContent=RET?`✈️ Home on ${dayLabel(RET)} · tap a ticket to add a memory`:"Tap a ticket to add a memory";
@@ -942,10 +1084,10 @@ function renderItin(){
 }
 async function saveNote(id,v){if(!id||noteOpen!==id)return;noteOpen=null;const c=CHECKS[id]||{};v=v.trim().slice(0,200);
   if(v===(c.note||"")){renderItin();return}CHECKS[id]={...c,note:v};renderItin();
-  await write(()=>db.doc("checks/"+id).set({done:!!c.done,note:v}),v?"Memory saved":"")}
+  await write(()=>db.doc(TP()+"checks/"+id).set({done:!!c.done,note:v}),v?"Memory saved":"")}
 $("itList").onclick=async e=>{const ck=e.target.closest("[data-ck]");
   if(ck){const id=ck.dataset.ck,c=CHECKS[id]||{},d=!c.done;CHECKS[id]={...c,done:d};if(d){popId=id;thud();try{navigator.vibrate&&navigator.vibrate(15)}catch{}}renderItin();
-    await write(()=>db.doc("checks/"+id).set({done:d,note:c.note||""}),d?"Stamped ✓":"");return}
+    await write(()=>db.doc(TP()+"checks/"+id).set({done:d,note:c.note||""}),d?"Stamped ✓":"");return}
   const nt=e.target.closest("[data-nt]");if(nt&&!e.target.closest("input")){noteOpen=nt.dataset.nt;renderItin()}};
 /* ---------- travel wallet ---------- */
 let WALLET=[];
@@ -1008,8 +1150,8 @@ function _oldWho(R,start){const ids=CREW(),body=$("whoBody");
 
 
 /* ---------- app shell ---------- */
-const TABS=["today","stamps","trip","wallet"];let CUR=null;const SCR={};
-function go(t){if(!TABS.includes(t))t="today";if(CUR)SCR[CUR]=scrollY;const changed=t!==CUR;CUR=t;
+const TABS=["atlas","today","stamps","trip","wallet"];let CUR=null;const SCR={};
+function go(t){if(!TABS.includes(t))t=TRIPID?"today":"atlas";if(t!=="atlas"&&!TRIPID)t="atlas";document.body.classList.toggle("atlasmode",t==="atlas");if(t==="atlas"&&typeof renderAtlas==="function")setTimeout(renderAtlas,0);if(CUR)SCR[CUR]=scrollY;const changed=t!==CUR;CUR=t;
   TABS.forEach(x=>$("v-"+x).classList.toggle("on",x===t));
   document.querySelectorAll("#tabbar [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));
   try{if(location.hash.slice(1)!==t)history.replaceState(null,"","#"+t)}catch{}
@@ -1018,7 +1160,9 @@ function go(t){if(!TABS.includes(t))t="today";if(CUR)SCR[CUR]=scrollY;const chan
 $("tabbar").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.id==="tbStamp"){$("fab").click();return}if(b.dataset.tab)go(b.dataset.tab)};
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)go(g.dataset.go)});
 addEventListener("hashchange",()=>go(location.hash.slice(1)));
-go(location.hash.slice(1)||"today");
+const BOOTHASH=location.hash.slice(1);let autoTrip=!BOOTHASH||BOOTHASH==="atlas";
+go(BOOTHASH||"atlas");
+$("atlasBtn").onclick=()=>go("atlas");
 const CU=new WeakMap();
 function countUp(el,to){const from=CU.get(el)??0;CU.set(el,to);if(from===to||matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent="₹"+fmt(to);return}
   const t0=performance.now(),d=900;(function f(t){const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent="₹"+fmt(Math.round(from+(to-from)*e));if(k<1)requestAnimationFrame(f)})(t0)}
@@ -1029,15 +1173,15 @@ function countUp(el,to){const from=CU.get(el)??0;CU.set(el,to);if(from===to||mat
 
 /* ---------- outbox: stamps never get lost ---------- */
 let OUT=[],RAW_E=[],RAW_F=[],flushing=false;
-try{const o=JSON.parse(localStorage.getItem("tripOutbox")||"[]");if(Array.isArray(o))OUT=o.filter(x=>x&&x.c&&x.id&&x.op)}catch{}
-function saveOut(){try{localStorage.setItem("tripOutbox",JSON.stringify(OUT))}catch{}}
+try{const o=JSON.parse(localStorage.getItem(LK("tripOutbox"))||"[]");if(Array.isArray(o))OUT=o.filter(x=>x&&x.c&&x.id&&x.op)}catch{}
+function saveOut(){try{localStorage.setItem(LK("tripOutbox"),JSON.stringify(OUT))}catch{}}
 function mergeAll(){const m=(raw,c)=>{const mp=new Map(raw.map(x=>[x.id,x]));for(const o of OUT){if(o.c!==c)continue;if(o.op==="del")mp.delete(o.id);else if(o.doc)mp.set(o.id,{...o.doc,id:o.id,_p:true})}return[...mp.values()]};
-  EXP=m(RAW_E,"expenses").filter(e=>e.amount>0&&CURS.includes(e.cur));FX=m(RAW_F,"exchanges").filter(x=>x.fromAmt>0&&x.toAmt>0)}
+  EXP=m(RAW_E,"expenses").filter(e=>e.amount>0&&typeof e.cur==="string"&&typeof e.date==="string");FX=m(RAW_F,"exchanges").filter(x=>x.fromAmt>0&&x.toAmt>0)}
 function enqueue(c,id,op,doc){OUT=OUT.filter(o=>!(o.c===c&&o.id===id));OUT.push({c,id,op,doc:doc||null,t:Date.now()});saveOut();mergeAll();
   if(ready.e&&ready.f)render();syncChip();flush()}
 const tmo=(p,ms)=>Promise.race([p,new Promise((_,r)=>setTimeout(()=>r({code:"timeout"}),ms))]);
 async function flush(){if(flushing||!db||!OUT.length){syncChip();return}flushing=true;syncChip();
-  try{while(OUT.length){const o=OUT[0],ref=db.collection(o.c).doc(o.id);
+  try{while(OUT.length){const o=OUT[0],ref=db.collection(TP()+o.c).doc(o.id);
     try{await tmo(o.op==="del"?ref.delete():ref.set(o.doc),12000);OUT.shift();saveOut()}
     catch(err){if(err&&(err.code==="invalid_argument"||err.code==="quota_exceeded")){OUT.shift();saveOut();banner(err.code==="quota_exceeded"?"Storage is full, so one stamp couldn't be saved.":"You can view this passport but not edit it.")}else break}}}
   finally{flushing=false;mergeAll();if(ready.e&&ready.f)render();syncChip()}}
@@ -1049,46 +1193,59 @@ setInterval(flush,15000);document.addEventListener("visibilitychange",()=>{if(!d
 
 
 /* ---------- journey map ---------- */
-const MAPC={"Mumbai":[39.2,63.2],"China":[360.8,32.0],"Hong Kong":[369.6,37.6],"Singapore":[286.4,205.2]};
-const MAPLAND=`<g class="grid"><line x1="0" y1="176" x2="400" y2="176"/><line x1="0" y1="136" x2="400" y2="136"/><line x1="0" y1="96" x2="400" y2="96"/><line x1="0" y1="56" x2="400" y2="56"/><line x1="0" y1="16" x2="400" y2="16"/><line x1="56" y1="0" x2="56" y2="232"/><line x1="136" y1="0" x2="136" y2="232"/><line x1="216" y1="0" x2="216" y2="232"/><line x1="296" y1="0" x2="296" y2="232"/><line x1="376" y1="0" x2="376" y2="232"/></g><path class="land" d="M-40.0,-32.0 L-40.0,16.0 L-12.0,14.4 L4.0,28.0 L16.0,49.6 L38.4,64.0 L44.0,92.0 L54.4,113.6 L66.4,140.0 L76.0,151.2 L81.6,144.0 L94.4,133.6 L98.4,110.4 L105.6,85.6 L114.4,80.0 L134.4,61.6 L149.6,52.8 L156.0,43.2 L167.2,43.2 L172.0,40.0 L190.4,37.6 L194.4,49.6 L210.4,65.6 L212.0,88.0 L219.2,89.6 L236.8,84.0 L241.6,108.0 L244.8,136.0 L242.4,149.6 L258.4,164.0 L259.2,173.6 L266.4,193.6 L283.2,205.6 L289.6,204.8 L283.2,184.0 L283.2,172.0 L273.6,166.4 L263.2,160.8 L258.4,148.8 L249.6,142.4 L255.2,115.2 L263.2,108.0 L274.4,118.4 L281.6,132.0 L294.4,147.2 L308.8,139.2 L328.0,124.8 L330.4,108.8 L326.4,93.6 L309.6,76.0 L301.6,64.0 L308.8,52.8 L320.0,44.0 L333.6,44.0 L339.2,52.8 L340.8,46.4 L350.4,43.2 L362.4,37.6 L369.6,38.4 L388.0,32.0 L400.0,20.8 L412.8,8.0 L422.4,-8.0 L432.0,-28.0 L432.0,-32.0 Z M94.4,168.0 L100.8,168.8 L110.4,157.6 L105.6,147.2 L97.6,137.6 L95.2,151.2 Z M324.8,62.4 L332.8,70.4 L340.0,67.2 L344.0,58.4 L338.4,55.2 L329.6,56.0 Z M217.6,171.2 L236.0,174.4 L259.2,198.4 L285.6,220.0 L302.4,240.0 L288.0,252.0 L264.0,248.0 L258.4,222.4 L245.6,202.4 L226.4,185.6 Z M328.0,204.0 L340.0,201.6 L348.0,193.6 L360.0,190.4 L376.0,176.8 L384.8,160.8 L394.4,163.2 L404.8,173.6 L410.4,176.0 L401.6,182.4 L400.0,206.4 L396.0,224.0 L388.0,248.0 L336.0,248.0 L329.6,224.0 L328.0,212.0 Z M420.8,68.0 L433.6,68.8 L432.0,84.0 L428.8,100.0 L420.8,100.8 L417.6,88.0 Z M416.8,32.0 L421.6,40.0 L428.8,24.0 L428.0,13.6 L424.0,16.0 Z"/>`;
+/* ---------- world projection (Equal Earth, same as world.json) ---------- */
+let WORLD=null;
+function proj(lon,lat){const A1=1.340264,A2=-0.081106,A3=0.000893,A4=0.003796,M=Math.sqrt(3)/2;const l=lon*Math.PI/180,p=Math.max(-89.9,Math.min(89.9,lat))*Math.PI/180;
+  const t=Math.asin(M*Math.sin(p)),t2=t*t,t6=t2*t2*t2;return[100*l*Math.cos(t)/(M*(A1+3*A2*t2+t6*(7*A3+9*A4*t2))),-100*t*(A1+A2*t2+t6*(A3+A4*t2))]}
+fetch("world.json").then(r=>r.json()).then(w=>{WORLD=Array.isArray(w)?w:null;if(ready.e&&ready.f)render();if(typeof renderAtlas==="function")renderAtlas()}).catch(()=>{});
+const okLL=o=>o&&isFinite(o.lat)&&isFinite(o.lon);
+function landPaths(vb,fills){if(!WORLD)return"";const[x0,y0,w,h]=vb;
+  return WORLD.filter(o=>o.b[2]>=x0&&o.b[0]<=x0+w&&o.b[3]>=y0&&o.b[1]<=y0+h).map(o=>`<path d="${o.d}" class="land" ${fills[o.iso]?`style="fill:${fills[o.iso]}"`:""}/>`).join("")}
+/* ---------- journey map ---------- */
 function renderMap(place){
-  const T=today(),legs=TRIP.legs||[],cur=(legOn(T)||{}).place||null,home=RET&&T>RET;
-  const been=p=>{const l=legs.find(x=>x&&x.place===p);return l?l.from<=T:(place[p]||0)>0};
-  const hops=[["Mumbai","Hong Kong",-40,(TRIP.start||"0")<=T],["Hong Kong","China",-8,been("China")],["China","Hong Kong",-8,been("Hong Kong")],["Hong Kong","Singapore",50,been("Singapore")],["Singapore","Mumbai",60,home]];
-  const arc=(a,b,bend)=>{const[x1,y1]=MAPC[a],[x2,y2]=MAPC[b],mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1;
-    return{d:`M${x1},${y1} Q${(mx-dy/L*bend).toFixed(1)},${(my+dx/L*bend).toFixed(1)} ${x2},${y2}`,len:Math.round(L*1.25)}};
-  let paths="";hops.forEach(([a,b,bend,done])=>{const r=arc(a,b,bend);paths+=`<path class="rt ${done?"done":"todo"}" style="--len:${r.len}" d="${r.d}"/>`});
-  const mx=Math.max(1,...["China","Hong Kong","Singapore"].map(p=>place[p]||0));
-  const col={China:"#ff6b5e","Hong Kong":"#c98bff",Singapore:"#3fe0c5",Mumbai:"#e3c27a"};
-  let dots="";for(const p of ["Mumbai","China","Hong Kong","Singapore"]){const[x,y]=MAPC[p],v=place[p]||0,r=p==="Mumbai"?3:4+14*Math.sqrt(v/mx),b=p==="Mumbai"||been(p);
-    const lab=p==="China"?"Foshan":p,lx=p==="Hong Kong"?x+6:p==="China"?x-8:p==="Mumbai"?x+6:x,ly=p==="Hong Kong"?y+15:p==="China"?y-10:p==="Singapore"?y-12:y+14,anc=p==="Hong Kong"?"middle":p==="China"?"end":p==="Mumbai"?"start":"middle";
-    dots+=`${b&&v?`<circle class="halo" cx="${x}" cy="${y}" r="${(r*1.9).toFixed(1)}" fill="url(#mg${p.replace(/\s/g,"")})"/>`:""}<circle cx="${x}" cy="${y}" r="${b?3:2.2}" fill="${b?col[p]:"#ffffff55"}" stroke="#fff" stroke-width="${p===cur?1.4:.6}"/>${p===cur?`<circle cx="${x}" cy="${y}" r="7" fill="none" stroke="#fff" stroke-width=".8"><animate attributeName="r" values="4;12" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/></circle>`:""}<text class="lbl" x="${lx}" y="${ly}" text-anchor="${anc}" opacity="${b?1:.5}">${lab}</text>${v&&p!=="Mumbai"?`<text class="amt" x="${lx}" y="${ly+9}" text-anchor="${anc}">₹${v>=1000?fmt(v/1000,v<10000?1:0)+"k":fmt(v)}</text>`:""}`}
-  let plane="";if(cur&&MAPC[cur]&&!home){const[x,y]=MAPC[cur];plane=`<text x="${x+6}" y="${y-6}" font-size="11">✈️</text>`}
-  const grads=["China","Hong Kong","Singapore"].map(p=>`<radialGradient id="mg${p.replace(/\s/g,"")}"><stop offset="0" stop-color="${col[p]}" stop-opacity=".95"/><stop offset=".45" stop-color="${col[p]}" stop-opacity=".35"/><stop offset="1" stop-color="${col[p]}" stop-opacity="0"/></radialGradient>`).join("");
-  $("mapSvg").innerHTML=`<svg viewBox="22 -16 398 252"><defs>${grads}<linearGradient id="mgold" x1="0" x2="1"><stop offset="0" stop-color="#f6dfa4"/><stop offset="1" stop-color="#c99a45"/></linearGradient><filter id="mglow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>${MAPLAND}${paths}${dots}${plane}</svg>`;
-  const nb=["China","Hong Kong","Singapore"].filter(been).length;
-  $("mapT").textContent=home?"Journey complete":cur?`Now in ${cur==="China"?"Foshan":cur}`:"Where you've been";
-  $("mapL").innerHTML=`<span><b>${nb}</b> of 3 countries</span><span>Glow = spend</span>`;
+  const T=today(),L=[...legsU()].sort((a,b)=>String(a.from).localeCompare(String(b.from))),H=TRIP.home||{},home=RET&&T>RET,cur=(legOn(T)||{}).place||null;
+  const pts=L.filter(okLL);if(!pts.length||!WORLD){$("mapc").classList.add("hidden");return}$("mapc").classList.remove("hidden");
+  const all=[...pts.map(l=>proj(l.lon,l.lat)),...(okLL(H)?[proj(H.lon,H.lat)]:[])];
+  let x0=Math.min(...all.map(p=>p[0])),x1=Math.max(...all.map(p=>p[0])),y0=Math.min(...all.map(p=>p[1])),y1=Math.max(...all.map(p=>p[1]));
+  let w=Math.max(x1-x0,14),h=Math.max(y1-y0,10);const cx=(x0+x1)/2,cy=(y0+y1)/2;w*=1.35;h*=1.5;if(w/h<1.45)w=h*1.45;else h=w/1.45;
+  const vb=[cx-w/2,cy-h/2,w,h],k=w/360;
+  const been=p=>{const l=legOf(p);return l?l.from<=T:(place[p]||0)>0};
+  const fills={};L.forEach(l=>{if(l.country)fills[l.country]=mix(pcol(l.place),"#1e2a4d",been(l.place)?.38:.16)});if(H.country)fills[H.country]=mix("#e3c27a","#1e2a4d",.22);
+  const P=o=>proj(o.lon,o.lat);
+  const stops=[...(okLL(H)?[{n:H.city||"Home",p:P(H),home:1}]:[]),...pts.map(l=>({n:l.place,p:P(l),l})),...(okLL(H)?[{n:"Home",p:P(H),home:1}]:[])];
+  const arc=(a,b,i)=>{const[x1,y1]=a,[x2,y2]=b,mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1,Ln=Math.hypot(dx,dy)||1,bend=Math.min(Ln*.25,40*k)*(i%2?1:-1);
+    return{d:`M${x1.toFixed(1)},${y1.toFixed(1)} Q${(mx-dy/Ln*bend).toFixed(1)},${(my+dx/Ln*bend).toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`,len:Math.round(Ln*1.3)}};
+  let paths="";for(let i=1;i<stops.length;i++){const b=stops[i],done=b.home?home:been(b.n);const r=arc(stops[i-1].p,b.p,i);paths+=`<path class="rt ${done?"done":"todo"}" style="--len:${r.len};stroke-width:${(1.6*k).toFixed(2)}" d="${r.d}"/>`}
+  const mx=Math.max(1,...pts.map(l=>place[l.place]||0));
+  let dots="",grads="";
+  if(okLL(H)){const[x,y]=P(H);dots+=`<circle cx="${x}" cy="${y}" r="${3*k}" fill="#e3c27a" stroke="#fff" stroke-width="${.6*k}"/><text class="lbl" x="${x+6*k}" y="${y+12*k}" style="font-size:${7.5*k}px">${esc(H.city||"Home")}</text>`}
+  pts.forEach((l,i)=>{const[x,y]=P(l),v=place[l.place]||0,b=been(l.place),c=mix(pcol(l.place),"#ffffff",.75),r=(4+14*Math.sqrt(v/mx))*k,id="mg"+i;
+    grads+=`<radialGradient id="${id}"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset=".45" stop-color="${c}" stop-opacity=".35"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
+    const up=i%2===0,ly=up?y-11*k:y+15*k;
+    dots+=`${b&&v?`<circle class="halo" cx="${x}" cy="${y}" r="${(r*1.9).toFixed(2)}" fill="url(#${id})"/>`:""}<circle cx="${x}" cy="${y}" r="${(b?3:2.2)*k}" fill="${b?c:"#ffffff55"}" stroke="#fff" stroke-width="${(l.place===cur?1.4:.6)*k}"/>${l.place===cur?`<circle cx="${x}" cy="${y}" r="${7*k}" fill="none" stroke="#fff" stroke-width="${.8*k}"><animate attributeName="r" values="${4*k};${12*k}" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/></circle><text x="${x+6*k}" y="${y-6*k}" style="font-size:${11*k}px">✈️</text>`:""}<text class="lbl" x="${x}" y="${ly}" text-anchor="middle" opacity="${b?1:.55}" style="font-size:${7.5*k}px">${esc(l.city||l.place)}</text>${v?`<text class="amt" x="${x}" y="${ly+9*k}" text-anchor="middle" style="font-size:${7*k}px">₹${v>=1000?fmt(v/1000,v<10000?1:0)+"k":fmt(v)}</text>`:""}`});
+  $("mapSvg").innerHTML=`<svg viewBox="${vb.map(v=>v.toFixed(1)).join(" ")}"><defs>${grads}<linearGradient id="mgold" x1="0" x2="1"><stop offset="0" stop-color="#f6dfa4"/><stop offset="1" stop-color="#c99a45"/></linearGradient><filter id="mglow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${1.4*k}" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g style="stroke-width:${(.5*k).toFixed(2)}">${landPaths(vb,fills)}</g>${paths}${dots}</svg>`;
+  const nb=pts.filter(l=>been(l.place)).length;
+  $("mapT").textContent=home?"Journey complete":cur?`Now in ${cityOf(cur)}`:"Where you've been";
+  $("mapL").innerHTML=`<span><b>${nb}</b> of ${pts.length} stop${pts.length===1?"":"s"}</span><span>Glow = spend</span>`;
 }
 
-
 /* ---------- trip story ---------- */
-const SBG={China:"linear-gradient(160deg,#8a2620,#4a0f0c)","Hong Kong":"linear-gradient(160deg,#5a2f93,#22103f)",Singapore:"linear-gradient(160deg,#127066,#062b28)",x:"linear-gradient(160deg,#2c3c6e,#121a36)"};
+const SBG=new Proxy({x:"linear-gradient(160deg,#2c3c6e,#121a36)"},{get:(t,k)=>k==="x"||!PC[k]||k==="Travel"?t.x:`linear-gradient(160deg,${mix(PC[k],"#000000",.72)},${mix(PC[k],"#05050c",.35)})`});
 let SS=null;
-function miniStamp(e,R){const v=inrOf(e,R);return `<div class="st ${e.place.replace(/\s/g,"")}" style="--rot:${rot(e.id)}"><span class="t">${esc(e.place)}</span><span class="a">${money(e.amount,e.cur)}</span><span class="d">${esc(e.desc||e.cat)}</span></div>`}
+function miniStamp(e,R){const v=inrOf(e,R);return `<div class="st ${stCls(e.place)}" style="--rot:${rot(e.id)};--c:${pcol(e.place)}"><span class="t">${esc(e.place)}</span><span class="a">${money(e.amount,e.cur)}</span><span class="d">${esc(e.desc||e.cat)}</span></div>`}
 function buildStory(){const R=inrRates(),T=today(),st0=TRIP.start||([...EXP.map(e=>e.date)].sort()[0])||T,end=RET&&RET<T?RET:T;
   const trip=EXP.filter(e=>e.date>=st0&&e.date<=end);let tot=0;const byCat={},byDay={};
   for(const e of trip){const v=inrOf(e,R);if(v==null)continue;tot+=v;byCat[e.cat]=(byCat[e.cat]||0)+v;(byDay[e.date]=byDay[e.date]||[]).push(e)}
   const nm1=(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:"Satish"),legs=(TRIP.legs||[]).filter(Boolean);
   const countries=new Set(trip.map(e=>e.place).filter(p=>p!=="Travel")),dn=Math.max(1,dayDiff(st0,end)+1);
   const S=[];
-  S.push({bg:SBG.x,h:`<div class="kk">Republic of Wanderlust</div><h1>${esc(nm1)}’s<br><em>Asia</em> story</h1><p>${esc(legs.map(l=>l.place==="China"?"Foshan":l.place).join(" · ")||"China · Hong Kong · Singapore")}</p><p class="mono">${TRIP.start?dayLabel(TRIP.start):""}${RET?" → "+dayLabel(RET):""}</p>`});
+  S.push({bg:SBG.x,h:`<div class="kk">Republic of Wanderlust</div><h1>${esc(nm1)}’s<br><em>${esc(TRIP.region||"travel")}</em> story</h1><p>${esc(legs.map(l=>l.city||l.place).join(" · "))}</p><p class="mono">${TRIP.start?dayLabel(TRIP.start):""}${RET?" → "+dayLabel(RET):""}</p>`});
   S.push({bg:SBG.x,h:`<div class="kk">So far</div><div class="huge" data-count="${Math.round(tot)}">₹0</div><p>spent on the ground</p><div class="nums"><div><b>${dn}</b><span>Days</span></div><div><b>${trip.length}</b><span>Stamps</span></div><div><b>${countries.size}</b><span>Countries</span></div><div><b>${Object.values(CHECKS).filter(c=>c.done).length}</b><span>Plans done</span></div></div>`});
   const acts=(Array.isArray(TRIP.acts)?TRIP.acts:[]).filter(a=>a&&a.date);
   for(let i=0;i<dn;i++){const d=new Date(st0+"T00:00");d.setDate(d.getDate()+i);const k=new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
     const L=(byDay[k]||[]).sort((a,b)=>(inrOf(b,R)||0)-(inrOf(a,R)||0)),A=acts.filter(a=>a.date===k&&CHECKS[a.id]?.done);
     if(!L.length&&!A.length)continue;const lg=legOn(k),pl=lg?lg.place:(L[0]?.place||"x"),dt=L.reduce((s,e)=>s+(inrOf(e,R)||0),0);
-    S.push({bg:SBG[pl]||SBG.x,h:`<div class="kk">Day ${i+1} · ${dayLabel(k)}</div><h1>${esc(pl==="China"?"Foshan":pl==="x"?"On the move":pl)}</h1>${dt?`<p class="mono">₹${fmt(dt)} · ${L.length} stamp${L.length===1?"":"s"}</p>`:""}${L.length?`<div class="minis">${L.slice(0,3).map(e=>miniStamp(e,R)).join("")}</div>`:""}${A.length?`<ul class="acts">${A.slice(0,3).map(a=>`<li>${esc(a.e||"✓")} ${esc(a.t)}${CHECKS[a.id]?.note?`<small>“${esc(CHECKS[a.id].note)}”</small>`:""}</li>`).join("")}</ul>`:""}`})}
+    S.push({bg:SBG[pl]||SBG.x,h:`<div class="kk">Day ${i+1} · ${dayLabel(k)}</div><h1>${esc(pl==="x"?"On the move":cityOf(pl))}</h1>${dt?`<p class="mono">₹${fmt(dt)} · ${L.length} stamp${L.length===1?"":"s"}</p>`:""}${L.length?`<div class="minis">${L.slice(0,3).map(e=>miniStamp(e,R)).join("")}</div>`:""}${A.length?`<ul class="acts">${A.slice(0,3).map(a=>`<li>${esc(a.e||"✓")} ${esc(a.t)}${CHECKS[a.id]?.note?`<small>“${esc(CHECKS[a.id].note)}”</small>`:""}</li>`).join("")}</ul>`:""}`})}
   const top=trip.map(e=>({e,v:inrOf(e,R)})).filter(x=>x.v!=null).sort((a,b)=>b.v-a.v)[0];
   if(top)S.push({bg:SBG[top.e.place]||SBG.x,h:`<div class="kk">Biggest splurge</div><div class="huge">₹${fmt(top.v)}</div><p style="font-size:18px">${esc(top.e.desc||top.e.cat)}</p><p class="mono">${esc(top.e.place)} · ${dayLabel(top.e.date)}</p>`});
   const tc=Object.entries(byCat).sort((a,b)=>b[1]-a[1])[0];
@@ -1116,8 +1273,9 @@ addEventListener("keydown",e=>{if(!SS)return;if(e.key==="Escape")closeStory();if
 
 
 /* ---------- cash alarm + border notice ---------- */
-const LOW={RMB:500,HKD:500,SGD:80,USD:50};
-const CCUR={China:"RMB","Hong Kong":"HKD",Singapore:"SGD"},CFLAG={China:"🇨🇳","Hong Kong":"🇭🇰",Singapore:"🇸🇬",Home:"🇮🇳"};
+function noteBg(c){const p=PLACES.find(x=>x[1]===c||(c==="RMB"&&x[1]==="CNY")||(c==="CNY"&&x[1]==="RMB"));const k=p?p[3]:c==="USD"?"#5f8a3c":c==="EUR"?"#2a63b8":c==="GBP"?"#7b3fb0":"#a07a2c";return`linear-gradient(135deg,${mix(k,"#ffffff",.85)},${mix(k,"#000000",.75)})`}
+const LOWINR=3000;const isLow=(c,v,R)=>R[c]?v*R[c]<LOWINR:v<50;
+const CCUR=new Proxy({},{get:(t,k)=>(legOf(k)||{}).currency}),CFLAG=new Proxy({},{get:(t,k)=>k==="Home"?flagOf((TRIP.home&&TRIP.home.country)||"IN"):flagOf((legOf(k)||{}).country)});
 function renderBorder(w,R){const el=$("border"),T=today(),legs=(TRIP.legs||[]).filter(Boolean).sort((a,b)=>a.from.localeCompare(b.from));
   const L=legOn(T);if(!L||!CCUR[L.place]){el.classList.add("hidden");return}
   const cur=CCUR[L.place],cash=w[cur]||0,days=dayDiff(T,L.to),nx=legs.find(l=>l.from>=L.to&&l!==L&&l.place!==L.place),to=nx?nx.place:"Home";
@@ -1125,66 +1283,68 @@ function renderBorder(w,R){const el=$("border"),T=today(),legs=(TRIP.legs||[]).f
   const inr=R[cur]?cash*R[cur]:null,per=days>0?cash/days:cash,nxCur=to==="Home"?"INR":CCUR[to];
   const when=days<=0?"today":days===1?"tomorrow":`in ${days} days`;
   el.innerHTML=`<div class="bh"><span>BORDER NOTICE</span><b>Leaving ${when}</b></div>
-   <div class="xing"><div class="ctry"><div class="f">${CFLAG[L.place]}</div><small>${esc(L.place==="China"?"Foshan":L.place)}</small></div><div class="gate"><i>🛂</i><em>${dayLabel(L.to)}</em></div><div class="ctry"><div class="f">${CFLAG[to]||"🏠"}</div><small>${esc(to)}</small></div></div>
+   <div class="xing"><div class="ctry"><div class="f">${CFLAG[L.place]}</div><small>${esc(cityOf(L.place))}</small></div><div class="gate"><i>🛂</i><em>${dayLabel(L.to)}</em></div><div class="ctry"><div class="f">${CFLAG[to]||"🏠"}</div><small>${esc(to==="Home"?((TRIP.home&&TRIP.home.city)||"Home"):cityOf(to))}</small></div></div>
    <div class="bamt"><div class="k">${esc(cur)} still in your pocket</div><b>${money(cash,cur)}</b>${inr?`<span>≈ ₹${fmt(inr)}</span>`:""}</div>
    <div class="adv"><div class="${days<=1?"hot":""}"><b>${days>0?money(Math.floor(per),cur)+"/day":"Spend it today"}</b><span>${days>0?`to use it all up before you leave`:`${esc(cur)} is hard to use outside ${esc(L.place)}`}</span></div>
-   <div><b>Change to ${esc(nxCur)}</b><span>${to==="Home"?"at Changi before your flight home":`at the ${esc(to)} border or airport`}${days<=1?" · keep a little for the taxi":""}</span></div></div>`}
+   <div><b>Change to ${esc(nxCur)}</b><span>${to==="Home"?"at the airport before your flight home":`at the ${esc(to)} border or airport`}${days<=1?" · keep a little for the taxi":""}</span></div></div>`}
 
 /* ---------- visa seals ---------- */
 const SEALS=[
- ["hop","Border Hopper","🛂","Stamp spends in 2 countries"],["three","Three Countries","🌏","China, Hong Kong & Singapore"],
- ["dimsum","Dim Sum Champion","🥟","5 food stamps in Hong Kong"],["foodie","Foodie","🍜","10 food stamps"],
+ ["hop","Border Hopper","🛂","Stamp spends in 2 countries"],["three","Globetrotter","🌏","Stamp every country on the trip"],
+ ["dimsum","Local Foodie","🥟","5 food stamps in one country"],["foodie","Foodie","🍜","10 food stamps"],
  ["owl","Night Owl","🦉","A spend after 11 PM"],["early","Early Bird","🌅","A spend before 7 AM"],
  ["disney","Disney Day","🏰","Tick off Disneyland"],["ocean","Ocean Explorer","🐬","Tick off Ocean Park"],["universal","Movie Star","🎬","Tick off Universal Studios"],
  ["big","Big Spender","💸","₹15,000+ in one day abroad"],["wise","Penny Wise","🪙","A day 50% under your average"],["fx","Money Changer","🔁","3 currency exchanges"],
  ["collector","Stamp Collector","📮","25 stamps"],["memory","Memory Keeper","📝","5 notes on your itinerary"],["home","Home Sweet Home","🏠","Finish the trip"]];
 function sealSvg(e,got,id){const n=28,pts=[];for(let i=0;i<n*2;i++){const a=Math.PI*i/n,r=i%2?44:48;pts.push((50+r*Math.cos(a)).toFixed(1)+","+(50+r*Math.sin(a)).toFixed(1))}
   return `<svg viewBox="0 0 100 100"><defs><radialGradient id="sg${id}" cx="35%" cy="30%"><stop offset="0" stop-color="${got?"#fff3cf":"#eee"}"/><stop offset=".55" stop-color="${got?"#e3c27a":"#bbb"}"/><stop offset="1" stop-color="${got?"#a87d36":"#888"}"/></radialGradient></defs><polygon points="${pts.join(" ")}" fill="url(#sg${id})" ${got?"":'stroke="#999" stroke-dasharray="2 2" fill-opacity=".25"'}/><circle cx="50" cy="50" r="36" fill="none" stroke="${got?"#8a6526":"#999"}" stroke-width="1.2" stroke-dasharray="${got?"none":"2 2"}"/><circle cx="50" cy="50" r="31" fill="none" stroke="${got?"#8a6526":"#999"}" stroke-width=".6"/><text x="50" y="${got?61:60}" text-anchor="middle" font-size="${got?30:24}">${got?e:"?"}</text></svg>`}
-let SEEN=null;try{SEEN=JSON.parse(localStorage.getItem("tripSeals")||"null")}catch{}
+let SEEN=null;try{SEEN=JSON.parse(localStorage.getItem(LK("tripSeals"))||"null")}catch{}
 function renderSeals(R,start){
   const abroad=EXP.filter(e=>e.date>=start&&e.cur!=="INR"),T=today(),hr=e=>{try{return new Date(e.created).getHours()}catch{return 12}};
   const byDay={};abroad.forEach(e=>{const v=inrOf(e,R);if(v!=null)byDay[e.date]=(byDay[e.date]||0)+v});const dv=Object.values(byDay),avg=dv.length?dv.reduce((a,b)=>a+b,0)/dv.length:0;
   const actDone=k=>(TRIP.acts||[]).some(a=>a&&new RegExp(k,"i").test(a.t)&&CHECKS[a.id]?.done);
   const ctry=new Set(EXP.filter(e=>e.date>=start&&e.place!=="Travel").map(e=>e.place));
-  const got={hop:ctry.size>=2,three:["China","Hong Kong","Singapore"].every(c=>ctry.has(c)),dimsum:EXP.filter(e=>e.place==="Hong Kong"&&e.cat==="Food").length>=5,foodie:EXP.filter(e=>e.cat==="Food").length>=10,
+  const got={hop:ctry.size>=2,three:legsU().length>=2&&legsU().every(l=>ctry.has(l.place)),dimsum:legsU().some(l=>EXP.filter(e=>e.place===l.place&&e.cat==="Food").length>=5),foodie:EXP.filter(e=>e.cat==="Food").length>=10,
     owl:EXP.some(e=>typeof e.created==="number"&&e.created>1e12&&(hr(e)>=23||hr(e)<4)),early:EXP.some(e=>typeof e.created==="number"&&e.created>1e12&&hr(e)>=4&&hr(e)<7),
     disney:actDone("disney"),ocean:actDone("ocean"),universal:actDone("universal"),big:dv.some(v=>v>=15000),wise:dv.length>=2&&dv.some(v=>v<=avg*.5),
     fx:FX.length>=3,collector:EXP.length>=25,memory:Object.values(CHECKS).filter(c=>c.note).length>=5,home:!!(RET&&T>RET)};
   const earned=SEALS.filter(x=>got[x[0]]).map(x=>x[0]);
   const fresh=SEEN?earned.filter(k=>!SEEN.includes(k)):[];
-  if(!SEEN||fresh.length){SEEN=[...new Set([...(SEEN||[]),...earned])];try{localStorage.setItem("tripSeals",JSON.stringify(SEEN))}catch{}}
-  $("sealN").textContent=`${earned.length}/${SEALS.length} earned`;
-  $("seals").innerHTML=[...SEALS].sort((a,b)=>(got[b[0]]?1:0)-(got[a[0]]?1:0)).map(([k,n,e,h])=>`<div class="seal2 ${got[k]?"got":"lock"} ${fresh.includes(k)?"fresh":""}">${sealSvg(e,got[k],k)}<b>${esc(n)}</b><span>${esc(h)}</span></div>`).join("");
+  if(!SEEN||fresh.length){SEEN=[...new Set([...(SEEN||[]),...earned])];try{localStorage.setItem(LK("tripSeals"),JSON.stringify(SEEN))}catch{}}
+  $("sealN").textContent=`${earned.length}/${SEALS.filter(x=>!["disney","ocean","universal"].includes(x[0])||(TRIP.acts||[]).some(a=>a&&new RegExp(x[0],"i").test(a.t))).length} earned`;
+  const can=k=>!["disney","ocean","universal"].includes(k)||(TRIP.acts||[]).some(a=>a&&new RegExp(k,"i").test(a.t));
+  $("seals").innerHTML=[...SEALS].filter(x=>can(x[0])).sort((a,b)=>(got[b[0]]?1:0)-(got[a[0]]?1:0)).map(([k,n,e,h])=>`<div class="seal2 ${got[k]?"got":"lock"} ${fresh.includes(k)?"fresh":""}">${sealSvg(e,got[k],k)}<b>${esc(n)}</b><span>${esc(h)}</span></div>`).join("");
   if(fresh.length)setTimeout(()=>sealPop(SEALS.find(x=>x[0]===fresh[0]),fresh.length),400)}
 function sealPop(x,n){const el=$("sealpop");el.innerHTML=`<div class="in"><div class="k">NEW VISA SEAL</div>${sealSvg(x[2],true,"pop")}<h3>${esc(x[1])}</h3><p>${esc(x[3])}${n>1?` · +${n-1} more`:""}</p><button id="sealOk">Stamp it in</button></div>`;
   el.classList.add("on");thud();try{navigator.vibrate&&navigator.vibrate([20,60,20])}catch{}$("sealOk").onclick=()=>el.classList.remove("on");el.onclick=e=>{if(e.target===el)el.classList.remove("on")}}
 
 
 /* ---------- taxi cards ---------- */
-let CARDS=[],SAMPLE=null,aCity="China",aDraft=null;
-const ASK={China:"请带我去：","Hong Kong":"唔該，送我去：",Singapore:"Please take me to:"};
-const DCOL={China:"#b8291f","Hong Kong":"#c8352b",Singapore:"#0e8a78"};
+let CARDS=[],SAMPLE=null,aCity="",aDraft=null;
+const LANGS={"zh-Hans":["请带我去：","给司机看"],"zh-Hant":["唔該，送我去：","給司機看"],"zh-HK":["唔該，送我去：","給司機看"],ja:["ここまでお願いします：","運転手さんへ"],ko:["여기로 가 주세요:","기사님께"],th:["กรุณาพาไปที่:","สำหรับคนขับ"],vi:["Làm ơn chở tôi đến:","Cho tài xế"],ar:["من فضلك خذني إلى:","للسائق"],ru:["Отвезите меня, пожалуйста:","Для водителя"],fr:["Emmenez-moi ici, s'il vous plaît :","Pour le chauffeur"],es:["Lléveme aquí, por favor:","Para el conductor"],it:["Mi porti qui, per favore:","Per l'autista"],de:["Bitte bringen Sie mich hierhin:","Für den Fahrer"],tr:["Lütfen beni buraya götürün:","Sürücü için"],id:["Tolong antar saya ke:","Untuk sopir"],ms:["Tolong bawa saya ke:","Untuk pemandu"]};
+const langOf=p=>((legOf(p)||{}).lang)||(p==="Hong Kong"?"zh-Hant":p==="China"?"zh-Hans":"en");
+const askOf=p=>LANGS[langOf(p)]||["Please take me to:",""];
 function renderTaxis(){const T=today(),lg=legOn(T),here=lg?lg.place:null;
   const list=[...CARDS].sort((a,b)=>((b.city===here)-(a.city===here))||((b.kind==="hotel")-(a.kind==="hotel")));
-  $("tgrid").innerHTML=list.map(c=>`<button class="tx ${esc(String(c.city).replace(/\s/g,""))}" data-tx="${esc(c.id)}"><span class="roof">${c.city==="Singapore"?"TAXI":"的士 · TAXI"}</span>${c.kind==="hotel"?'<span class="ht">🏨</span>':c.kind==="airport"?'<span class="ht">✈️</span>':""}<span class="zh">${esc(c.zh||c.title)}</span><span class="en">${esc(c.zh?c.title:c.city)}</span></button>`).join("")+
+  $("tgrid").innerHTML=list.map(c=>`<button class="tx" style="--tc1:${mix(pcol(c.city),"#ffffff",.9)};--tc2:${mix(pcol(c.city),"#000000",.62)}" data-tx="${esc(c.id)}"><span class="roof">${String(langOf(c.city)).startsWith("zh")?"的士 · TAXI":"TAXI"}</span>${c.kind==="hotel"?'<span class="ht">🏨</span>':c.kind==="airport"?'<span class="ht">✈️</span>':""}<span class="zh">${esc(c.zh||c.title)}</span><span class="en">${esc(c.zh?c.title:c.city)}</span></button>`).join("")+
     `<button class="tx add" id="txAdd"><b>＋</b><span>Add a place<br>Claude translates it</span></button>`;
   const hc=CARDS.find(c=>c.kind==="hotel"&&c.leg&&c.leg===here)||CARDS.find(c=>c.city===here);
   $("taxiChip").classList.toggle("hidden",!hc);$("taxiChip").dataset.tx=hc?hc.id:"";
   $("txAdd").onclick=openAdd}
 $("tgrid").onclick=e=>{const b=e.target.closest("[data-tx]");if(b)showDriver(b.dataset.tx)};
 $("taxiChip").onclick=()=>{const id=$("taxiChip").dataset.tx;if(id)showDriver(id)};
-function showDriver(id){const c=CARDS.find(x=>x.id===id);if(!c)return;const el=$("drv");el.style.setProperty("--dc",DCOL[c.city]||"#c8352b");
-  el.innerHTML=`<div class="bar"><b>${c.city==="Singapore"?"FOR THE DRIVER":c.city==="Hong Kong"?"給司機看 · FOR THE DRIVER":"给司机看 · FOR THE DRIVER"}</b><button id="dx" aria-label="Close">✕</button></div>
-   <div class="body"><div class="ask">${esc(ASK[c.city]||"Please take me to:")}</div>${c.zh?`<div class="big">${esc(c.zh)}</div>${c.zhAddr?`<div class="addr">${esc(c.zhAddr)}</div>`:""}`:`<div class="big en">${esc(c.en)}</div>`}
+function showDriver(id){const c=CARDS.find(x=>x.id===id);if(!c)return;const el=$("drv");el.style.setProperty("--dc",mix(pcol(c.city),"#000000",.85));
+  el.innerHTML=`<div class="bar"><b>${askOf(c.city)[1]?esc(askOf(c.city)[1])+" · ":""}FOR THE DRIVER</b><button id="dx" aria-label="Close">✕</button></div>
+   <div class="body"><div class="ask">${esc(askOf(c.city)[0])}</div>${c.zh?`<div class="big">${esc(c.zh)}</div>${c.zhAddr?`<div class="addr">${esc(c.zhAddr)}</div>`:""}`:`<div class="big en">${esc(c.en)}</div>`}
    ${c.zh?`<div class="ens">${esc(c.en)}</div>`:""}${c.ai?`<div class="ai">Translated by Claude · double-check if unsure</div>`:""}</div>
    <div class="foot"><button id="dcp">Copy address</button>${c.custom?`<button id="drm">Remove card</button>`:""}</div>`;
   el.classList.add("on");try{navigator.vibrate&&navigator.vibrate(10)}catch{}
   $("dx").onclick=()=>el.classList.remove("on");
   $("dcp").onclick=async()=>{try{await navigator.clipboard.writeText([c.zh,c.zhAddr,c.en].filter(Boolean).join("\n"));toast("Address copied")}catch{toast("Copy blocked")}};
   if(c.custom)$("drm").onclick=async()=>{if($("drm").dataset.arm){el.classList.remove("on");CARDS=CARDS.filter(x=>x.id!==c.id);renderTaxis();await saveCards();toast("Card removed")}else{$("drm").dataset.arm=1;$("drm").textContent="Tap again to remove"}}}
-async function saveCards(){if(!db)return;await write(()=>db.doc("settings/cards").set({cards:CARDS}),"")}
+async function saveCards(){if(!db)return;await write(()=>db.doc(TP()+"settings/cards").set({cards:CARDS}),"")}
 function openAdd(){aDraft=null;$("aTxt").value="";$("aPrev").style.display="none";$("aErr").textContent="";$("aSave").classList.add("hidden");$("aGo").classList.remove("hidden");$("aGo").disabled=false;$("aGo").textContent="Translate for the driver";
-  const lg=legOn(today());aCity=lg&&["China","Hong Kong","Singapore"].includes(lg.place)?lg.place:"China";drawCity();
+  const lg=legOn(today());aCity=lg?lg.place:((legsU()[0]||{}).place||"");drawCity();
   if(!SAMPLE){$("aZhWrap").classList.remove("hidden");$("aZh").value="";$("aGo").textContent="Save card";document.querySelector("#addsheet .sug").textContent="Paste the Chinese name or address (hotel staff can write it, or copy it from a map app). Leave it empty to show the English."}
   $("addsheet").classList.add("on");$("scrim").classList.add("on")}
 function drawCity(){$("aCity").innerHTML=PLACES.filter(p=>p[0]!=="Travel").map(([v,,f,c])=>`<button type="button" class="wb ${aCity===v?"on":""}" style="--c:${c}" data-c="${v}"><span class="f">${f}</span>${v}</button>`).join("")}
@@ -1204,10 +1364,132 @@ Never invent a street address. If unsure of the Chinese name, give the best lite
   catch(err){$("aErr").textContent=err&&err.code==="rate_limited"?"Too many requests. Try again in a minute.":err&&err.code==="not_granted"?"Translation was declined, so it can't run here.":"Couldn't translate that. Try adding the area or district.";$("aGo").disabled=false;$("aGo").textContent="Translate for the driver"}};
 $("aSave").onclick=async()=>{if(!aDraft)return;CARDS=[aDraft,...CARDS].slice(0,40);closeAdd();$("scrim").classList.remove("on");renderTaxis();await saveCards();toast("Taxi card saved");showDriver(aDraft.id)};
 
+
+/* ================= ATLAS ================= */
+let ATLAS={trips:[],byIso:{},wish:[],home:"IN"},GZ=1,GC=null,atlasT=null,atlasFit=0;
+const isoName=iso=>{const w=WORLD&&WORLD.find(o=>o.iso===iso);return w?w.n:iso};
+async function loadAtlas(){if(!db)return;
+  const tr=(await db.collection("trips").get()).docs.filter(d=>d.exists).map(d=>({id:d.id,...d.data()}));
+  const out=[],by={};let home="IN";
+  for(const t of tr){const td=await db.doc(`t/${t.id}/settings/trip`).get();const T=td.exists?td.data():{};
+    const E=(await db.collection(`t/${t.id}/expenses`).get()).docs.map(d=>d.data()).filter(e=>e&&e.amount>0);
+    const F=(await db.collection(`t/${t.id}/exchanges`).get()).docs.map(d=>d.data()).filter(x=>x&&x.fromAmt>0&&x.toAmt>0);
+    const R=ratesFor(F),legs=(Array.isArray(T.legs)?T.legs:[]).filter(l=>l&&l.place);const iso=p=>(legs.find(l=>l.place===p)||{}).country;
+    let total=0;const per={},cats={};
+    for(const e of E){const v=inrOf(e,R);if(v==null)continue;total+=v;const c=iso(e.place);if(c){per[c]=(per[c]||0)+v;(cats[c]=cats[c]||{})[e.cat]=(cats[c][e.cat]||0)+v}}
+    if(T.home&&T.home.country)home=T.home.country;
+    const color=(/^#[0-9a-f]{6}$/i.test(T.color||"")?T.color:null)||PALETTE[out.length%PALETTE.length];
+    const rec={id:t.id,name:T.name||t.name||"Trip",region:T.region||"",start:T.start||t.start||"",end:T.returnDate||t.returnDate||"",legs,total,per,cats,color};out.push(rec);
+    legs.forEach(l=>{if(!l.country)return;const b=by[l.country]=by[l.country]||{total:0,trips:[],days:0,cats:{}};
+      if(!b.trips.find(x=>x.id===rec.id))b.trips.push(rec);b.days+=Math.max(1,dayDiff(l.from||rec.start,l.to||rec.end));})
+    Object.keys(per).forEach(c=>{const b=by[c];if(b){b.total+=per[c];Object.entries(cats[c]).forEach(([k,v])=>b.cats[k]=(b.cats[k]||0)+v)}})}
+  out.sort((a,b)=>String(b.start).localeCompare(String(a.start)));
+  const w=await db.doc("atlas/wish").get();ATLAS={trips:out,byIso:by,wish:w.exists&&Array.isArray(w.data().iso)?w.data().iso:[],home};
+  renderAtlas()}
+function tripState(t){const T=today();return T<t.start?"up":t.end&&T>t.end?"done":"now"}
+function visited(iso){const b=ATLAS.byIso[iso];return b&&b.trips.some(t=>t.start&&t.start<=today())}
+function renderAtlas(){if(!$("v-atlas"))return;const vis=Object.keys(ATLAS.byIso).filter(visited),wish=ATLAS.wish.filter(i=>!vis.includes(i));
+  /* globe */
+  if(WORLD){const W=530,H=250;if(!atlasFit){const ids=[...vis,...wish,ATLAS.home];const bs=WORLD.filter(o=>ids.includes(o.iso)).map(o=>o.b);if(bs.length>1){atlasFit=1;const x0=Math.min(...bs.map(b=>b[0])),x1=Math.max(...bs.map(b=>b[2])),y0=Math.min(...bs.map(b=>b[1])),y1=Math.max(...bs.map(b=>b[3]));GZ=Math.max(1,Math.min(4,Math.min(W/((x1-x0)*1.5),H/((y1-y0)*1.6))));GC=[(x0+x1)/2,(y0+y1)/2]}}
+    const vw=W/GZ,vh=H/GZ;let cx=GC?GC[0]:10,cy=GC?GC[1]:-8;cx=Math.max(-265+vw/2,Math.min(265-vw/2,cx));cy=Math.max(-130+vh/2,Math.min(108-vh/2,cy));GC=[cx,cy];
+    const vb=[cx-vw/2,cy-vh/2,vw,vh],k=1/GZ;
+    const land=WORLD.filter(o=>o.b[2]>=vb[0]&&o.b[0]<=vb[0]+vw&&o.b[3]>=vb[1]&&o.b[1]<=vb[1]+vh).map(o=>{const c=o.iso===ATLAS.home?"home":vis.includes(o.iso)?"vis":wish.includes(o.iso)?"wish":"";return`<path d="${o.d}" class="land ${c} ${o.iso===atlasSel?"sel":""}" data-iso="${o.iso}" style="stroke-width:${c?"":(.25*k).toFixed(2)}"/>`}).join("");
+    const pins=[...vis,...wish].map(iso=>{const o=WORLD.find(x=>x.iso===iso);if(!o)return"";const small=(o.b[2]-o.b[0])*(o.b[3]-o.b[1])<6;if(!small&&GZ<2)return"";const[x,y]=o.c,v=vis.includes(iso);
+      return`<g class="pin" data-iso="${iso}"><circle cx="${x}" cy="${y}" r="${(3.4*k).toFixed(2)}" fill="${v?"#f6dfa4":"none"}" stroke="#e3c27a" stroke-width="${(.8*k).toFixed(2)}" ${v?"":`stroke-dasharray="${1.2*k} ${1*k}"`}/><circle cx="${x}" cy="${y}" r="${(7*k).toFixed(2)}" fill="transparent"/></g>`}).join("");
+    const grat=[-60,-30,0,30,60].map(l=>{const a=proj(-180,l),b=proj(180,l);return`<line class="grat" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" style="stroke-width:${(.3*k).toFixed(2)}"/>`}).join("");
+    $("globeSvg").innerHTML=`<svg viewBox="${vb.map(v=>v.toFixed(1)).join(" ")}"><defs><linearGradient id="gvis" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dfa4"/><stop offset=".6" stop-color="#d9b061"/><stop offset="1" stop-color="#b8924a"/></linearGradient>
+      <pattern id="ghatch" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2.2" height="2.2" fill="#26325c"/><line x1="0" y1="0" x2="0" y2="2.2" stroke="#e3c27a77" stroke-width=".7"/></pattern>
+      <filter id="gglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>${grat}${land}${pins}</svg>`}
+  /* flags + stats */
+  $("flagrow").innerHTML=[...vis.map(i=>[i,0]),...wish.map(i=>[i,1])].map(([i,w])=>`<button class="${w?"w":""}" data-iso="${i}"><span>${flagOf(i)}</span>${esc(isoName(i))}</button>`).join("");
+  const life=ATLAS.trips.reduce((s,t)=>s+(t.start<=today()?t.total:0),0),days=ATLAS.trips.filter(t=>t.start&&t.start<=today()).reduce((s,t)=>s+Math.max(1,dayDiff(t.start,t.end&&t.end<today()?t.end:today())+1),0);
+  $("astats").innerHTML=`<div><b>${vis.length}</b><span>Countries</span></div><div><b>${ATLAS.trips.length}</b><span>Trips</span></div><div><b>${days}</b><span>Days away</span></div><div><b>₹${life>=1e5?fmt(life/1e5,1)+"L":fmt(life)}</b><span>Spent</span></div>`;
+  $("atlasSub").textContent=`${vis.length} countr${vis.length===1?"y":"ies"} stamped · ${Math.round(vis.length/195*100)}% of the world`;
+  /* shelf */
+  $("shelfN").textContent=`${ATLAS.trips.length} trip${ATLAS.trips.length===1?"":"s"}`;
+  $("shelf").innerHTML=`<button class="book new" id="newTrip"><div class="in"><b>＋</b><span>New passport<br>Upload your travel plan</span></div></button>`+ATLAS.trips.map(t=>{const s=tripState(t),c=t.color;
+    const ini=(t.region||t.name).split(/[\s·]+/).filter(Boolean).map(w=>w[0]).join("").slice(0,2).toUpperCase();
+    return`<button class="book" data-trip="${esc(t.id)}" style="--b1:${mix(c,"#0b0b16",.5)};--b2:${mix(c,"#05050a",.3)}">${s==="now"?'<span class="rib">NOW</span>':s==="up"?'<span class="rib up">UPCOMING</span>':""}<div class="in"><div class="bn">PASSPORT</div><div class="bc">${esc(ini||"✈")}</div><div class="bt">${esc(t.name)}</div><div class="bf">${t.legs.map(l=>flagOf(l.country)).join("")}</div><div class="bd">${t.start?esc(short(t.start)):""}${t.end?" – "+esc(short(t.end)):""}</div><div class="bv">₹${fmt(t.total)}</div></div>${s==="done"?'<span class="done">COMPLETED</span>':""}</button>`}).join("");
+  $("newTrip").onclick=()=>typeof openNew==="function"&&openNew()}
+let atlasSel=null;
+function openTrip(id){if(id===TRIPID){go("today");return}try{localStorage.setItem("tp-trip",id)}catch{}location.hash="#today";location.reload()}
+$("shelf").onclick=e=>{const b=e.target.closest("[data-trip]");if(b)openTrip(b.dataset.trip)};
+$("globeSvg").onclick=e=>{const t=e.target.closest("[data-iso]");if(t)openCountry(t.dataset.iso)};
+$("flagrow").onclick=e=>{const t=e.target.closest("[data-iso]");if(t)openCountry(t.dataset.iso)};
+$("gzW").onclick=()=>{atlasFit=1;GZ=1;GC=null;renderAtlas()};$("gzIn").onclick=()=>{atlasFit=1;GZ=Math.min(8,GZ*1.8);renderAtlas()};$("gzOut").onclick=()=>{atlasFit=1;GZ=Math.max(1,GZ/1.8);if(GZ===1)GC=null;renderAtlas()};
+function openCountry(iso){atlasSel=iso;const o=WORLD&&WORLD.find(x=>x.iso===iso);if(o&&GZ<2){}renderAtlas();
+  const b=ATLAS.byIso[iso],v=visited(iso),w=ATLAS.wish.includes(iso),home=iso===ATLAS.home,name=isoName(iso);
+  let h=`<div class="chd"><div class="cf">${flagOf(iso)}</div><div><div class="cn">${esc(name)}</div><span class="pill ${home?"h":v?"":w?"w":b?"w":"n"}">${home?"HOME":v?"VISITED ✓":b?"UPCOMING TRIP":w?"ON YOUR WISHLIST":"NOT YET STAMPED"}</span></div></div>`;
+  if(b){const tot=b.total;h+=`<div class="ctot"><b>₹${fmt(tot)}</b><span>spent here · ${b.trips.length} trip${b.trips.length===1?"":"s"} · ${b.days} day${b.days===1?"":"s"}</span></div>`;
+    const cats=Object.entries(b.cats).sort((a,c)=>c[1]-a[1]).slice(0,4);if(cats.length)h+=`<div class="ccats">${cats.map(([k,x])=>`<span>${(CATS.find(c=>c[0]===k)||["","✨"])[1]} ${esc(k)} · ₹${fmt(x)}</span>`).join("")}</div>`;
+    h+=b.trips.map(t=>`<div class="ctrip" data-trip="${esc(t.id)}" style="--b1:${t.color}"><i></i><div class="tx2"><b>${esc(t.name)}</b><span>${t.start?esc(dayLabel(t.start)):""}${t.end?" → "+esc(dayLabel(t.end)):""}</span></div><div class="am">₹${fmt(t.per[iso]||0)} ›</div></div>`).join("")}
+  else{h+=`<div class="nv"><div class="ds">${home?"⌂":"?"}</div><p>${home?"Home sweet home. Your trips start and end here.":`You haven't been to ${esc(name)} yet.`}</p></div>`}
+  if(!v&&!home)h+=`<button class="btn ghost" id="cWish">${w?"✓ On your wishlist · remove":"☆ Add to wishlist"}</button><button class="btn" id="cPlan">＋ Plan a trip to ${esc(name)}</button>`;
+  $("cBody").innerHTML=h;$("csheet").classList.add("on");$("scrim").classList.add("on");
+  $("cBody").onclick=async e=>{const t=e.target.closest("[data-trip]");if(t){openTrip(t.dataset.trip);return}
+    if(e.target.id==="cWish"){const nw=w?ATLAS.wish.filter(i=>i!==iso):[...ATLAS.wish,iso];ATLAS.wish=nw;try{await db.doc("atlas/wish").set({iso:nw})}catch{toast("Saved on phone · will sync")}openCountry(iso);toast(w?"Removed from wishlist":"Added to wishlist ⭐")}
+    if(e.target.id==="cPlan"){closeC();typeof openNew==="function"&&openNew(name)}}}
+function closeC(){$("csheet").classList.remove("on");atlasSel=null;if(CUR==="atlas")renderAtlas()}
+
+
+/* ================= NEW PASSPORT · plan reader ================= */
+let NF=[],NDRAFT=null,NHINT="";
+function openNew(hint){NF=[];NDRAFT=null;NHINT=hint||"";drawNew();$("nsheet").classList.add("on");$("scrim").classList.add("on")}
+function closeNew(){$("nsheet").classList.remove("on")}
+function drawNew(){$("nBody").innerHTML=`<h3>New passport</h3><p class="ns">Add your tickets, hotel bookings and itinerary (PDFs or photos). Claude reads them and builds the whole trip: countries, dates, currencies, map, itinerary, wallet and taxi cards.</p>
+  <label class="drop"><input type="file" id="nFiles" multiple accept="application/pdf,image/*"><div class="ic">🗂️</div><b>Add travel documents</b><span>PDF, JPG or PNG · up to 12 files</span></label>
+  <div class="flist" id="nList">${NF.map((f,i)=>`<div><i>${f.type==="application/pdf"?"📄":"🖼️"}</i><span>${esc(f.name)}</span><button data-rm="${i}" aria-label="Remove">✕</button></div>`).join("")}</div>
+  <span class="lbl">Anything else? (optional)</span><input id="nNotes" placeholder="${esc(NHINT?`e.g. Trip to ${NHINT} with Sanchi, flying from Mumbai`:"e.g. With Sanchi, flying from Mumbai")}">
+  <div class="err" id="nErr" style="color:var(--cn);font:600 13px var(--sans);min-height:16px;margin-top:10px"></div>
+  <button class="btn" id="nGo" ${NF.length?"":"disabled"}>✨ Read my plan</button>`;
+  $("nFiles").onchange=e=>{for(const f of e.target.files){if(NF.length<12&&(f.type==="application/pdf"||f.type.startsWith("image/")))NF.push(f)}drawNew()};
+  $("nList").onclick=e=>{const b=e.target.closest("[data-rm]");if(b){NF.splice(+b.dataset.rm,1);drawNew()}};
+  $("nGo").onclick=readPlan}
+const b64=f=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]);r.onerror=rej;r.readAsDataURL(f)});
+async function shrink(f){if(!f.type.startsWith("image/"))return{type:f.type,data:await b64(f)};
+  const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=URL.createObjectURL(f)});
+  const k=Math.min(1,1800/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+  return{type:"image/jpeg",data:c.toDataURL("image/jpeg",.85).split(",")[1]}}
+async function readPlan(){if(!NF.length)return;if(navigator.onLine===false){$("nErr").textContent="You're offline. Reading a plan needs internet.";return}
+  const notes=$("nNotes").value.trim();const steps=["Reading your tickets…","Finding hotels and confirmations…","Plotting the route on the map…","Setting currencies and taxi cards…","Almost there…"];let k=0;
+  $("nBody").innerHTML=`<div class="reading"><div class="scan"><b>✈</b></div><p id="nStep">${steps[0]}</p></div>`;const iv=setInterval(()=>{k=Math.min(steps.length-1,k+1);const el=$("nStep");if(el)el.textContent=steps[k]},4500);
+  try{const files=[];let size=0;for(const f of NF){const x=await shrink(f);size+=x.data.length;files.push(x)}
+    if(size>14e6)throw new Error("Those files are too large together. Try fewer or smaller files.");
+    if(!window.TP_INVOKE)throw new Error("Plan reading needs the standalone app.");
+    const r=await window.TP_INVOKE("parse-plan",{files,notes:(NHINT?`Destination of interest: ${NHINT}. `:"")+notes,today:today()});
+    clearInterval(iv);if(!r||!r.trip)throw new Error((r&&r.error)||"Couldn't read the plan.");NDRAFT=cleanTrip(r.trip);showDraft()}
+  catch(err){clearInterval(iv);drawNew();$("nErr").textContent=String(err&&err.message||err)}}
+const isDate=d=>typeof d==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(d);
+function cleanTrip(t){t=t&&typeof t==="object"?t:{};const str=(v,n=120)=>typeof v==="string"?v.slice(0,n):"";const numv=v=>isFinite(+v)?+v:undefined;
+  const legs=(Array.isArray(t.legs)?t.legs:[]).filter(l=>l&&l.place).slice(0,12).map((l,i)=>({place:str(l.place,40),country:str(l.country,2).toUpperCase(),city:str(l.city,40),lat:numv(l.lat),lon:numv(l.lon),from:isDate(l.from)?l.from:"",to:isDate(l.to)?l.to:"",currency:str(l.currency,4).toUpperCase(),lang:str(l.lang,8)||"en",stay:str(l.stay,80),color:PALETTE[i%PALETTE.length]}));
+  const h=t.home||{};const plan={};if(t.plan&&typeof t.plan==="object")Object.entries(t.plan).forEach(([d,v])=>{if(isDate(d)&&typeof v==="string")plan[d]=v.slice(0,120)});
+  const acts=(Array.isArray(t.acts)?t.acts:[]).filter(a=>a&&isDate(a.date)&&a.t).slice(0,80).map((a,i)=>({id:"a"+String(i+1).padStart(2,"0"),date:a.date,e:str(a.e,8)||"•",t:str(a.t,90),s:str(a.s,60)}));
+  const wallet=(Array.isArray(t.wallet)?t.wallet:[]).filter(c=>c&&c.title).slice(0,20).map(c=>({icon:str(c.icon,4)||"🎫",title:str(c.title,80),sub:str(c.sub,80),rows:(Array.isArray(c.rows)?c.rows:[]).filter(r=>Array.isArray(r)&&r.length>1&&r[1]).slice(0,10).map(r=>[str(r[0],30),str(r[1],120)])}));
+  const cards=(Array.isArray(t.cards)?t.cards:[]).filter(c=>c&&c.city&&(c.zh||c.en)).slice(0,30).map((c,i)=>({id:str(c.id,30)||"c"+i,city:str(c.city,40),kind:["hotel","airport","sight"].includes(c.kind)?c.kind:"sight",title:str(c.title,80),zh:str(c.zh,40),zhAddr:str(c.zhAddr,80),en:str(c.en,160),...(c.leg?{leg:str(c.leg,40)}:{})}));
+  const start=isDate(t.start)?t.start:(legs[0]||{}).from||"",ret=isDate(t.returnDate)?t.returnDate:(legs[legs.length-1]||{}).to||"";
+  return{name:str(t.name,50)||legs.map(l=>l.place).join(" · ")||"New trip",region:str(t.region,20),home:{city:str(h.city,40)||"Mumbai",country:str(h.country,2).toUpperCase()||"IN",lat:numv(h.lat)??19.08,lon:numv(h.lon)??72.88},start,returnDate:ret,legs,plan,acts,wallet,cards}}
+function showDraft(){const t=NDRAFT,c=PALETTE[ATLAS.trips.length%PALETTE.length];
+  $("nBody").innerHTML=`<div class="prev2" style="--b1:${mix(c,"#0b0b16",.5)};--b2:${mix(c,"#05050a",.3)}"><div class="ph2"><div class="k">NEW PASSPORT · CHECK IT</div><input id="dName" value="${esc(t.name)}"><div class="d">${t.start?esc(dayLabel(t.start)):"?"} → ${t.returnDate?esc(dayLabel(t.returnDate)):"?"} · from ${esc(t.home.city)}</div></div>
+   <div class="legs">${t.legs.map(l=>`<div class="lg"><span class="f">${flagOf(l.country)}</span><div><b>${esc(l.city||l.place)}${l.city&&l.city!==l.place?`, ${esc(l.place)}`:""}</b><span>${l.from?esc(short(l.from)):""}${l.to?" – "+esc(short(l.to)):""}${l.stay?" · "+esc(l.stay):""}</span></div><span class="c">${esc(l.currency||"—")}</span></div>`).join("")||'<div class="lg"><span>No countries found</span></div>'}</div>
+   <div class="cnt"><div><b>${t.wallet.filter(w=>w.icon==="✈️"||w.icon==="🏠").length}</b><span>FLIGHTS</span></div><div><b>${t.wallet.filter(w=>w.icon==="🏨").length}</b><span>HOTELS</span></div><div><b>${t.acts.length}</b><span>PLANS</span></div><div><b>${t.cards.length}</b><span>TAXI CARDS</span></div></div></div>
+   <div class="err" id="nErr" style="color:var(--cn);font:600 13px var(--sans);min-height:16px;margin-top:10px"></div>
+   <button class="btn" id="dGo" ${t.legs.length?"":"disabled"}>Create passport ✈️</button><button class="btn ghost" id="dBack">Back to documents</button>`;
+  $("dBack").onclick=drawNew;$("dGo").onclick=createTrip}
+async function createTrip(){const t=NDRAFT;if(!t||!db)return;t.name=($("dName").value.trim()||t.name).slice(0,50);$("dGo").disabled=true;$("dGo").textContent="Stamping your new passport…";
+  const slug=(t.name.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,24)||"trip")+"-"+Math.random().toString(36).slice(2,6);
+  const color=PALETTE[ATLAS.trips.length%PALETTE.length],P=`t/${slug}/`;
+  try{await db.doc(P+"settings/trip").set({name:t.name,region:t.region,home:t.home,start:t.start,returnDate:t.returnDate,legs:t.legs,plan:t.plan,acts:t.acts,color});
+    if(t.wallet.length)await db.doc(P+"settings/wallet").set({cards:t.wallet});
+    if(t.cards.length)await db.doc(P+"settings/cards").set({cards:t.cards});
+    await db.doc("trips/"+slug).set({name:t.name,start:t.start,returnDate:t.returnDate,created:Date.now()});
+    thud();closeNew();$("scrim").classList.remove("on");toast("New passport issued 🛂");setTimeout(()=>openTrip(slug),700)}
+  catch(err){$("nErr").textContent="Couldn't save: "+(err&&err.message||"check your connection");$("dGo").disabled=false;$("dGo").textContent="Create passport ✈️"}}
+
 /* ---------- maths ---------- */
-function inrRates(){const r={INR:1};
-  for(let p=0;p<5;p++)for(const c of CURS){if(c==="INR")continue;let si=0,s2=0;
-    for(const x of FX)if(x.toCur===c&&r[x.fromCur]!=null){si+=x.fromAmt*r[x.fromCur];s2+=x.toAmt}
+function inrRates(){return ratesFor(FX)}
+function ratesFor(FXL){const r={INR:1},cs=new Set();FXL.forEach(x=>{cs.add(x.toCur);cs.add(x.fromCur)});
+  for(let p=0;p<5;p++)for(const c of cs){if(c==="INR")continue;let si=0,s2=0;
+    for(const x of FXL)if(x.toCur===c&&r[x.fromCur]!=null){si+=x.fromAmt*r[x.fromCur];s2+=x.toAmt}
     if(s2>0)r[c]=si/s2}
   return r}
 function inrOf(e,R){if(e.inr>0)return e.inr;if(e.cur==="INR")return e.amount;return R[e.cur]!=null?e.amount*R[e.cur]:null}
@@ -1215,7 +1497,7 @@ function inrOf(e,R){if(e.inr>0)return e.inr;if(e.cur==="INR")return e.amount;ret
 /* ---------- render ---------- */
 function render(){
   if(!(ready.e&&ready.f))return;
-  const R=inrRates(),T=today();personal();
+  const R=inrRates(),T=today();personal();setupForm();
   let tot=0,unk=0,tod=0;const place={},cat={};
   for(const e of EXP){const v=inrOf(e,R);if(v==null){unk++;continue}tot+=v;if(e.date===T)tod+=v;
     place[e.place]=(place[e.place]||0)+v;cat[e.cat]=(cat[e.cat]||0)+v}
@@ -1223,14 +1505,14 @@ function render(){
   const dates=[...EXP.map(e=>e.date),...FX.map(x=>x.date)].sort(),start=TRIP.start||dates[0]||T;
   $("tDay").textContent=Math.max(1,dayDiff(start,T)+1);
   countUp($("tInr"),tot);
-  $("tNote").textContent=[R.RMB&&`¥1 = ₹${fmt(R.RMB,2)}`,R.HKD&&`HK$1 = ₹${fmt(R.HKD,2)}`,R.SGD&&`S$1 = ₹${fmt(R.SGD,2)}`,unk&&`${unk} awaiting a rate`].filter(Boolean).join("  ·  ");
+  $("tNote").textContent=[...CURS.filter(c=>c!=="INR"&&R[c]&&legsU().some(l=>l.currency===c)).map(c=>`${SYM[c].trim()}1 = ₹${fmt(R[c],2)}`),unk&&`${unk} awaiting a rate`].filter(Boolean).join("  ·  ");
   $("tToday").textContent="₹"+fmt(tod);$("tFx").textContent="₹"+fmt(fxInr);
 
   const w={};CURS.forEach(c=>w[c]=0);
   for(const x of FX){w[x.toCur]+=x.toAmt;w[x.fromCur]-=x.fromAmt}
   for(const e of EXP)if(e.pay==="Cash")w[e.cur]-=e.amount;
   const wc=CURS.filter(c=>c!=="INR"&&(w[c]!==0||FX.some(x=>x.toCur===c||x.fromCur===c)));
-  $("wallet").innerHTML=wc.length?wc.map(c=>{const low=w[c]<(LOW[c]||0);return `<div class="visa v-${c} ${w[c]<0?"neg":""} ${low?"low":""}"><span class="sy">${SYM[c]}</span>${low?'<span class="lw">LOW</span>':""}<div class="c">${c}</div><div class="v">${money(w[c],c)}</div>${R[c]?`<div class="s">≈ ₹${fmt(w[c]*R[c])}</div>`:""}${low?`<div class="lt">${w[c]<0?"More spent than exchanged":"Running low · exchange soon"}</div>`:""}</div>`}).join(""):`<div class="blank">Stamp an exchange to fill your wallet</div>`;
+  $("wallet").innerHTML=wc.length?wc.map(c=>{const low=isLow(c,w[c],R);return `<div class="visa ${w[c]<0?"neg":""} ${low?"low":""}" style="background:${noteBg(c)}"><span class="sy">${SYM[c]}</span>${low?'<span class="lw">LOW</span>':""}<div class="c">${c}</div><div class="v">${money(w[c],c)}</div>${R[c]?`<div class="s">≈ ₹${fmt(w[c]*R[c])}</div>`:""}${low?`<div class="lt">${w[c]<0?"More spent than exchanged":"Running low · exchange soon"}</div>`:""}</div>`}).join(""):`<div class="blank">Stamp an exchange to fill your wallet</div>`;
 
   const pe=Object.entries(place).sort((a,b)=>b[1]-a[1]),pt=pe.reduce((s,x)=>s+x[1],0)||1;
   $("stack").innerHTML=pe.map(([k,v])=>`<i style="width:${v/pt*100}%;background:${PC[k]||"#888"}"></i>`).join("");
@@ -1275,7 +1557,7 @@ function render(){
     const dt=L.reduce((s,e)=>s+(inrOf(e,R)||0),0);
     return `<section class="page" id="d-${d}"><div class="ph"><h2>${d<start?"Before departure":"Day "+(dayDiff(start,d)+1)}<small>${dayLabel(d)}</small></h2><span class="r">₹${fmt(dt)}</span></div>${paceLine(d)}<div class="stamps">${L.map(e=>{
       const v=inrOf(e,R);
-      return `<div class="st ${e.place.replace(/\s/g,"")} ${e.id===fresh?"new":""}${e._p?" pend":""}" style="--rot:${rot(e.id)}" data-e="${esc(e.id)}"><span class="t">${esc(e.place)} · ${esc(e.cat)}</span><span class="a">${money(e.amount,e.cur)}</span><span class="d">${esc(e.desc||e.cat)}</span><span class="i">${short(e.date)}${v!=null&&e.cur!=="INR"?" · ₹"+fmt(v):""}${e.pay!=="Cash"?" · "+esc(e.pay).toUpperCase():""}</span>${CREW().length>1?`<img class="seal" alt="" src="${esc(av(payer(e)))}">`:""}</div>`}).join("")}</div><div class="pno">PAGE ${String(di+5).padStart(2,"0")}</div></section>`}).join(""):`<section class="page"><div class="stamps"><div class="blank">${on?"No stamps match this filter":"No stamps yet — tap “Stamp a spend” ✈️"}</div></div></section>`;
+      return `<div class="st ${stCls(e.place)} ${e.id===fresh?"new":""}${e._p?" pend":""}" style="--rot:${rot(e.id)};--c:${pcol(e.place)}" data-e="${esc(e.id)}"><span class="t">${esc(e.place)} · ${esc(e.cat)}</span><span class="a">${money(e.amount,e.cur)}</span><span class="d">${esc(e.desc||e.cat)}</span><span class="i">${short(e.date)}${v!=null&&e.cur!=="INR"?" · ₹"+fmt(v):""}${e.pay!=="Cash"?" · "+esc(e.pay).toUpperCase():""}</span>${CREW().length>1?`<img class="seal" alt="" src="${esc(av(payer(e)))}">`:""}</div>`}).join("")}</div><div class="pno">PAGE ${String(di+5).padStart(2,"0")}</div></section>`}).join(""):`<section class="page"><div class="stamps"><div class="blank">${on?"No stamps match this filter":"No stamps yet — tap “Stamp a spend” ✈️"}</div></div></section>`;
 
   const F=[...FX].sort((a,b)=>b.date.localeCompare(a.date));
   $("fxList").innerHTML=F.length?F.map(x=>`<div class="st fx ${x.id===fresh?"new":""}${x._p?" pend":""}" style="--rot:${rot(x.id)}" data-f="${esc(x.id)}"><span class="t">${x.fromCur} → ${x.toCur}</span><span class="a">${money(x.toAmt,x.toCur)}</span><span class="d">for ${money(x.fromAmt,x.fromCur)}${x.note?" · "+esc(x.note):""}</span><span class="i">${short(x.date)} · 1 ${x.toCur} = ${fmt(x.fromAmt/x.toAmt,2)} ${x.fromCur}</span></div>`).join(""):`<div class="blank">No exchanges yet</div>`;
@@ -1367,18 +1649,21 @@ $("copyCsv").onclick=async()=>{const R=inrRates();
       const before=[...LIVE].join(),now=[...l].join();LIVE=l;if(before!==now){refreshProfiles();renderCrew()}},()=>{})})();
   if(!db){clearTimeout(timer);$("tNote").textContent="";banner("Sign in to open your passport.");return}
   const clean=s=>s.docs.filter(d=>d.exists).map(d=>({id:d.id,...d.data()}));
+  db.collection("trips").onSnapshot(()=>{clearTimeout(atlasT);atlasT=setTimeout(loadAtlas,250)},()=>{});
+  db.doc("atlas/wish").onSnapshot(()=>{clearTimeout(atlasT);atlasT=setTimeout(loadAtlas,250)},()=>{});
+  if(!TRIPID){clearTimeout(timer);banner("");return}
   const ok=s=>{if(!s.metadata.fromCache&&ready.e&&ready.f){clearTimeout(timer);banner("")}render();syncChip()};
   const bad=()=>{clearTimeout(timer);banner("Live sync stopped — reopen the page.");render()};
-  db.collection("expenses").onSnapshot(s=>{RAW_E=clean(s);mergeAll();
-    if(!firstExp&&!s.metadata.hasPendingWrites&&s.docChanges){try{for(const c of s.docChanges()){if(c.type!=="added")continue;const x={id:c.doc.id,...c.doc.data()};if(x.by&&ME&&x.by!==ME&&x.amount>0&&CURS.includes(x.cur)&&typeof x.created==="number"&&Math.abs(Date.now()-x.created)<180000){fresh=x.id;setTimeout(()=>telegram(x),50)}}}catch{}}
+  db.collection(TP()+"expenses").onSnapshot(s=>{RAW_E=clean(s);mergeAll();
+    if(!firstExp&&!s.metadata.hasPendingWrites&&s.docChanges){try{for(const c of s.docChanges()){if(c.type!=="added")continue;const x={id:c.doc.id,...c.doc.data()};if(x.by&&ME&&x.by!==ME&&x.amount>0&&typeof x.cur==="string"&&typeof x.created==="number"&&Math.abs(Date.now()-x.created)<180000){fresh=x.id;setTimeout(()=>telegram(x),50)}}}catch{}}
     if(!s.metadata.fromCache)firstExp=false;ready.e=true;refreshProfiles();ok(s)},()=>{ready.e=true;bad()});
-  db.doc("settings/trip").onSnapshot(d=>{TRIP=d.exists?{...d.data()}:{};if(d.exists&&ME){const cr=Array.isArray(TRIP.crew)?TRIP.crew:[];const need=(IS_OWNER&&!TRIP.ownerId)||!cr.includes(ME);
-    if(need&&!crewWriting){crewWriting=true;const nt={...TRIP,crew:cr.includes(ME)?cr:[...cr,ME].slice(0,6)};if(IS_OWNER&&!TRIP.ownerId)nt.ownerId=ME;db.doc("settings/trip").set(nt).catch(()=>{}).finally(()=>setTimeout(()=>crewWriting=false,3000))}}const ok=v=>typeof v==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(v);RET=ok(TRIP.returnDate)?TRIP.returnDate:null;if(!ok(TRIP.start))delete TRIP.start;if(!Array.isArray(TRIP.legs))TRIP.legs=[];if(typeof TRIP.plan!=="object"||!TRIP.plan)TRIP.plan={};personal();refreshProfiles();render();if(!noteOpen)renderItin()},()=>{});
-  db.collection("checks").onSnapshot(q=>{const m={};q.docs.forEach(d=>{if(d.exists){const x=d.data();m[d.id]={done:!!x.done,note:typeof x.note==="string"?x.note:""}}});CHECKS=m;if(!noteOpen)renderItin()},()=>{});
-  db.doc("settings/cards").onSnapshot(d=>{const c=d.exists?d.data().cards:null;CARDS=Array.isArray(c)?c.filter(x=>x&&x.id&&x.city&&(x.zh||x.en)):[];renderTaxis()},()=>{});
+  db.doc(TP()+"settings/trip").onSnapshot(d=>{TRIP=d.exists?{...d.data()}:{};if(d.exists&&ME){const cr=Array.isArray(TRIP.crew)?TRIP.crew:[];const need=(IS_OWNER&&!TRIP.ownerId)||!cr.includes(ME);
+    if(need&&!crewWriting){crewWriting=true;const nt={...TRIP,crew:cr.includes(ME)?cr:[...cr,ME].slice(0,6)};if(IS_OWNER&&!TRIP.ownerId)nt.ownerId=ME;db.doc(TP()+"settings/trip").set(nt).catch(()=>{}).finally(()=>setTimeout(()=>crewWriting=false,3000))}}const ok=v=>typeof v==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(v);RET=ok(TRIP.returnDate)?TRIP.returnDate:null;if(!ok(TRIP.start))delete TRIP.start;if(!Array.isArray(TRIP.legs))TRIP.legs=[];if(typeof TRIP.plan!=="object"||!TRIP.plan)TRIP.plan={};personal();setupForm();refreshProfiles();render();if(!noteOpen)renderItin();if(autoTrip&&d.exists){autoTrip=false;const T0=today();if(TRIP.start&&TRIP.start<=T0&&(!TRIP.returnDate||T0<=TRIP.returnDate)&&CUR==="atlas")go("today")}},()=>{});
+  db.collection(TP()+"checks").onSnapshot(q=>{const m={};q.docs.forEach(d=>{if(d.exists){const x=d.data();m[d.id]={done:!!x.done,note:typeof x.note==="string"?x.note:""}}});CHECKS=m;if(!noteOpen)renderItin()},()=>{});
+  db.doc(TP()+"settings/cards").onSnapshot(d=>{const c=d.exists?d.data().cards:null;CARDS=Array.isArray(c)?c.filter(x=>x&&x.id&&x.city&&(x.zh||x.en)):[];renderTaxis()},()=>{});
   (async()=>{try{SAMPLE=await window.claude?.use?.("sample")}catch{SAMPLE=null}})();
-  db.doc("settings/wallet").onSnapshot(d=>{const c=d.exists?d.data().cards:null;WALLET=Array.isArray(c)?c.filter(x=>x&&x.title):[];renderWallet()},()=>{});
-  db.collection("exchanges").onSnapshot(s=>{RAW_F=clean(s);mergeAll();ready.f=true;flush();ok(s)},()=>{ready.f=true;bad()});
+  db.doc(TP()+"settings/wallet").onSnapshot(d=>{const c=d.exists?d.data().cards:null;WALLET=Array.isArray(c)?c.filter(x=>x&&x.title):[];renderWallet()},()=>{});
+  db.collection(TP()+"exchanges").onSnapshot(s=>{RAW_F=clean(s);mergeAll();ready.f=true;flush();ok(s)},()=>{ready.f=true;bad()});
 })();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}</script>
