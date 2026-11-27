@@ -15,7 +15,7 @@
 <script src="config.js"></script>
 <script src="adapter.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Courier+Prime:wght@400;700&family=Noto+Sans+SC:wght@700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Courier+Prime:wght@400;700&family=Caveat:wght@600;700&family=Noto+Sans+SC:wght@700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --cover:#22305a;--cover2:#2c3c6e;--gold:#e3c27a;--gold2:#b8924a;
@@ -1002,6 +1002,88 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .credits small{display:block;font:800 9px var(--sans);letter-spacing:.4em;color:#ffffff80}.credits b{font:700 20px var(--serif);color:#fff}
 .the-end{margin-top:26px;font:700 italic 34px var(--serif);color:var(--gold);animation:fadeup 1.2s 4.6s both}
 @media (prefers-reduced-motion:reduce){.fgrain{animation:none}}
+
+/* ===== passport book ===== */
+#v-atlas .legacy{display:none}
+.bk-desk{min-height:calc(100vh - 30px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:6px 0 10px}
+.bk-stage{perspective:2200px}
+.bk{position:relative;width:var(--W);height:var(--H);user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:pan-y}
+.bk-leaf{position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.bk-leaf.drag{transition:none}
+.bk-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:4px 14px 14px 4px;overflow:hidden}
+.bk-back{transform:rotateY(180deg);border-radius:14px 4px 4px 14px;background:var(--paper)}
+.bk-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0000 40%,#00000059);opacity:var(--sh,0)}
+.bk-front{box-shadow:0 24px 50px #000a}
+.bk-paper{background-color:#f5eedb;color:#1d2a4a;box-shadow:inset 12px 0 18px -10px #0000004d,0 24px 50px #000a}
+.bk-in{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:calc(var(--W)*.07) calc(var(--W)*.08) calc(var(--W)*.07) calc(var(--W)*.1);scrollbar-width:none}
+.bk-in::-webkit-scrollbar{display:none}
+.bk-body{position:relative;min-height:100%}
+.bk-g{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.bk-wm{position:absolute;left:50%;top:52%;width:62%;transform:translate(-50%,-50%);opacity:.06;pointer-events:none;color:#1d2a4a}
+.bk-pno{position:absolute;right:16px;top:12px;font:700 11px var(--type);color:#1d2a4a88;letter-spacing:.1em;z-index:2}
+.bk-perf{position:absolute;right:10px;top:34px;display:flex;flex-direction:column;gap:3px;z-index:2}.bk-perf i{width:4px;height:4px;border-radius:50%;background:#0b0d18;opacity:.55}
+.bk-ph{font:800 9.5px var(--sans);letter-spacing:.26em;color:#a8231a;border-bottom:1.5px solid #1d2a4a33;padding-bottom:6px;margin:0 18px 10px 0}
+.bk-cover{background:radial-gradient(130% 90% at 30% 20%,#7a2219,#5b1712 55%,#3a0d0a);box-shadow:inset 0 0 0 1px #00000040,inset 8px 0 14px -6px #0008,0 24px 50px #000a;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(var(--H)*.08) 0 calc(var(--H)*.07);text-align:center;cursor:pointer}
+.bk-cover::before{content:"";position:absolute;inset:0;opacity:.35;background-image:radial-gradient(#0000 1px,#00000026 1.4px);background-size:4px 4px}
+.bk-foil{background:linear-gradient(100deg,#b8924a,#f6e3a8 30%,#c99a45 48%,#f3d58e 62%,#a87d36);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.bk-cover .c1{font:800 calc(var(--W)*.034) var(--sans);letter-spacing:.42em}
+.bk-emb{width:46%;color:#e3c27a;-webkit-background-clip:border-box;background:none;filter:drop-shadow(0 1px 0 #ffffff22) drop-shadow(0 -1px 0 #0006)}
+.bk-cover .c2{font:700 calc(var(--W)*.1)/1 var(--serif);letter-spacing:.2em}
+.bk-chip{width:calc(var(--W)*.1);height:calc(var(--W)*.065);border:1.5px solid #e3c27a99;border-radius:4px;position:relative;margin:10px auto 0}
+.bk-chip::before{content:"";position:absolute;left:50%;top:50%;width:46%;height:46%;transform:translate(-50%,-50%);border:1.5px solid #e3c27a99;border-radius:50%}
+.bk-tap{position:relative;font:600 11px var(--sans);letter-spacing:.2em;color:#e3c27a99;animation:bkbreath 2.4s ease-in-out infinite}
+@keyframes bkbreath{50%{opacity:.35}}
+.bk-bear{display:grid;grid-template-columns:34% 1fr;gap:12px}
+.bk-photo{aspect-ratio:3/4;border-radius:4px;background:linear-gradient(180deg,#dfe6ef,#c4d0de);position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px #1d2a4a22}
+.bk-photo svg{position:absolute;inset:0;width:100%;height:100%}
+.bk-holo{position:absolute;inset:0;background:linear-gradient(115deg,#0000 30%,#7fe7ff55 42%,#ff8af255 50%,#fff39a55 58%,#0000 70%);background-size:300% 300%;mix-blend-mode:screen;animation:bkholo 5s ease-in-out infinite}
+@keyframes bkholo{0%,100%{background-position:0 0}50%{background-position:100% 100%}}
+.bk-fld{margin-bottom:7px}.bk-fld small{display:block;font:700 7.5px var(--sans);letter-spacing:.16em;color:#1d2a4a88}.bk-fld b{font:700 calc(var(--W)*.036) var(--type);letter-spacing:.04em}
+.bk-sig{font:700 calc(var(--W)*.075)/1 "Caveat",cursive;color:#1d3a8a;transform:rotate(-4deg);display:inline-block}
+.bk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
+.bk-stats div{border:1.5px solid #1d2a4a22;border-radius:8px;padding:7px 4px;text-align:center}.bk-stats b{display:block;font:700 calc(var(--W)*.058)/1 var(--serif);color:#a8231a}.bk-stats span{font:800 7px var(--sans);letter-spacing:.14em;color:#1d2a4a99}
+.bk-mrz{margin:16px calc(var(--W)*-.08) 0 calc(var(--W)*-.1);padding:10px calc(var(--W)*.08) 12px calc(var(--W)*.1);background:#efe6cc;font:700 calc(var(--W)*.031)/1.5 var(--type);letter-spacing:.05em;color:#1d2a4acc;white-space:nowrap;overflow:hidden}
+.bk-map{margin:4px -6px 0;border-radius:8px;overflow:hidden;background:#e9e0c6;box-shadow:inset 0 0 0 1px #1d2a4a1a}
+.bk-map svg{display:block;width:100%;height:auto}
+.bk-map path{fill:#d8ccab;stroke:#f5eedb;stroke-width:.25;cursor:pointer}
+.bk-map path.v{fill:url(#bkgold);stroke:#8a6526;stroke-width:.3}.bk-map path.v.up{fill:#e8d39a}.bk-map path.w{fill:url(#bkhatch)}.bk-map path.h{fill:#1d2a4a55}
+.bk-leg{display:flex;gap:12px;justify-content:center;margin-top:8px;font:600 10px var(--sans)}.bk-leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.bk-mtx{font:600 calc(var(--W)*.06)/1.2 "Caveat",cursive;margin-top:10px;text-align:center}
+.bk-tip{font:10px var(--type);color:#1d2a4a80;text-align:center;margin-top:6px}
+.bk-visa{position:relative;min-height:calc(var(--H)*.84)}
+.bk-vh{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-right:16px}
+.bk-vh h3{margin:0;font:700 calc(var(--W)*.064)/1.05 var(--serif)}.bk-vh span{font:700 9.5px var(--type);color:#1d2a4a99;text-align:right;white-space:nowrap}
+.bk-stamps{position:relative;height:calc(var(--H)*.5)}
+.bk-stamp{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--c);border:3px double var(--c);transform:rotate(var(--r));opacity:.86;mix-blend-mode:multiply;
+  -webkit-mask:radial-gradient(circle at 30% 40%,#000 55%,#000b 70%,#000 86%);mask:radial-gradient(circle at 30% 40%,#000 55%,#000b 70%,#000 86%)}
+.bk-stamp.rect{border-radius:8px;padding:6px 10px}.bk-stamp.circ{border-radius:50%;width:calc(var(--W)*.3);height:calc(var(--W)*.3)}.bk-stamp.oval{border-radius:50%;padding:12px 18px}
+.bk-stamp.up{border-style:dashed;opacity:.45}
+.bk-stamp small{font:900 7px var(--sans);letter-spacing:.2em}.bk-stamp b{font:900 calc(var(--W)*.055)/1 var(--serif);letter-spacing:.03em;max-width:calc(var(--W)*.4)}.bk-stamp i{font:700 9.5px var(--type);font-style:normal}
+.bk-stamp.sl{animation:bkslam .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes bkslam{from{transform:rotate(var(--r)) scale(2.2);opacity:0}}
+.bk-ink{position:absolute;font:700 calc(var(--W)*.075)/1 "Caveat",cursive;color:#1d3a8a;transform:rotate(-3deg)}
+.bk-btns{position:absolute;left:0;right:0;bottom:6px;display:flex;gap:8px;justify-content:center}
+.bk-b1,.bk-b2{border:0;border-radius:999px;font:800 12px var(--sans);letter-spacing:.06em;padding:11px 16px;display:flex;align-items:center;gap:8px}
+.bk-b1{background:#1d2a4a;color:var(--gold);box-shadow:0 6px 14px #1d2a4a55}.bk-b2{background:#1d2a4a14;color:#1d2a4a}
+.bk-b1 .fr{width:11px;height:15px;background:repeating-linear-gradient(180deg,var(--gold) 0 2px,transparent 2px 4px);opacity:.8}
+.bk-clip{position:absolute;top:22px;right:26%;width:22px;height:58px;border:3px solid #9aa3b5;border-radius:12px;z-index:3;box-shadow:1px 2px 2px #0003}
+.bk-paper #bpass{filter:none;margin:10px 0 0}
+.bk-paper #bpass .bp{filter:drop-shadow(0 8px 14px #0005)}
+.bk-paper .stubh{color:#1d2a4a88}
+.bk-paper .wrapb,.bk-paper .duelb{margin-top:10px}
+.bk-note{font:600 calc(var(--W)*.055)/1.3 "Caveat",cursive;color:#1d3a8a;text-align:center;margin-top:14px}
+.bk-paper .ach{grid-template-columns:repeat(3,1fr);gap:12px 4px;padding-bottom:6px}
+.bk-paper .wax{color:#1d2a4a}.bk-paper .wax svg{width:60px;height:60px}.bk-paper .wax span{color:#1d2a4a99}.bk-paper .wax:not(.got) b{color:#1d2a4a99}
+.bk-paper .wax:not(.got) svg{filter:grayscale(1) opacity(.55)}
+.bk-paper .tgm{box-shadow:0 6px 14px #0003}
+.bk-paper .tgi{color:#1d2a4a;background:#1d2a4a0d;border-color:#1d2a4a22}.bk-paper .tgi small{color:#1d2a4a88}
+.bk-end{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(var(--H)*.82);text-align:center}
+.bk-end h3{margin:0;font:700 calc(var(--W)*.09)/1.05 var(--serif)}.bk-end p{font:600 calc(var(--W)*.06)/1.3 "Caveat",cursive;margin:10px 0 12px;color:#1d3a8a}
+.bk-wfl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.bk-wfl button{border:0;background:none;font-size:calc(var(--W)*.08);padding:2px}
+.bk-newp{margin-top:18px;border:3px double #a8231a;color:#a8231a;background:none;border-radius:10px;padding:10px 16px;font:900 12px var(--sans);letter-spacing:.2em;transform:rotate(-4deg)}
+.bk-dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:90vw}.bk-dots i{width:6px;height:6px;border-radius:50%;background:#ffffff33;transition:.3s}.bk-dots i.on{background:var(--gold);width:18px;border-radius:4px}
+.bk-hint{font:600 10.5px var(--sans);letter-spacing:.14em;color:#ffffff80;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){.bk-leaf{transition-duration:.01s}.bk-holo,.bk-tap{animation:none}}
 </style>
 </head>
 <body>
@@ -1022,6 +1104,8 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 <div class="opener" id="opener"><div class="ocover"><div class="nation gold">Republic of Wanderlust</div><div class="crest"><span class="mono2 gold">SK</span></div><div class="ot gold">PASSPORT</div></div></div>
 <div class="wrap">
   <main class="view" id="v-atlas">
+    <div class="bk-desk" id="bkDesk"><div class="bk-stage"><div class="bk" id="bk"></div></div><div class="bk-dots" id="bkDots"></div><div class="bk-hint" id="bkHint">Tap the cover to open</div></div>
+    <div class="legacy">
     <div class="atlas-hd"><div class="nation gold">Republic of Wanderlust</div><h1 class="gold">ATLAS</h1><div class="sb" id="atlasSub">Every trip, every stamp</div></div>
     <div id="bpass"></div>
     <section class="globe"><div id="globeSvg"></div>
@@ -1038,6 +1122,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
     <div class="shelf" id="shelf"></div>
     <div class="shelf-h"><b>Passport office</b><span>wishes</span></div>
     <div id="office"></div>
+    </div>
   </main>
 
   <main class="view" id="v-today">
@@ -1739,7 +1824,7 @@ function renderAtlas(){if(!$("v-atlas"))return;const vis=Object.keys(ATLAS.byIso
   $("shelf").innerHTML=`<button class="book new" id="newTrip"><div class="in"><b>＋</b><span>New passport<br>Upload your travel plan</span></div></button>`+ATLAS.trips.map(t=>{const s=tripState(t),c=t.color;
     const ini=(t.region||t.name).split(/[\s·]+/).filter(Boolean).map(w=>w[0]).join("").slice(0,2).toUpperCase();
     return`<button class="book" data-trip="${esc(t.id)}" style="--b1:${mix(c,"#0b0b16",.5)};--b2:${mix(c,"#05050a",.3)}">${s==="now"?'<span class="rib">NOW</span>':s==="up"?'<span class="rib up">UPCOMING</span>':""}<div class="in"><div class="bn">PASSPORT</div><div class="bc">${esc(ini||"✈")}</div><div class="bt">${esc(t.name)}</div><div class="bf">${t.legs.map(l=>flagOf(l.country)).join("")}</div><div class="bd">${t.start?esc(short(t.start)):""}${t.end?" – "+esc(short(t.end)):""}</div><div class="bv">₹${fmt(t.total)}</div></div>${s==="done"?'<span class="done">COMPLETED</span>':""}</button>`}).join("");
-  $("newTrip").onclick=()=>typeof openNew==="function"&&openNew();renderPass();renderWrapBtn();renderAch();renderDuelBtn();renderOffice()}
+  $("newTrip").onclick=()=>typeof openNew==="function"&&openNew();renderPass();renderWrapBtn();renderAch();renderDuelBtn();renderOffice();renderBook()}
 
 /* ---------- boarding pass for the next trip ---------- */
 const IATA={mumbai:"BOM",bombay:"BOM",delhi:"DEL","new delhi":"DEL",pune:"PNQ",bengaluru:"BLR",bangalore:"BLR",chennai:"MAA",kolkata:"CCU",hyderabad:"HYD",goa:"GOI",ahmedabad:"AMD",
@@ -2076,6 +2161,78 @@ function filmPause(){const F=FILM;if(!F)return;const el=$("film");if(!F.paused){
 function closeFilm(){if(FILM)clearTimeout(FILM.t);FILM=null;const el=$("film");el.classList.remove("on");el.innerHTML="";document.body.style.overflow=""}
 addEventListener("keydown",e=>{if(!FILM)return;if(e.key==="ArrowRight")filmGo(FILM.i+1);if(e.key==="ArrowLeft")filmGo(FILM.i-1);if(e.key===" ")filmPause();if(e.key==="Escape")closeFilm()});
 $("filmBtn").onclick=()=>{if(!(ready.e&&ready.f)){toast("Opening your passport…");return}openFilm()};
+
+/* ================= THE PASSPORT BOOK (home) ================= */
+let BK={key:"",idx:0,leaves:[]};
+try{BK.idx=+sessionStorage.getItem("tp-bk-idx")||0}catch{}
+const BKEMB=`<svg viewBox="0 0 100 100"><g fill="none" stroke="currentColor"><circle cx="50" cy="50" r="46" stroke-width="2"/><circle cx="50" cy="50" r="40" stroke-width=".8"/>${[...Array(16)].map((_,i)=>{const a=i*Math.PI/8,r1=i%2?14:8,r2=i%2?36:30;return`<line x1="${(50+r1*Math.cos(a)).toFixed(1)}" y1="${(50+r1*Math.sin(a)).toFixed(1)}" x2="${(50+r2*Math.cos(a)).toFixed(1)}" y2="${(50+r2*Math.sin(a)).toFixed(1)}" stroke-width="${i%2?.8:2}"/>`}).join("")}<polygon points="50,12 55,45 88,50 55,55 50,88 45,55 12,50 45,45" fill="currentColor" stroke="none"/><circle cx="50" cy="50" r="5" fill="currentColor"/></g></svg>`;
+function bkGuil(seed){let p="";for(let k=0;k<14;k++){let d="";for(let x=0;x<=400;x+=5){const y=40+k*42+Math.sin((x+seed*13)/(22+k%5*4))*10+Math.sin((x+k*30)/57)*6;d+=(x?"L":"M")+x+","+y.toFixed(1)}p+=`<path d="${d}" fill="none" stroke="${k%2?"#c99a45":"#5b7fa8"}" stroke-width=".5" opacity=".45"/>`}return`<svg class="bk-g" viewBox="0 0 400 600" preserveAspectRatio="none">${p}</svg>`}
+function bkPaper(n,inner,cls=""){return`<div class="bk-face bk-front bk-paper ${cls}">${bkGuil(n)}<div class="bk-wm">${BKEMB}</div><div class="bk-pno">${String(n).padStart(2,"0")}</div><div class="bk-perf">${"<i></i>".repeat(5)}</div><div class="bk-in">${inner}</div></div>`}
+function bkTrips(){return ATLAS.trips.filter(t=>t.start).sort((a,b)=>b.start.localeCompare(a.start))}
+function bkPages(){const T=bkTrips(),started=T.filter(t=>t.start<=today()),later=T.filter(t=>t.start>today()&&(!ATLAS.next||t.id!==ATLAS.next.id));
+  const P=[{k:"cover"},{k:"bearer"},{k:"map"},{k:"depart"},...started.map(t=>({k:"visa",t})),...later.map(t=>({k:"visa",t,up:1}))];
+  if(started.length)P.push({k:"year"});P.push({k:"seals"},{k:"office"},{k:"end"});return P}
+function bkStamp(l,i,t,up){const pos=[[3,20,-11],[46,10,8],[10,48,-4],[50,42,12],[24,30,6],[4,62,-8]],p=pos[i%pos.length],c=PALETTE[(i+(t.id.length%3))%PALETTE.length],shape=["rect","circ","oval"][i%3];
+  return`<div class="bk-stamp ${shape} ${up?"up":""}" style="--c:${c};--r:${p[2]}deg;left:${p[0]}%;top:${p[1]}%"><small>${up?"VISA PENDING":"ENTRY"} · ${esc(code3(l.city||l.place))}</small><b>${esc(String(l.city||l.place).toUpperCase())}</b><i>${esc(short(l.from||t.start))} ${flagOf(l.country)}</i></div>`}
+function bkInner(pg,n){const nm=((ME&&PROF[ME]?.name)||"Satish Kataria"),parts=nm.trim().split(/\s+/),sur=(parts.length>1?parts.slice(-1):parts).join(" ").toUpperCase(),giv=(parts.length>1?parts.slice(0,-1):[]).join(" ").toUpperCase();
+  const S=achStats(),hm=ATLAS.home,hc=(bkTrips()[0]?.home?.city)||"Mumbai";
+  if(pg.k==="bearer")return`<div class="bk-ph">BEARER · TITULAIRE</div><div class="bk-bear"><div class="bk-photo"><svg viewBox="0 0 60 80"><circle cx="30" cy="30" r="13" fill="#8a9bb3"/><path d="M6 80 Q8 52 30 50 Q52 52 54 80Z" fill="#8a9bb3"/></svg><div class="bk-holo"></div></div>
+    <div><div class="bk-fld"><small>SURNAME</small><b>${esc(sur)}</b></div>${giv?`<div class="bk-fld"><small>GIVEN NAMES</small><b>${esc(giv)}</b></div>`:""}<div class="bk-fld"><small>HOME PORT</small><b>${esc(hc.toUpperCase())} · ${flagOf(hm)}</b></div><div class="bk-fld"><small>FIRST STAMP</small><b>${esc(bkTrips().slice(-1)[0]?.start?short(bkTrips().slice(-1)[0].start):"—")}</b></div><div class="bk-fld"><small>SIGNATURE</small><span class="bk-sig">${esc(parts[0]||"")}</span></div></div></div>
+    <div class="bk-stats"><div><b>${S.ctry}</b><span>COUNTRIES</span></div><div><b>${S.trips}</b><span>TRIPS</span></div><div><b>${S.days}</b><span>DAYS AWAY</span></div></div>
+    <div class="bk-mrz">P&lt;WND&lt;${esc(sur.replace(/\s/g,"&lt;"))}&lt;&lt;${esc(giv.replace(/\s/g,"&lt;"))}${"&lt;".repeat(14)}<br>${[...new Set(ATLAS.trips.filter(t=>t.start&&t.start<=today()).flatMap(t=>t.legs.map(l=>l.country)))].filter(c=>c&&c!==hm).join("")}&lt;${String(S.km).padStart(6,"0")}KM&lt;&lt;${S.trips}TRIPS${"&lt;".repeat(8)}</div>`;
+  if(pg.k==="map"){const vis=Object.keys(ATLAS.byIso).filter(i=>i!==hm&&visited(i));
+    return`<div class="bk-ph">THE WORLD SO FAR</div><div class="bk-map"><svg viewBox="-265 -130 530 238" id="bkMap"><defs><linearGradient id="bkgold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3d58e"/><stop offset="1" stop-color="#c99a45"/></linearGradient><pattern id="bkhatch" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="3" fill="#e2d4b0"/><rect width="1.2" height="3" fill="#a8231a"/></pattern></defs>${WORLD?WORLD.map(o=>`<path d="${o.d}" data-iso="${o.iso}" class="${visited(o.iso)&&o.iso!==hm?"v":ATLAS.byIso[o.iso]?"v up":ATLAS.wish.includes(o.iso)?"w":o.iso===hm?"h":""}"/>`).join(""):""}</svg></div>
+      <div class="bk-leg"><span><i style="background:#d9a94a"></i>Visited</span><span><i style="background:repeating-linear-gradient(45deg,#a8231a 0 2px,transparent 2px 4px)"></i>Wishlist</span><span><i style="background:#1d2a4a55"></i>Home</span></div>
+      <div class="bk-mtx">${vis.map(flagOf).join(" ")||"Your first stamp is waiting"}${vis.length?` · ${fmt(S.km)} km flown`:""}</div><div class="bk-tip">Tap a country</div>`}
+  if(pg.k==="depart")return`<div class="bk-ph">NEXT DEPARTURE</div><div class="bk-clip"></div><div class="bk-slot" data-slot="bpass"></div>`;
+  if(pg.k==="visa"){const t=pg.t,legs=[...t.legs].sort((a,b)=>String(a.from).localeCompare(String(b.from))),km=tripKm(t),days=t.end?Math.max(1,dayDiff(t.start,t.end)+1):"";
+    return`<div class="bk-visa"><div class="bk-vh"><h3>${esc(t.name)}</h3><span>${esc(short(t.start))}${t.end?" — "+esc(short(t.end)):""}<br>${days?days+" DAYS · ":""}${fmt(km)} KM</span></div>
+      <div class="bk-stamps">${legs.map((l,i)=>bkStamp(l,i,t,pg.up)).join("")}</div>
+      ${pg.up?`<div class="bk-ink" style="right:4%;bottom:76px">Departs ${esc(short(t.start))}</div>`:`<div class="bk-ink" style="right:4%;bottom:76px">₹${fmt(Math.round(t.total))}</div>`}
+      <div class="bk-btns"><button class="bk-b2" data-open="${esc(t.id)}">Open</button>${pg.up?"":`<button class="bk-b1" data-film="${esc(t.id)}"><span class="fr"></span>Play this trip</button>`}</div></div>`}
+  if(pg.k==="year")return`<div class="bk-ph">THE YEAR IN TRAVEL</div><div class="bk-slot" data-slot="wrapBox"></div><div class="bk-slot" data-slot="duelBox"></div><div class="bk-note">Your year as a film, and two trips in the ring.</div>`;
+  if(pg.k==="seals")return`<div class="bk-ph">SEALS · <span class="bk-slot inl" data-slot="achN"></span> PRESSED</div><div class="bk-slot" data-slot="ach"></div>`;
+  if(pg.k==="office")return`<div class="bk-ph">PASSPORT OFFICE · WISHES</div><div class="bk-slot" data-slot="office"></div>`;
+  if(pg.k==="end"){const wf=ATLAS.wish.slice(0,8);return`<div class="bk-end"><div class="bk-ph" style="border:0">PAGES REMAINING · ${Math.max(4,32-n)}</div><h3>Where next?</h3><p>${wf.length?"On the wishlist":"Tap a country on the map to wish for it"}</p><div class="bk-wfl">${wf.map(i=>`<button data-iso="${i}">${flagOf(i)}</button>`).join("")}</div><button class="bk-newp" id="bkNew">＋ NEW PASSPORT PAGE</button><div class="bk-tip">Upload a travel plan · Claude stamps the page</div></div>`}
+  return""}
+function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages(),key=P.map(p=>p.k+(p.t?p.t.id:"")+(p.up?"u":"")).join("|")+(WORLD?"w":"");
+  if(key!==BK.key){BK.key=key;BK.P=P;
+    // park the live widgets before rebuilding
+    const park=$("v-atlas").querySelector(".legacy");["bpass","wrapBox","duelBox","achN","ach","office"].forEach(id=>{const el=$(id);if(el&&!park.contains(el))park.appendChild(el)});
+    box.innerHTML=P.map((pg,i)=>`<div class="bk-leaf" data-i="${i}">${pg.k==="cover"?`<div class="bk-face bk-front bk-cover"><div class="c1 bk-foil">REPUBLIC OF WANDERLUST</div><div class="bk-emb bk-foil">${BKEMB}</div><div><div class="c2 bk-foil">PASSPORT</div><div class="bk-chip"></div></div><div class="bk-tap">TAP TO OPEN</div></div>`:bkPaper(i,`<div class="bk-body" data-body="${i}">${bkInner(pg,i)}</div>`,pg.k)}<div class="bk-face bk-back">${i===0?bkGuil(99):""}</div></div>`).join("");
+    box.querySelectorAll("[data-slot]").forEach(sl=>{const el=$(sl.dataset.slot);if(el)sl.appendChild(el)});
+    BK.leaves=[...box.querySelectorAll(".bk-leaf")];$("bkDots").innerHTML=P.map(()=>"<i></i>").join("");BK.idx=Math.min(BK.idx,P.length-1);bkLayout(true)}
+  else{BK.P=P;P.forEach((pg,i)=>{if(["bearer","map","visa","end"].includes(pg.k)){const b=box.querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}})}
+  bkSize()}
+function bkSize(){const d=$("bkDesk");if(!d)return;const vw=Math.min(innerWidth,1100),vh=innerHeight;let W=Math.min(vw*.88,460),H=W*1.42;const maxH=vh-110;if(H>maxH){H=maxH;W=H/1.42}d.style.setProperty("--W",W+"px");d.style.setProperty("--H",H+"px")}
+addEventListener("resize",()=>{bkSize()});
+function bkAngle(l,a,drag){l.classList.toggle("drag",!!drag);l.style.transform=`rotateY(${a}deg)`;const f=l.querySelector(".bk-front");f&&f.style.setProperty("--sh",Math.min(1,Math.abs(a)/120).toFixed(2))}
+function bkLayout(quiet){const L=BK.leaves,n=L.length,i0=BK.idx;L.forEach((l,i)=>{bkAngle(l,i<i0?-180:0);l.style.visibility=i<i0-1||i>i0+1?"hidden":"visible";l.style.zIndex=i<i0?100+i:n-i});
+  $("bkDots").querySelectorAll("i").forEach((d,i)=>d.classList.toggle("on",i===i0));
+  const pg=BK.P[i0];$("bkHint").textContent=i0===0?"Tap the cover to open":i0===n-1?"Swipe back to flip through":pg.k==="visa"?"Open the trip, or play it as a film":"Swipe to turn the page";
+  if(pg&&pg.k==="visa"&&!quiet)bkSlam(i0);try{sessionStorage.setItem("tp-bk-idx",i0)}catch{}}
+const bkSlammed=new Set();
+function bkSlam(i){if(bkSlammed.has(i))return;bkSlammed.add(i);const L=BK.leaves[i];if(!L)return;L.querySelectorAll(".bk-stamp").forEach((s,k)=>{s.style.animationDelay=(.35+k*.25)+"s";s.classList.remove("sl");void s.offsetWidth;s.classList.add("sl")});try{navigator.vibrate&&navigator.vibrate([12,240,12,240,12])}catch{}}
+function bkGo(n){n=Math.max(0,Math.min(BK.leaves.length-1,n));if(n===BK.idx)return;BK.idx=n;bkLayout();try{navigator.vibrate&&navigator.vibrate(8)}catch{}}
+{let sx=null,sy=0,mode=null,W0=1;const bk=$("bk");
+ bk.addEventListener("pointerdown",e=>{if(e.button)return;sx=e.clientX;sy=e.clientY;mode=null;W0=bk.clientWidth});
+ addEventListener("pointermove",e=>{if(sx==null||CUR!=="atlas")return;const dx=e.clientX-sx,dy=e.clientY-sy;
+   if(!mode){if(Math.abs(dx)>10&&Math.abs(dx)>Math.abs(dy)*1.2)mode="turn";else if(Math.abs(dy)>10)mode="scroll";else return}
+   if(mode!=="turn")return;e.preventDefault();
+   if(dx<0&&BK.idx<BK.leaves.length-1)bkAngle(BK.leaves[BK.idx],Math.max(-180,dx/W0*200),true);
+   else if(dx>0&&BK.idx>0){const l=BK.leaves[BK.idx-1];l.style.visibility="visible";bkAngle(l,Math.min(0,-180+dx/W0*200),true)}},{passive:false});
+ addEventListener("pointerup",e=>{if(sx==null)return;const dx=e.clientX-sx,m=mode;sx=null;mode=null;
+   if(m==="turn"){if(dx<-W0*.22)bkGo(BK.idx+1);else if(dx>W0*.22)bkGo(BK.idx-1);else bkLayout(true);return}
+   if(m)return;const t=e.target;
+   const o=t.closest("[data-open]"),f=t.closest("[data-film]"),c=t.closest("[data-iso]");
+   if(f){try{localStorage.setItem("tp-film-auto",f.dataset.film)}catch{}if(f.dataset.film===TRIPID){go("today");setTimeout(()=>openFilm(),400)}else openTrip(f.dataset.film);return}
+   if(o){openTrip(o.dataset.open);return}
+   if(c&&BK.P[BK.idx]&&["map","end"].includes(BK.P[BK.idx].k)){openCountry(c.dataset.iso);return}
+   if(t.closest("#bkNew")){typeof openNew==="function"&&openNew();return}
+   if(t.closest("button,a,textarea,input,.stub,.bp,.wax,.duelb,.wrapb"))return;
+   if(BK.idx===0){bkGo(1);return}const r=bk.getBoundingClientRect();if(e.clientX>r.left+r.width*.72)bkGo(BK.idx+1);else if(e.clientX<r.left+r.width*.2)bkGo(BK.idx-1)});
+ addEventListener("pointercancel",()=>{if(sx!=null){sx=null;mode=null;bkLayout(true)}});
+ addEventListener("keydown",e=>{if(CUR!=="atlas"||FILM)return;if(e.key==="ArrowRight")bkGo(BK.idx+1);if(e.key==="ArrowLeft")bkGo(BK.idx-1)});}
 let atlasSel=null;
 function openTrip(id){if(id===TRIPID){go("today");return}try{localStorage.setItem("tp-trip",id)}catch{}location.hash="#today";location.reload()}
 $("shelf").onclick=e=>{const b=e.target.closest("[data-trip]");if(b)openTrip(b.dataset.trip)};
@@ -2168,7 +2325,7 @@ function inrOf(e,R){if(e.inr>0)return e.inr;if(e.cur==="INR")return e.amount;ret
 /* ---------- render ---------- */
 function render(){
   if(!(ready.e&&ready.f))return;
-  const R=inrRates(),T=today();personal();setupForm();try{renderGeoPill();if(!render.g){render.g=1;setTimeout(()=>geoCheck(),1500)}}catch{}
+  const R=inrRates(),T=today();personal();setupForm();try{if(localStorage.getItem("tp-film-auto")===TRIPID){localStorage.removeItem("tp-film-auto");setTimeout(()=>{if(ready.e&&ready.f&&typeof openFilm==="function")openFilm()},700)}}catch{}try{renderGeoPill();if(!render.g){render.g=1;setTimeout(()=>geoCheck(),1500)}}catch{}
   let tot=0,unk=0,tod=0;const place={},cat={};
   for(const e of EXP){const v=inrOf(e,R);if(v==null){unk++;continue}tot+=v;if(e.date===T)tod+=v;
     place[e.place]=(place[e.place]||0)+v;cat[e.cat]=(cat[e.cat]||0)+v}
