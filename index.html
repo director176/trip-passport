@@ -1084,16 +1084,39 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:90vw}.bk-dots i{width:6px;height:6px;border-radius:50%;background:#ffffff33;transition:.3s}.bk-dots i.on{background:var(--gold);width:18px;border-radius:4px}
 .bk-hint{font:600 10.5px var(--sans);letter-spacing:.14em;color:#ffffff80;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.bk-leaf{transition-duration:.01s}.bk-holo,.bk-tap{animation:none}}
+/* immigration desk + install */
+.dk-form label{display:block;font:800 8.5px var(--sans);letter-spacing:.2em;color:#a8231a;margin-bottom:4px}
+.dk-form input{width:100%;border:0;border-bottom:2px solid #1d2a4a55;background:transparent;font:700 16px var(--type);color:#1d2a4a;padding:6px 2px;outline:none}
+.dk-tg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.dk-tg button{border:1.5px solid #1d2a4a33;background:transparent;border-radius:10px;padding:8px;text-align:left;color:#1d2a4a}
+.dk-tg button b{display:block;font:800 12px var(--sans)}.dk-tg button small{font:10px var(--sans);color:#1d2a4a99}
+.dk-tg button.on{border-color:#1d2a4a;background:#1d2a4a;color:#fff6dc}.dk-tg button.on small{color:#fff6dcaa}
+.dk-go{width:100%;border:0;border-radius:999px;background:#a8231a;color:#fff6dc;font:800 14px var(--sans);letter-spacing:.06em;padding:12px;box-shadow:0 6px 14px #a8231a55}
+.dk-err{font:600 11px var(--sans);color:#a8231a;margin-top:6px;min-height:14px}
+.dk-ok{position:relative;margin:4px 0 10px;padding:12px;border-radius:12px;background:#2e7d4f12;border:1.5px dashed #2e7d4f88;text-align:center}
+.dk-ok b{font:700 13px var(--type)}.dk-ok p{margin:6px 0;font:12px var(--sans)}
+.dk-stamp{display:inline-block;border:3px double #2e7d4f;color:#2e7d4f;font:900 16px var(--serif);letter-spacing:.2em;padding:3px 12px;border-radius:6px;--r:-6deg;transform:rotate(-6deg);margin-bottom:6px;animation:bkslam .5s cubic-bezier(.3,1.6,.5,1) both}
+.dk-sb{display:flex;gap:6px;justify-content:center}.dk-sb .dk-go{width:auto;padding:10px 16px}
+.dk-lh{font:800 8.5px var(--sans);letter-spacing:.2em;color:#1d2a4a99;margin:12px 0 6px}
+.dk-pp{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed #1d2a4a22}
+.dk-pp .cv{width:26px;height:36px;border-radius:2px 5px 5px 2px;display:grid;place-items:center;flex:none;box-shadow:inset 3px 0 4px -2px #0006}
+.dk-pp .cv i{font-style:normal;color:#e3c27a;font-size:12px}
+.dk-pp.you .cv{background:#5b1712}.dk-pp.fam .cv{background:#1d2a4a}.dk-pp.own .cv{background:#1f6f5c}
+.dk-pp .em{flex:1;min-width:0;font:700 12px var(--type);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dk-pp .em small{display:block;font:10px var(--sans);color:#1d2a4a99;white-space:normal}
+.dk-pp .rv{border:0;background:#1d2a4a10;color:#1d2a4a;border-radius:999px;padding:6px 9px;font:700 11px var(--sans)}.dk-pp .rv.arm{background:#a8231a;color:#fff}
+.in-hero{font-size:44px;text-align:center;margin:6px 0}
+.in-card{border:1.5px solid #1d2a4a22;border-radius:12px;padding:10px 12px;margin-bottom:10px}.in-card.me{border-color:#1d2a4a;box-shadow:0 4px 10px #1d2a4a22}
+.in-card>b{font:700 18px var(--serif)}.in-card ol{margin:6px 0 0;padding-left:18px;font:13px/1.6 var(--sans)}.in-card .dk-go{margin-top:8px}
 </style>
 </head>
 <body>
 <div class="gate" id="gate"><div class="gin">
   <div class="nation gold">Republic of Wanderlust</div>
-  <div class="crest"><span class="mono2 gold">SK</span></div>
+  <div class="crest"><span class="mono2 gold">✦</span></div>
   <h1 class="gold">PASSPORT</h1>
   <div class="sub">Sign in once · works offline after that</div>
   <form id="gForm" autocomplete="on">
-    <div><label for="gName">Your name</label><input id="gName" autocomplete="name" placeholder="Satish Kataria"></div>
+    <div><label for="gName">Your name</label><input id="gName" autocomplete="name" placeholder="Your full name"></div>
     <label for="gEmail">Email</label><input id="gEmail" type="email" autocomplete="username" inputmode="email" placeholder="you@example.com">
     <label for="gPw">Password</label><input id="gPw" type="password" autocomplete="current-password" placeholder="At least 6 characters">
     <button class="btn" id="gGo" type="submit">Open passport</button>
@@ -1101,7 +1124,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
     <button class="gsw" id="gSwap" type="button"></button>
   </form>
 </div></div>
-<div class="opener" id="opener"><div class="ocover"><div class="nation gold">Republic of Wanderlust</div><div class="crest"><span class="mono2 gold">SK</span></div><div class="ot gold">PASSPORT</div></div></div>
+<div class="opener" id="opener"><div class="ocover"><div class="nation gold">Republic of Wanderlust</div><div class="crest"><span class="mono2 gold" id="opMono">✦</span></div><div class="ot gold">PASSPORT</div></div></div>
 <div class="wrap">
   <main class="view" id="v-atlas">
     <div class="bk-desk" id="bkDesk"><div class="bk-stage"><div class="bk" id="bk"></div></div><div class="bk-dots" id="bkDots"></div><div class="bk-hint" id="bkHint">Tap the cover to open</div></div>
@@ -1128,9 +1151,9 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
   <main class="view" id="v-today">
   <header class="cover">
     <div class="nation gold">Republic of Wanderlust</div>
-    <div class="crest" id="crestBtn" role="button" aria-label="Play trip story"><span class="mono2 gold" id="mono">SK</span><span class="play">▶ STORY</span></div>
+    <div class="crest" id="crestBtn" role="button" aria-label="Play trip story"><span class="mono2 gold" id="mono">✦</span><span class="play">▶ STORY</span></div>
     <h1 class="gold">Passport</h1>
-    <div class="who" id="bearer">Bearer · Satish Kataria</div>
+    <div class="who" id="bearer">Bearer</div>
     <div class="crew hidden" id="crew"></div>
     <div class="route" id="route"></div>
     <button class="filmBtn" id="filmBtn"><span class="fr"></span><b>TRIP FILM</b><em>▶ Play</em><span class="fr"></span></button>
@@ -1420,7 +1443,7 @@ function personal(){
   const been=new Set(EXP.filter(e=>e.place!=="Travel").map(e=>e.place));
   const fl=(PLACES.find(p=>p[0]===now)||[])[2]||"";
   {const R=document.documentElement.style;if(now&&now!=="Home"&&PC[now]){const c=PC[now],a=mix(c,"#0b0b16",.45),b=mix(c,"#0b0b16",.62);R.setProperty("--cover",a);R.setProperty("--cover2",b);try{document.querySelector('meta[name=theme-color]').content=a}catch{}}else{R.removeProperty("--cover");R.removeProperty("--cover2");try{document.querySelector('meta[name=theme-color]').content="#22305a"}catch{}}}
-  $("greet").innerHTML=`${hi}, ${esc(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:"Satish")}${now&&now!=="Home"?` · <span>in ${esc(now)} ${fl}</span>`:now==="Home"?" · <span>welcome home 🏠</span>":""}`;
+  $("greet").innerHTML=`${hi}, ${esc(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:NM().split(" ")[0])}${now&&now!=="Home"?` · <span>in ${esc(now)} ${fl}</span>`:now==="Home"?" · <span>welcome home 🏠</span>":""}`;
   const pl=TRIP.plan&&typeof TRIP.plan[T]==="string"?TRIP.plan[T]:"";
   const nx=legs.filter(l=>l&&l.from>T).sort((a,b)=>a.from.localeCompare(b.from))[0];
   const bits=[];if(pl)bits.push(`Today · <b>${esc(pl)}</b>`);
@@ -1531,8 +1554,8 @@ function av(id){const p=PROF[id];return p&&p.avatarUrl?p.avatarUrl:"data:image/s
 async function refreshProfiles(){if(!USER)return;const ids=CREW();const k=ids.join(",");if(k===profKey)return;profKey=k;
   try{PROF=await USER.profiles(ids)}catch{}personal();renderCrew();if(ready.e&&ready.f)render()}
 function renderCrew(){const ids=CREW(),el=$("crew");
-  const full=ME&&PROF[ME]?.name?PROF[ME].name:"";$("mono").textContent=full?full.split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase():"SK";
-  if(ids.length<2){el.classList.add("hidden");$("bearer").textContent="Bearer · "+(full||"Satish Kataria");return}
+  const full=ME&&PROF[ME]?.name?PROF[ME].name:"";$("mono").textContent=full?full.split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase():INI();{const om=$("opMono");if(om)om.textContent=$("mono").textContent}
+  if(ids.length<2){el.classList.add("hidden");$("bearer").textContent="Bearer"+(full?" · "+full:"");return}
   el.classList.remove("hidden");$("bearer").textContent="Bearers · "+ids.map(i=>i===ME?(full?full.split(" ")[0]:"You"):nm(i)).join(" & ");
   const others=ids.filter(i=>i!==ME),on=others.filter(i=>LIVE.has(i));
   el.innerHTML=ids.map(i=>`<span class="av ${LIVE.has(i)||i===ME?"on":""}"><img alt="" src="${esc(av(i))}"></span>`).join("")+
@@ -1548,7 +1571,7 @@ function telegram(e){const el=$("tele");el.innerHTML=`<img alt="" src="${esc(av(
 $("tele").onclick=()=>{$("tele").classList.remove("on");go("stamps");const el=document.querySelector(".st.new");el&&el.scrollIntoView({behavior:"smooth",block:"center"})};
 function renderWho(){return}
 function _oldWho(R,start){const ids=CREW(),body=$("whoBody");
-  if(ids.length<2){body.innerHTML=`<div class="invite"><div class="pp"><i>SK</i><i>SV</i></div><p><b>Share it with Sanchi.</b> Use the Share button at the top. Her stamps appear here live, and this page shows how much each of you covered.</p></div>`;return}
+  if(ids.length<2){body.innerHTML=`<div class="invite"><div class="pp"><i>${esc(INI())}</i><i>+</i></div><p><b>Share it with Sanchi.</b> Use the Share button at the top. Her stamps appear here live, and this page shows how much each of you covered.</p></div>`;return}
   const [a,b]=ids,paid={};ids.forEach(i=>paid[i]=0);let tot=0;
   for(const e of EXP){if(e.date<start)continue;const v=inrOf(e,R);if(v==null)continue;const p=payer(e);if(p in paid){paid[p]+=v;tot+=v}}
   const half=tot/2,d=paid[a]-half,ang=tot?Math.max(-14,Math.min(14,(paid[b]-paid[a])/tot*28)):0;
@@ -1646,7 +1669,7 @@ function miniStamp(e,R){const v=inrOf(e,R);return `<div class="st ${stCls(e.plac
 function buildStory(){const R=inrRates(),T=today(),st0=TRIP.start||([...EXP.map(e=>e.date)].sort()[0])||T,end=RET&&RET<T?RET:T;
   const trip=EXP.filter(e=>e.date>=st0&&e.date<=end);let tot=0;const byCat={},byDay={};
   for(const e of trip){const v=inrOf(e,R);if(v==null)continue;tot+=v;byCat[e.cat]=(byCat[e.cat]||0)+v;(byDay[e.date]=byDay[e.date]||[]).push(e)}
-  const nm1=(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:"Satish"),legs=(TRIP.legs||[]).filter(Boolean);
+  const nm1=(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:NM().split(" ")[0]),legs=(TRIP.legs||[]).filter(Boolean);
   const countries=new Set(trip.map(e=>e.place).filter(p=>p!=="Travel")),dn=Math.max(1,dayDiff(st0,end)+1);
   const S=[];
   S.push({bg:SBG.x,h:`<div class="kk">Republic of Wanderlust</div><h1>${esc(nm1)}’s<br><em>${esc(TRIP.region||"travel")}</em> story</h1><p>${esc(legs.map(l=>l.city||l.place).join(" · "))}</p><p class="mono">${TRIP.start?dayLabel(TRIP.start):""}${RET?" → "+dayLabel(RET):""}</p>`});
@@ -1662,10 +1685,10 @@ function buildStory(){const R=inrRates(),T=today(),st0=TRIP.start||([...EXP.map(
   if(tc)S.push({bg:SBG.x,h:`<div class="kk">Your weakness</div><div class="emo">${(CATS.find(c=>c[0]===tc[0])||["","✨"])[1]}</div><h1>${esc(tc[0])}</h1><p class="mono">₹${fmt(tc[1])} · ${tot?Math.round(tc[1]/tot*100):0}% of everything</p>`});
   const left=RET?dayDiff(T,RET):null,nx=legs.filter(l=>l.from>T).sort((a,b)=>a.from.localeCompare(b.from))[0];
   S.push({bg:SBG.x,h:left!=null&&left>0?`<div class="kk">To be continued</div><h1><em>${left}</em> day${left===1?"":"s"} to go</h1>${nx?`<p>Next stop: ${esc(nx.place)} · ${dayLabel(nx.from)}</p>`:""}<p class="mono">The passport is still open ✈️</p>`
-    :`<div class="closing"><div class="pg"></div><div class="cv"><span class="mono2 gold">SK</span><b>PASSPORT</b></div></div><div class="kk">Welcome home</div><h1>Mumbai</h1><p class="mono">₹${fmt(tot)} · ${dn} days · ${countries.size} countries</p>`});
+    :`<div class="closing"><div class="pg"></div><div class="cv"><span class="mono2 gold">${esc(INI())}</span><b>PASSPORT</b></div></div><div class="kk">Welcome home</div><h1>Mumbai</h1><p class="mono">₹${fmt(tot)} · ${dn} days · ${countries.size} countries</p>`});
   return S}
 function openStory(S0,lab){const S=Array.isArray(S0)?S0:buildStory(),el=$("story");SS={S,i:0,t0:0,raf:0,paused:false,el:null};
-  el.innerHTML=`<div class="bars">${S.map(()=>"<i><b></b></i>").join("")}</div><div class="who"><i>SK</i>${esc(lab||"Trip story")}</div><button class="x" id="sx" aria-label="Close">✕</button><div id="ssl"></div><div class="tapl" id="stl"></div><div class="tapr" id="str"></div>`;
+  el.innerHTML=`<div class="bars">${S.map(()=>"<i><b></b></i>").join("")}</div><div class="who"><i>${esc(INI())}</i>${esc(lab||"Trip story")}</div><button class="x" id="sx" aria-label="Close">✕</button><div id="ssl"></div><div class="tapl" id="stl"></div><div class="tapr" id="str"></div>`;
   el.classList.add("on");$("sx").onclick=closeStory;
   let down=0;const pd=()=>{down=Date.now();SS.paused=true},pu=dir=>()=>{SS.paused=false;if(Date.now()-down<260)showSlide(SS.i+dir)};
   $("stl").onpointerdown=pd;$("str").onpointerdown=pd;$("stl").onpointerup=pu(-1);$("str").onpointerup=pu(1);
@@ -1841,10 +1864,10 @@ function cdParts(ms){ms=Math.max(0,ms);const d=Math.floor(ms/864e5),h=Math.floor
 function bpTick(){const el=$("bpCd");if(!el||!ATLAS.next){clearInterval(bpT);bpT=null;return}if(CUR!=="atlas"||document.hidden)return;
   const p=cdParts(new Date(ATLAS.next.start+"T00:00")-Date.now());el.querySelectorAll("b").forEach((b,i)=>{const v=String(p[i]).padStart(i?2:1,"0");if(b.textContent!==v){b.textContent=v;b.classList.remove("flip");void b.offsetWidth;b.classList.add("flip")}})}
 function renderPass(){const box=$("bpass");if(!box)return;const t=ATLAS.next;clearInterval(bpT);bpT=null;
-  const who=(ME&&PROF[ME]?.name?PROF[ME].name:"Satish Kataria").toUpperCase();
+  const who=(ME&&PROF[ME]?.name?PROF[ME].name:NM()).toUpperCase();
   if(!t){const wf=ATLAS.wish.slice(0,6).map(flagOf).join(" ");
     box.innerHTML=`<button class="bp standby" id="bpNew"><div class="bpm"><div class="bph"><span>BOARDING PASS</span><span>STANDBY</span></div>
-      <div class="bpr"><div><small>FROM</small><b>${esc(code3(ATLAS.trips[0]?.home?.city||"Mumbai"))}</b></div><div class="bparc"><i></i><span>✈</span></div><div><small>TO</small><b>???</b></div></div>
+      <div class="bpr"><div><small>FROM</small><b>${ATLAS.trips[0]?.home?.city?esc(code3(ATLAS.trips[0].home.city)):"YOU"}</b></div><div class="bparc"><i></i><span>✈</span></div><div><small>TO</small><b>???</b></div></div>
       <div class="bpq">Where next?${wf?`<span>${wf}</span>`:""}</div></div><div class="bpst"><small>TAP TO</small><b>Book a<br>passport</b></div></button>`;
     $("bpNew").onclick=()=>typeof openNew==="function"&&openNew();return}
   const legs=[...t.legs].sort((a,b)=>String(a.from).localeCompare(String(b.from))),L0=legs[0]||{},hc=(t.home&&t.home.city)||"Mumbai",c=t.color;
@@ -1878,7 +1901,7 @@ function renderWrapBtn(){const b=$("wrapBox");if(!b)return;const y=wrapYear();if
   b.innerHTML=`<button class="wrapb" id="wrapGo"><span class="wy">${y}</span><span class="wt"><small>WANDERLUST</small><b>Wrapped</b><em>Your year in travel ${fl}</em></span><span class="wp">▶</span></button>`;
   $("wrapGo").onclick=()=>openStory(buildWrapped(y),y+" Wrapped")}
 function buildWrapped(y){const T=ATLAS.trips.filter(t=>t.start&&t.start.startsWith(y)&&t.start<=today()).sort((a,b)=>a.start.localeCompare(b.start));
-  const nm=(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:"Satish"),hm=ATLAS.home;
+  const nm=(ME&&PROF[ME]?.name?PROF[ME].name.split(" ")[0]:NM().split(" ")[0]),hm=ATLAS.home;
   const BG=["linear-gradient(160deg,#3a2a5e,#120c24)","linear-gradient(160deg,#1d4a5a,#071a22)","linear-gradient(160deg,#5a3020,#1c0b06)","linear-gradient(160deg,#20304f,#090d1c)","linear-gradient(160deg,#4a1f3a,#160812)","linear-gradient(160deg,#2f4a24,#0b1607)"];
   const per={},days={},cat={},food={};let km=0,dn=0,n=0,top=null;
   for(const t of T){km+=tripKm(t);n+=t.n||0;const end=t.end&&t.end<today()?t.end:today();dn+=Math.max(1,dayDiff(t.start,end)+1);
@@ -2076,7 +2099,7 @@ function wishState(i){if(i.state==="closed")return["SHIPPED","#2e7d4f"];if((i.la
 function renderOffice(){const b=$("office");if(!b)return;if(WISHES===null){loadWishes();}
   const W=WISHES||[];
   b.innerHTML=`<div class="tgm"><div class="tgh"><span>TELEGRAM</span><span>№ ${String(W.length+1).padStart(3,"0")}</span></div>
-    <div class="tgr"><small>TO</small><b>PASSPORT OFFICE (CLAUDE)</b></div><div class="tgr"><small>FROM</small><b>${esc(((ME&&PROF[ME]?.name)||"Satish Kataria").toUpperCase())}</b></div>
+    <div class="tgr"><small>TO</small><b>PASSPORT OFFICE (CLAUDE)</b></div><div class="tgr"><small>FROM</small><b>${esc((NM()).toUpperCase())}</b></div>
     <textarea id="wishTx" rows="3" placeholder="I WISH THE APP COULD … STOP"></textarea>
     <button class="tgs" id="wishGo">Send telegram ✉</button>
     <div class="tgn">Opens GitHub with your wish filled in · tap <b>Submit</b> there. Claude builds wishes every week and sends them to you for approval.</div></div>
@@ -2112,7 +2135,7 @@ function dayLine(n,d,date){const cs=[...d.places].map(p=>cityOf(p)),two=cs.lengt
   const parts=[`Day ${n}.`,two?`${cs.join(" to ")}.`:`${cs[0]||"On the road"}.`,`${d.n} stamp${d.n>1?"s":""}, ₹${fmt(Math.round(d.v))}.`];
   if(d.top&&d.top.v>=d.v*.35)parts.push(`${cap1(d.top.desc)} led the day.`);return parts.join(" ")}
 const cap1=s=>String(s||"").charAt(0).toUpperCase()+String(s||"").slice(1);
-function filmScenes(){const F=filmData(),S=[],who=((ME&&PROF[ME]?.name)||"Satish Kataria");
+function filmScenes(){const F=filmData(),S=[],who=(NM());
   // 1 title
   S.push({d:4600,cls:"s-title",h:`<div class="ft-k">A FILM BY ${esc(who.toUpperCase())}</div><h1 class="ft-t">${letters(TRIP.name||"The Trip","kl",.5,.06)}</h1><div class="ft-d">${esc(short(F.start))} — ${esc(short(F.end))}</div>`});
   // 2 route
@@ -2162,6 +2185,36 @@ function closeFilm(){if(FILM)clearTimeout(FILM.t);FILM=null;const el=$("film");e
 addEventListener("keydown",e=>{if(!FILM)return;if(e.key==="ArrowRight")filmGo(FILM.i+1);if(e.key==="ArrowLeft")filmGo(FILM.i-1);if(e.key===" ")filmPause();if(e.key==="Escape")closeFilm()});
 $("filmBtn").onclick=()=>{if(!(ready.e&&ready.f)){toast("Opening your passport…");return}openFilm()};
 
+/* ---------- friends: install + immigration desk ---------- */
+function NM(){return(ME&&PROF[ME]?.name)||(window.TP_WHO&&TP_WHO()?.name)||"Traveller"}
+function INI(){const n=(ME&&PROF[ME]?.name)||(window.TP_WHO&&TP_WHO()?.name)||"";return n?n.trim().split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase():"✦"}
+let BIP=null;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e;if(CUR==="atlas")renderBook()});
+addEventListener("appinstalled",()=>{BIP=null;toast("Installed ✓ Open it from your home screen")});
+function bkStandalone(){try{return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true}catch{return false}}
+function bindInstall(){const b=$("inGo");if(b)b.onclick=async()=>{if(!BIP)return;BIP.prompt();try{await BIP.userChoice}catch{}BIP=null;renderBook()}}
+const APP_URL=location.origin+location.pathname;
+let DK_SH=0;
+async function deskList(){const L=$("dkList");if(!L||!window.TP_ADMIN)return;let rows=[];
+  try{rows=await TP_ADMIN.list()}catch(e){L.innerHTML=`<div class="dk-err">Couldn't load the list. Has the friends upgrade been run in Supabase?</div>`;return}
+  const mine=TP_ADMIN.space(),me=(window.TRIP_CFG?.ownerEmail||"").toLowerCase();
+  L.innerHTML=`<div class="dk-lh">${rows.length} passport${rows.length===1?"":"s"} issued</div>`+rows.map(r=>{const you=String(r.email).toLowerCase()===me,fam=!you&&r.space===mine;
+    return`<div class="dk-pp ${you?"you":fam?"fam":"own"}"><span class="cv"><i>${you?"★":fam?"⌂":"✦"}</i></span><span class="em">${esc(r.email)}<small>${you?"You":fam?"Family · shares your trips":"Own passport"} · issued ${esc(short(String(r.added_at).slice(0,10)))}</small></span>${you?"":`<button type="button" class="rv" data-rv="${esc(r.email)}" aria-label="Remove">✕</button>`}</div>`}).join("");
+  L.querySelectorAll("[data-rv]").forEach(b=>b.onclick=async()=>{if(!b.dataset.arm){b.dataset.arm=1;b.textContent="Remove?";b.classList.add("arm");return}
+    try{await TP_ADMIN.revoke(b.dataset.rv);toast("Passport revoked");deskList()}catch(e){toast("Couldn't remove: "+(e.message||e))}})}
+function bindDesk(){if(!$("dkGo"))return;deskList();
+  $("dkTg").querySelectorAll("button").forEach(b=>b.onclick=()=>{DK_SH=+b.dataset.sh;$("dkTg").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b))});
+  $("dkGo").onclick=async()=>{const em=$("dkMail").value.trim().toLowerCase(),er=$("dkErr");er.textContent="";
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){er.textContent="Enter a valid email.";return}
+    $("dkGo").disabled=true;
+    try{await TP_ADMIN.invite(em,DK_SH===1);$("dkMail").value="";thud();try{navigator.vibrate&&navigator.vibrate([20,60,20])}catch{}
+      const msg=`I've issued you a Trip Passport ✈️\n\n1. Open ${APP_URL}\n2. Tap "First time here? Create your passport" and use this email: ${em}\n3. iPhone: Safari → Share → Add to Home Screen\n   Android: Chrome → ⋮ → Install app`;
+      $("dkShare").innerHTML=`<div class="dk-ok"><div class="dk-stamp">ISSUED</div><b>${esc(em)}</b><p>Send them the invite:</p><div class="dk-sb">${navigator.share?`<button type="button" class="dk-go" id="dkSend">Share invite</button>`:""}<button type="button" class="bk-b2" id="dkCopy">Copy message</button></div></div>`;
+      if($("dkSend"))$("dkSend").onclick=()=>navigator.share({title:"Trip Passport",text:msg}).catch(()=>{});
+      $("dkCopy").onclick=async()=>{try{await navigator.clipboard.writeText(msg);toast("Invite copied ✓")}catch{toast("Copy failed · long-press to copy")}};
+      deskList()}
+    catch(e){er.textContent=/duplicate|23505/.test(String(e.message||e.code))?"That email already has a passport.":"Couldn't issue: "+(e.message||e)}
+    finally{$("dkGo").disabled=false}}}
 /* ================= THE PASSPORT BOOK (home) ================= */
 let BK={key:"",idx:0,leaves:[]};
 try{BK.idx=+sessionStorage.getItem("tp-bk-idx")||0}catch{}
@@ -2171,13 +2224,13 @@ function bkPaper(n,inner,cls=""){return`<div class="bk-face bk-front bk-paper ${
 function bkTrips(){return ATLAS.trips.filter(t=>t.start).sort((a,b)=>b.start.localeCompare(a.start))}
 function bkPages(){const T=bkTrips(),started=T.filter(t=>t.start<=today()),later=T.filter(t=>t.start>today()&&(!ATLAS.next||t.id!==ATLAS.next.id));
   const P=[{k:"cover"},{k:"bearer"},{k:"map"},{k:"depart"},...started.map(t=>({k:"visa",t})),...later.map(t=>({k:"visa",t,up:1}))];
-  if(started.length)P.push({k:"year"});P.push({k:"seals"},{k:"office"},{k:"end"});return P}
+  if(started.length)P.push({k:"year"});P.push({k:"seals"});if(IS_OWNER)P.push({k:"office"},{k:"desk"});if(!bkStandalone())P.push({k:"install"});P.push({k:"end"});return P}
 function bkStamp(l,i,t,up){const pos=[[3,20,-11],[46,10,8],[10,48,-4],[50,42,12],[24,30,6],[4,62,-8]],p=pos[i%pos.length],c=PALETTE[(i+(t.id.length%3))%PALETTE.length],shape=["rect","circ","oval"][i%3];
   return`<div class="bk-stamp ${shape} ${up?"up":""}" style="--c:${c};--r:${p[2]}deg;left:${p[0]}%;top:${p[1]}%"><small>${up?"VISA PENDING":"ENTRY"} · ${esc(code3(l.city||l.place))}</small><b>${esc(String(l.city||l.place).toUpperCase())}</b><i>${esc(short(l.from||t.start))} ${flagOf(l.country)}</i></div>`}
-function bkInner(pg,n){const nm=((ME&&PROF[ME]?.name)||"Satish Kataria"),parts=nm.trim().split(/\s+/),sur=(parts.length>1?parts.slice(-1):parts).join(" ").toUpperCase(),giv=(parts.length>1?parts.slice(0,-1):[]).join(" ").toUpperCase();
-  const S=achStats(),hm=ATLAS.home,hc=(bkTrips()[0]?.home?.city)||"Mumbai";
+function bkInner(pg,n){const nm=(NM()),parts=nm.trim().split(/\s+/),sur=(parts.length>1?parts.slice(-1):parts).join(" ").toUpperCase(),giv=(parts.length>1?parts.slice(0,-1):[]).join(" ").toUpperCase();
+  const S=achStats(),hm=ATLAS.home,hc=(bkTrips()[0]?.home?.city)||"";
   if(pg.k==="bearer")return`<div class="bk-ph">BEARER · TITULAIRE</div><div class="bk-bear"><div class="bk-photo"><svg viewBox="0 0 60 80"><circle cx="30" cy="30" r="13" fill="#8a9bb3"/><path d="M6 80 Q8 52 30 50 Q52 52 54 80Z" fill="#8a9bb3"/></svg><div class="bk-holo"></div></div>
-    <div><div class="bk-fld"><small>SURNAME</small><b>${esc(sur)}</b></div>${giv?`<div class="bk-fld"><small>GIVEN NAMES</small><b>${esc(giv)}</b></div>`:""}<div class="bk-fld"><small>HOME PORT</small><b>${esc(hc.toUpperCase())} · ${flagOf(hm)}</b></div><div class="bk-fld"><small>FIRST STAMP</small><b>${esc(bkTrips().slice(-1)[0]?.start?short(bkTrips().slice(-1)[0].start):"—")}</b></div><div class="bk-fld"><small>SIGNATURE</small><span class="bk-sig">${esc(parts[0]||"")}</span></div></div></div>
+    <div><div class="bk-fld"><small>SURNAME</small><b>${esc(sur)}</b></div>${giv?`<div class="bk-fld"><small>GIVEN NAMES</small><b>${esc(giv)}</b></div>`:""}<div class="bk-fld"><small>HOME PORT</small><b>${hc?esc(hc.toUpperCase())+" · "+flagOf(hm):"— first trip sets it"}</b></div><div class="bk-fld"><small>FIRST STAMP</small><b>${esc(bkTrips().slice(-1)[0]?.start?short(bkTrips().slice(-1)[0].start):"—")}</b></div><div class="bk-fld"><small>SIGNATURE</small><span class="bk-sig">${esc(parts[0]||"")}</span></div></div></div>
     <div class="bk-stats"><div><b>${S.ctry}</b><span>COUNTRIES</span></div><div><b>${S.trips}</b><span>TRIPS</span></div><div><b>${S.days}</b><span>DAYS AWAY</span></div></div>
     <div class="bk-mrz">P&lt;WND&lt;${esc(sur.replace(/\s/g,"&lt;"))}&lt;&lt;${esc(giv.replace(/\s/g,"&lt;"))}${"&lt;".repeat(14)}<br>${[...new Set(ATLAS.trips.filter(t=>t.start&&t.start<=today()).flatMap(t=>t.legs.map(l=>l.country)))].filter(c=>c&&c!==hm).join("")}&lt;${String(S.km).padStart(6,"0")}KM&lt;&lt;${S.trips}TRIPS${"&lt;".repeat(8)}</div>`;
   if(pg.k==="map"){const vis=Object.keys(ATLAS.byIso).filter(i=>i!==hm&&visited(i));
@@ -2193,15 +2246,26 @@ function bkInner(pg,n){const nm=((ME&&PROF[ME]?.name)||"Satish Kataria"),parts=n
   if(pg.k==="year")return`<div class="bk-ph">THE YEAR IN TRAVEL</div><div class="bk-slot" data-slot="wrapBox"></div><div class="bk-slot" data-slot="duelBox"></div><div class="bk-note">Your year as a film, and two trips in the ring.</div>`;
   if(pg.k==="seals")return`<div class="bk-ph">SEALS · <span class="bk-slot inl" data-slot="achN"></span> PRESSED</div><div class="bk-slot" data-slot="ach"></div>`;
   if(pg.k==="office")return`<div class="bk-ph">PASSPORT OFFICE · WISHES</div><div class="bk-slot" data-slot="office"></div>`;
+  if(pg.k==="desk")return`<div class="bk-ph">IMMIGRATION DESK · ISSUE PASSPORTS</div>
+    <div class="dk-form"><label>FRIEND'S EMAIL</label><input id="dkMail" type="email" inputmode="email" autocomplete="off" placeholder="friend@email.com">
+      <div class="dk-tg" id="dkTg"><button type="button" data-sh="0" class="on"><b>Own passport</b><small>Private · their trips only</small></button><button type="button" data-sh="1"><b>Share mine</b><small>Family · sees your trips</small></button></div>
+      <button type="button" class="dk-go" id="dkGo">Issue passport</button><div class="dk-err" id="dkErr"></div></div>
+    <div class="dk-share" id="dkShare"></div>
+    <div class="dk-list" id="dkList"><div class="bk-tip">Loading issued passports…</div></div>
+    <div class="bk-tip" style="text-align:left;margin-top:10px">Friends get 5 plan reads a month on your Claude key. Removing someone locks them out; their stamps stay stored.</div>`;
+  if(pg.k==="install"){const ios=/iPhone|iPad|iPod/.test(navigator.userAgent);return`<div class="bk-ph">KEEP IT ON YOUR PHONE</div><div class="in-hero">📲</div>
+    <div class="in-card ${ios?"me":""}"><b>iPhone</b><ol><li>Open this link in <b>Safari</b></li><li>Tap <b>Share</b> ⬆︎</li><li>Tap <b>Add to Home Screen</b></li></ol></div>
+    <div class="in-card ${!ios?"me":""}"><b>Android</b>${BIP?`<button type="button" class="dk-go" id="inGo">Install app</button>`:`<ol><li>Open this link in <b>Chrome</b></li><li>Tap <b>⋮</b> (top right)</li><li>Tap <b>Install app</b> or <b>Add to Home screen</b></li></ol>`}</div>
+    <div class="bk-tip">It then opens full screen like a real app, and works offline.</div>`}
   if(pg.k==="end"){const wf=ATLAS.wish.slice(0,8);return`<div class="bk-end"><div class="bk-ph" style="border:0">PAGES REMAINING · ${Math.max(4,32-n)}</div><h3>Where next?</h3><p>${wf.length?"On the wishlist":"Tap a country on the map to wish for it"}</p><div class="bk-wfl">${wf.map(i=>`<button data-iso="${i}">${flagOf(i)}</button>`).join("")}</div><button class="bk-newp" id="bkNew">＋ NEW PASSPORT PAGE</button><div class="bk-tip">Upload a travel plan · Claude stamps the page</div></div>`}
   return""}
-function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages(),key=P.map(p=>p.k+(p.t?p.t.id:"")+(p.up?"u":"")).join("|")+(WORLD?"w":"");
+function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages(),key=P.map(p=>p.k+(p.t?p.t.id:"")+(p.up?"u":"")).join("|")+(WORLD?"w":"")+(BIP?"b":"");
   if(key!==BK.key){BK.key=key;BK.P=P;
     // park the live widgets before rebuilding
     const park=$("v-atlas").querySelector(".legacy");["bpass","wrapBox","duelBox","achN","ach","office"].forEach(id=>{const el=$(id);if(el&&!park.contains(el))park.appendChild(el)});
     box.innerHTML=P.map((pg,i)=>`<div class="bk-leaf" data-i="${i}">${pg.k==="cover"?`<div class="bk-face bk-front bk-cover"><div class="c1 bk-foil">REPUBLIC OF WANDERLUST</div><div class="bk-emb bk-foil">${BKEMB}</div><div><div class="c2 bk-foil">PASSPORT</div><div class="bk-chip"></div></div><div class="bk-tap">TAP TO OPEN</div></div>`:bkPaper(i,`<div class="bk-body" data-body="${i}">${bkInner(pg,i)}</div>`,pg.k)}<div class="bk-face bk-back">${i===0?bkGuil(99):""}</div></div>`).join("");
     box.querySelectorAll("[data-slot]").forEach(sl=>{const el=$(sl.dataset.slot);if(el)sl.appendChild(el)});
-    BK.leaves=[...box.querySelectorAll(".bk-leaf")];$("bkDots").innerHTML=P.map(()=>"<i></i>").join("");BK.idx=Math.min(BK.idx,P.length-1);bkLayout(true)}
+    BK.leaves=[...box.querySelectorAll(".bk-leaf")];bindDesk();bindInstall();$("bkDots").innerHTML=P.map(()=>"<i></i>").join("");BK.idx=Math.min(BK.idx,P.length-1);bkLayout(true)}
   else{BK.P=P;P.forEach((pg,i)=>{if(["bearer","map","visa","end"].includes(pg.k)){const b=box.querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}})}
   bkSize()}
 function bkSize(){const d=$("bkDesk");if(!d)return;const vw=Math.min(innerWidth,1100),vh=innerHeight;let W=Math.min(vw*.88,460),H=W*1.42;const maxH=vh-110;if(H>maxH){H=maxH;W=H/1.42}d.style.setProperty("--W",W+"px");d.style.setProperty("--H",H+"px")}

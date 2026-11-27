@@ -3,7 +3,8 @@
    backed by Supabase, with an on-phone cache so it opens and works offline. */
 (function () {
   const CFG = window.TRIP_CFG || {};
-  const LS_CACHE = "tp-cache-v1", LS_WHO = "tp-who-v1";
+  const LS_CACHE = "tp-cache-v1", LS_WHO = "tp-who-v1", LS_SPACE = "tp-space-v1";
+  let MYSPACE = null; try { MYSPACE = localStorage.getItem(LS_SPACE) || null; } catch {}
   const $ = (id) => document.getElementById(id);
   let sb = null;
   try { sb = supabase.createClient(CFG.url, CFG.key, { auth: { persistSession: true, autoRefreshToken: true, storageKey: "tp-auth" } }); } catch (e) { console.error(e); }
@@ -36,8 +37,16 @@
     return { code: "unavailable", message: m || "offline" };
   };
 
+  async function loadSpace() {
+    if (!sb) return;
+    try {
+      const { data, error } = await sb.rpc("my_space");
+      if (!error && typeof data === "string" && data) { MYSPACE = data; try { localStorage.setItem(LS_SPACE, data); } catch {} }
+    } catch {}
+  }
   async function loadAll() {
     if (!sb) return;
+    if (!MYSPACE) await loadSpace();
     const { data, error } = await sb.from("docs").select("path,data");
     if (error) throw errOf(error);
     const n = {}; (data || []).forEach((r) => { n[r.path] = r.data; });
@@ -47,8 +56,8 @@
   function startRealtime() {
     if (rtStarted || !sb) return; rtStarted = true;
     sb.channel("docs-live").on("postgres_changes", { event: "*", schema: "public", table: "docs" }, (p) => {
-      if (p.eventType === "DELETE") { const path = p.old && p.old.path; if (!path) return; const had = path in cache; delete cache[path]; saveCache(); if (had) emit(path, "removed"); }
-      else { const r = p.new; if (!r || !r.path) return; const added = !(r.path in cache); cache[r.path] = r.data; saveCache(); emit(r.path, added ? "added" : "modified"); }
+      if (p.eventType === "DELETE") { if (p.old && p.old.space && MYSPACE && p.old.space !== MYSPACE) return; const path = p.old && p.old.path; if (!path) return; const had = path in cache; delete cache[path]; saveCache(); if (had) emit(path, "removed"); }
+      else { const r = p.new; if (!r || !r.path) return; if (r.space && MYSPACE && r.space !== MYSPACE) return; const added = !(r.path in cache); cache[r.path] = r.data; saveCache(); emit(r.path, added ? "added" : "modified"); }
     }).subscribe();
   }
   async function sync() { try { await loadAll(); startRealtime(); } catch (e) { /* offline: keep cache */ } }
@@ -58,7 +67,10 @@
   async function put(path, data) {
     const prev = cache[path]; cache[path] = data; saveCache(); emit(path, prev === undefined ? "added" : "modified");
     if (!sb) throw { code: "unavailable", message: "not configured" };
-    const { error } = await sb.from("docs").upsert({ path, coll: segs(path)[0], data, updated_at: new Date().toISOString() });
+    const row = { path, coll: segs(path)[0], data, updated_at: new Date().toISOString() };
+    let error;
+    if (MYSPACE) { row.space = MYSPACE; ({ error } = await sb.from("docs").upsert(row, { onConflict: "space,path" })); }
+    else ({ error } = await sb.from("docs").upsert(row));
     if (error) throw errOf(error);
   }
   async function del(path) {
@@ -111,21 +123,32 @@
 
   /* ---------------- sign-in (passport styled) ---------------- */
   let readyResolve; const ready = new Promise((r) => (readyResolve = r));
-  function finish(user, name) {
+  async function finish(user, name, online) {
+    if (online && sb) {
+      try {
+        const { data: ok, error } = await sb.rpc("is_member");
+        if (!error && ok !== true) {
+          await sb.auth.signOut();
+          showGate("Your passport hasn't been issued yet. Ask the person who invited you to add " + (user.email || "your email") + ".");
+          return;
+        }
+      } catch {}
+    }
+    if (WHO && WHO.id && WHO.id !== user.id) { cache = {}; MYSPACE = null; try { localStorage.removeItem(LS_CACHE); localStorage.removeItem(LS_SPACE); } catch {} }
     WHO = { id: user.id, email: user.email || "", name: name || (WHO && WHO.id === user.id ? WHO.name : "") || (user.user_metadata && user.user_metadata.name) || "" };
     saveWho(); const g = $("gate"); if (g) g.remove(); readyResolve(true);
     sync().then(rememberName);
   }
-  function showGate() {
+  function showGate(msg) {
     const g = $("gate"); if (!g) return; g.classList.add("on");
     let mode = "in";
-    const draw = () => {
+    const draw = (keep) => {
       $("gName").parentElement.style.display = mode === "up" ? "" : "none";
       $("gGo").textContent = mode === "up" ? "Create my passport" : "Open passport";
       $("gSwap").textContent = mode === "up" ? "Already have one? Sign in" : "First time here? Create your passport";
-      $("gErr").textContent = "";
+      $("gErr").textContent = keep || "";
     };
-    draw();
+    draw(msg);
     $("gSwap").onclick = () => { mode = mode === "up" ? "in" : "up"; draw(); };
     $("gForm").onsubmit = async (e) => {
       e.preventDefault();
@@ -138,11 +161,11 @@
           const { data, error } = await sb.auth.signUp({ email, password: pw, options: { data: { name } } });
           if (error) throw error;
           if (!data.session) { $("gErr").textContent = "Account created. Turn off “Confirm email” in Supabase (see the setup steps), then sign in."; mode = "in"; draw(); return; }
-          finish(data.user, name);
+          finish(data.user, name, true);
         } else {
           const { data, error } = await sb.auth.signInWithPassword({ email, password: pw });
           if (error) throw error;
-          finish(data.user, (data.user.user_metadata && data.user.user_metadata.name) || "");
+          finish(data.user, (data.user.user_metadata && data.user.user_metadata.name) || "", true);
         }
       } catch (err) {
         $("gErr").textContent = navigator.onLine === false ? "You're offline. Connect once to sign in; after that it works offline." : (err && err.message) || "Couldn't sign in.";
@@ -155,7 +178,7 @@
     if (!sb || !CFG.url || !CFG.key || /YOUR_/.test(CFG.url + CFG.key)) { const g = $("gate"); if (g) { g.classList.add("on"); $("gForm").innerHTML = '<p class="gnote">Almost there — this copy isn’t connected to its database yet.</p>'; } return; }
     try {
       const { data } = await sb.auth.getSession();
-      if (data && data.session && data.session.user) { finish(data.session.user); return; }
+      if (data && data.session && data.session.user) { finish(data.session.user, "", navigator.onLine !== false); return; }
     } catch {}
     if (WHO && navigator.onLine === false) { const g = $("gate"); if (g) g.remove(); readyResolve(true); return; } // offline: trust last sign-in, use cached data
     showGate();
@@ -174,5 +197,14 @@
     if (error) { let msg = error.message || "Request failed"; try { const j = await error.context.json(); if (j && j.error) msg = j.error; } catch {} throw new Error(msg); }
     return data;
   };
-  window.TP_SIGN_OUT = async () => { try { await sb.auth.signOut(); } catch {} try { localStorage.removeItem(LS_WHO); localStorage.removeItem(LS_CACHE); } catch {} location.reload(); };
+  window.TP_WHO = () => WHO;
+  window.TP_SIGN_OUT = async () => { try { await sb.auth.signOut(); } catch {} try { localStorage.removeItem(LS_WHO); localStorage.removeItem(LS_CACHE); localStorage.removeItem(LS_SPACE); } catch {} location.reload(); };
+  /* invite desk — only works for the admin (the database refuses everyone else) */
+  window.TP_ADMIN = {
+    isAdmin: async () => { if (!sb) return false; try { const { data } = await sb.rpc("is_admin"); return data === true; } catch { return false; } },
+    list: async () => { const { data, error } = await sb.from("members").select("email,space,plan_cap,added_at").order("added_at"); if (error) throw error; return data || []; },
+    invite: async (email, shared) => { const row = { email: String(email).trim().toLowerCase() }; if (shared && MYSPACE) row.space = MYSPACE; const { error } = await sb.from("members").insert(row); if (error) throw error; },
+    revoke: async (email) => { const { error } = await sb.from("members").delete().eq("email", email); if (error) throw error; },
+    space: () => MYSPACE,
+  };
 })();
