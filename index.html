@@ -911,6 +911,97 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .tgi{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;text-decoration:none;color:#fff;background:#ffffff12;border:1px solid #e3c27a33;border-radius:12px;padding:10px 12px}
 .tgi span{font:600 13px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tgi small{font:10px var(--type);color:#ffffff88}
 .tgi em{grid-row:1/3;grid-column:2;font:900 9px var(--sans);font-style:normal;letter-spacing:.14em;color:var(--sc);border:2px double var(--sc);border-radius:5px;padding:4px 6px;transform:rotate(-6deg);background:#fff6dc}
+
+/* ===== trip film ===== */
+.filmBtn{display:flex;align-items:center;gap:10px;margin:12px auto 2px;border:1.5px solid #e3c27a77;border-radius:10px;background:#00000040;color:var(--gold);padding:7px 10px;font:800 11px var(--sans);letter-spacing:.24em}
+.filmBtn .fr{width:18px;height:22px;background:repeating-linear-gradient(180deg,#e3c27a 0 3px,transparent 3px 6px);border-radius:2px;opacity:.7}
+.filmBtn em{font-style:normal;letter-spacing:.06em;background:var(--gold);color:#2a1c06;border-radius:999px;padding:4px 10px}
+.film{position:fixed;inset:0;z-index:95;background:#05050a;display:none;overflow:hidden;color:#fff;user-select:none;-webkit-user-select:none}
+.film.on{display:block}
+.fstage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;transition:background .6s}
+.fsc{position:relative;z-index:2;width:100%;max-width:760px;padding:0 22px;animation:fin .7s ease both}
+@keyframes fin{from{opacity:0;transform:scale(1.04)}}
+.fbar{position:absolute;left:0;right:0;height:9vh;background:#000;z-index:4;animation:bars 1s cubic-bezier(.3,.8,.3,1) both}
+.fbar.top{top:0;transform-origin:top}.fbar.bot{bottom:0;transform-origin:bottom}
+@keyframes bars{from{transform:scaleY(0)}}
+.fgrain{position:absolute;inset:-50%;z-index:3;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .5s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}}
+.film::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,#000a 100%)}
+.fseg{position:absolute;top:calc(9vh + 10px);left:14px;right:52px;display:flex;gap:3px;z-index:6}
+.fseg i{flex:1;height:2.5px;border-radius:2px;background:#ffffff30;overflow:hidden}.fseg i b{display:block;height:100%;width:0;background:var(--gold)}
+.fseg i.done b{width:100%}.fseg i.now b{animation:segp linear forwards}
+.film.paused .fseg i.now b{animation-play-state:paused}
+@keyframes segp{to{width:100%}}
+.fx{position:absolute;top:calc(9vh + 2px);right:10px;z-index:7;border:0;background:none;color:#fff;font-size:20px;padding:6px 8px}
+.fpause{position:absolute;inset:0;z-index:5;display:none;place-items:center;font-size:44px;color:#ffffffcc;pointer-events:none}
+.film.paused .fpause{display:grid}.film.paused *{animation-play-state:paused!important}
+/* kinetic letters */
+.kl,.cl{display:inline-block;animation:kin .9s cubic-bezier(.2,.9,.2,1) both}
+@keyframes kin{from{opacity:0;transform:translateY(60%) rotate(8deg) scale(1.4);filter:blur(10px)}}
+.sp{display:inline-block;width:.28em}.kw{display:inline-block;white-space:nowrap}
+.ft-k{font:800 10px var(--sans);letter-spacing:.5em;color:var(--gold);opacity:0;animation:fadeup .8s .1s both}
+.ft-t{font:700 clamp(40px,11vw,96px)/1.02 var(--serif);margin:16px 0 12px;color:#f6dfa4}
+.ft-t .kl{color:#f6dfa4;text-shadow:0 0 30px #c99a4588}
+.ft-d{font:700 13px var(--type);letter-spacing:.3em;color:#ffffffb0;animation:fadeup .8s 1.6s both}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1}}
+/* route */
+.s-route .fsc{position:absolute;inset:0;max-width:none;padding:0}
+.fmap{position:absolute;inset:0;width:100%;height:100%;animation:zoomin 6.4s ease-out both}
+@keyframes zoomin{from{transform:scale(1.35)}to{transform:scale(1)}}
+.fmap .land{fill:#141a2e;stroke:#ffffff14;stroke-width:.15}
+.fmap .arc{fill:none;stroke:var(--gold);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s ease-in-out both}
+.fmap .arc.ret{stroke:#e3c27a88;stroke-dasharray:.02 .02;animation:none;opacity:0;animation:fadeup .6s both}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fmap .pin{opacity:0;animation:pin .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pin{from{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(0)}to{opacity:1}}
+.fmap .ring{transform-box:fill-box;transform-origin:center;animation:ringp 1.6s ease-out infinite}
+@keyframes ringp{from{transform:scale(1);opacity:1}to{transform:scale(3.2);opacity:0}}
+.fmap text{fill:#fff6dc;font-family:var(--type);font-weight:700}
+.fmap .plane{fill:var(--gold)}
+.fcap{position:absolute;left:0;right:0;bottom:calc(9vh + 22px);z-index:2}
+.fcap b{display:block;font:700 clamp(36px,9vw,64px)/1 var(--serif);color:var(--gold)}.fcap span{font:700 11px var(--sans);letter-spacing:.3em;color:#ffffffb0;text-transform:uppercase}
+/* city */
+.s-city .fsc{position:absolute;inset:0;max-width:none;padding:calc(9vh + 52px) 0 0;display:flex;flex-direction:column;justify-content:flex-start}
+.fc-k{font:800 11px var(--sans);letter-spacing:.4em;color:#ffffffb0;margin-bottom:8px;animation:fadeup .7s both}
+.fc-t{margin:0;font:700 clamp(46px,14vw,130px)/.95 var(--serif);color:#fff;text-shadow:0 0 40px var(--c),0 0 2px #fff;position:relative;z-index:2;word-break:break-word;padding:0 12px}
+.sky{position:absolute;left:0;right:0;bottom:9vh;width:100%;height:52%;z-index:1}
+.sky .bld{transform-box:fill-box;transform-origin:bottom;animation:rise 1.4s cubic-bezier(.2,.9,.3,1) both}
+@keyframes rise{from{transform:scaleY(0)}}
+.sky .win{fill:#ffe9a8;opacity:0;animation:lit .4s both}
+@keyframes lit{to{opacity:.9}}
+.sky .blink{animation:blink 1.2s steps(2) infinite}@keyframes blink{50%{opacity:0}}
+.sky .refl{opacity:.28;filter:blur(1.2px)}
+.sky .ripple{animation:rip 2.4s ease-in-out infinite}@keyframes rip{50%{transform:translateX(12px);opacity:.3}}
+.fstamp{position:absolute;right:7%;top:calc(9vh + 150px);z-index:3;width:118px;padding:8px 6px;border:3px double var(--sc);border-radius:10px;color:var(--sc);background:#fbf3dcee;transform:rotate(-12deg);animation:fslam .5s 1.9s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes fslam{from{opacity:0;transform:rotate(-12deg) scale(2.6)}}
+.fstamp small{display:block;font:900 9px var(--sans);letter-spacing:.4em}.fstamp b{display:block;font:900 30px/1 var(--serif)}.fstamp i{font:700 11px var(--type);font-style:normal}
+/* stat */
+.coins{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none}
+.coins i{position:absolute;top:-8%;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:900 14px var(--serif);font-style:normal;color:#5a3d0a;background:radial-gradient(circle at 35% 30%,#fff3cf,#e3c27a 50%,#a87d36);box-shadow:0 2px 4px #0006;transform:scale(var(--s));animation:fall 2.6s cubic-bezier(.4,0,.8,1) both}
+@keyframes fall{to{top:108%;transform:scale(var(--s)) rotate(var(--r))}}
+.fs-k{font:800 11px var(--sans);letter-spacing:.4em;color:#ffffffb0}
+.fs-v{font:700 clamp(54px,15vw,120px)/1 var(--serif);color:var(--gold);margin:10px 0;text-shadow:0 6px 30px #000}
+.fs-s{font:700 13px var(--type);color:#fff;letter-spacing:.1em}
+/* episodes */
+.ep-n{font:900 12px var(--sans);letter-spacing:.6em;color:var(--gold);animation:fadeup .5s both}
+.ep-d{font:700 clamp(30px,8vw,56px)/1.05 var(--serif);margin:10px 0 16px;animation:fadeup .6s .15s both}
+.ep-l{font:400 clamp(17px,4.4vw,24px)/1.4 var(--type);color:#fff6dc;max-width:560px;margin:0 auto;animation:type 1.6s .5s steps(30) both}
+@keyframes type{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* big day */
+.s-big{background:radial-gradient(circle at 50% 45%,#3a2a0a,#05050a 65%)!important}
+.bg-k{font:900 12px var(--sans);letter-spacing:.6em;color:var(--gold)}
+.bg-v{font:700 clamp(64px,18vw,150px)/1 var(--serif);color:#fff6dc;margin:8px 0;text-shadow:0 0 60px #e3c27a88;animation:pulse 1.6s ease-in-out infinite alternate}
+@keyframes pulse{to{text-shadow:0 0 90px #e3c27acc}}
+.bg-d{font:700 13px var(--type);letter-spacing:.08em;color:#ffffffd0}.bg-t{margin-top:12px;display:inline-block;font:700 13px var(--sans);border:1.5px solid #e3c27a88;border-radius:999px;padding:6px 14px;color:var(--gold)}
+/* end */
+.end-r{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 8px;font:700 clamp(18px,5vw,28px) var(--type);color:var(--gold)}
+.end-r span{animation:fadeup .5s both}.end-r em{font-style:normal;color:#ffffff66}
+.end-v{font:700 clamp(54px,14vw,110px)/1 var(--serif);margin:18px 0 6px;color:#fff6dc}
+.end-s{font:700 12px var(--sans);letter-spacing:.24em;color:#ffffffb0;text-transform:uppercase}
+.credits{margin-top:26px;display:flex;flex-direction:column;gap:12px;animation:fadeup 1s 2.2s both}
+.credits small{display:block;font:800 9px var(--sans);letter-spacing:.4em;color:#ffffff80}.credits b{font:700 20px var(--serif);color:#fff}
+.the-end{margin-top:26px;font:700 italic 34px var(--serif);color:var(--gold);animation:fadeup 1.2s 4.6s both}
+@media (prefers-reduced-motion:reduce){.fgrain{animation:none}}
 </style>
 </head>
 <body>
@@ -957,6 +1048,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
     <div class="who" id="bearer">Bearer · Satish Kataria</div>
     <div class="crew hidden" id="crew"></div>
     <div class="route" id="route"></div>
+    <button class="filmBtn" id="filmBtn"><span class="fr"></span><b>TRIP FILM</b><em>▶ Play</em><span class="fr"></span></button>
     <div class="greet" id="greet"></div>
     <div class="plan" id="plan"></div>
     <div id="geoPill"></div>
@@ -1112,6 +1204,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 <div class="sheet nsheet" id="nsheet"><div class="grab"></div><div id="nBody"></div></div>
 <div class="sheet csheet" id="csheet"><div class="grab"></div><div id="cBody"></div></div>
 <div id="border" class="border"></div>
+<div id="film" class="film"></div>
 <div id="duel" class="duel"></div>
 <div class="sheet addsheet" id="addsheet">
   <div class="grab"></div>
@@ -1908,6 +2001,81 @@ function renderOffice(){const b=$("office");if(!b)return;if(WISHES===null){loadW
     const u=`https://github.com/${REPO}/issues/new?labels=wish&title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
     window.open(u,"_blank");$("wishTx").value="";wishT=0;setTimeout(loadWishes,20000);toast("Telegram drafted · tap Submit on GitHub")}}
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&CUR==="atlas"){wishT=0;loadWishes()}});
+
+/* ================= TRIP FILM ================= */
+let FILM=null;
+const FSEED=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return()=>((h=(h*1103515245+12345)>>>0)/4294967296)};
+function letters(t,cls,d0=0,step=.05){let i=0;return String(t).split(" ").map(w=>`<span class="kw">${[...w].map(c=>`<span class="${cls}" style="animation-delay:${(d0+(i++)*step).toFixed(2)}s">${esc(c)}</span>`).join("")}</span>`).join(`<span class="sp"> </span>`)}
+function skyline(seed,col,water){const r=FSEED(seed);seed=String(seed).replace(/[^a-z0-9]/gi,"_");let x=0,b="",w="";
+  while(x<400){const bw=14+r()*30,bh=40+r()*150,d=(.15+r()*.9).toFixed(2);
+    b+=`<g class="bld" style="animation-delay:${d}s"><rect x="${x.toFixed(1)}" y="${(260-bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" fill="url(#bg_${seed})"/>`;
+    for(let yy=260-bh+8;yy<252;yy+=11)for(let xx=x+4;xx<x+bw-5;xx+=7)if(r()<.38)b+=`<rect class="win" x="${xx.toFixed(1)}" y="${yy.toFixed(1)}" width="3" height="4" style="animation-delay:${(1+r()*2.5).toFixed(2)}s"/>`;
+    if(r()<.18)b+=`<rect x="${(x+bw/2-1).toFixed(1)}" y="${(260-bh-18).toFixed(1)}" width="2" height="18" fill="${col}"/><circle class="blink" cx="${(x+bw/2).toFixed(1)}" cy="${(260-bh-19).toFixed(1)}" r="2.2" fill="#ff5a4a"/>`;
+    b+=`</g>`;x+=bw+1+r()*3}
+  if(water)w=`<g class="refl" transform="translate(0,520) scale(1,-1)">${b}</g><rect x="0" y="260" width="400" height="140" fill="url(#wt_${seed})"/>${[...Array(14)].map((_,i)=>`<rect class="ripple" x="${(r()*380).toFixed(0)}" y="${(268+r()*110).toFixed(0)}" width="${(10+r()*40).toFixed(0)}" height="1.4" fill="#ffffff55" style="animation-delay:${(r()*2).toFixed(2)}s"/>`).join("")}`;
+  return`<svg class="sky" viewBox="0 0 400 ${water?400:262}" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="bg_${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mix(col,"#ffffff",.5)}"/><stop offset="1" stop-color="${mix(col,"#05050a",.45)}"/></linearGradient>
+    <linearGradient id="wt_${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05050a" stop-opacity=".55"/><stop offset="1" stop-color="#05050a"/></linearGradient></defs>${w}${b}</svg>`}
+function coins(n,seed){const r=FSEED(seed);return`<div class="coins">${[...Array(n)].map(()=>`<i style="left:${(r()*100).toFixed(1)}%;animation-delay:${(.3+r()*1.8).toFixed(2)}s;--s:${(.6+r()*.8).toFixed(2)};--r:${(r()*720-360).toFixed(0)}deg">₹</i>`).join("")}</div>`}
+function filmData(){const R=inrRates(),legs=[...(TRIP.legs||[])].filter(l=>l&&l.place).sort((a,b)=>String(a.from).localeCompare(String(b.from)));
+  const h0=TRIP.home||{},home={city:h0.city||"Mumbai",country:h0.country||"IN",lat:isFinite(+h0.lat)&&h0.lat!==""&&h0.lat!=null?+h0.lat:19.08,lon:isFinite(+h0.lon)&&h0.lon!==""&&h0.lon!=null?+h0.lon:72.88};
+  const days={};let tot=0;for(const e of EXP){const v=inrOf(e,R);if(v==null)continue;tot+=v;if(e.place==="Travel")continue;const d=days[e.date]=days[e.date]||{v:0,n:0,places:new Set(),top:null};d.v+=v;d.n++;d.places.add(e.place);if(!d.top||v>d.top.v)d.top={v,desc:e.desc||e.cat,cat:e.cat}}
+  const per={};for(const e of EXP){if(e.place==="Travel")continue;const v=inrOf(e,R);if(v!=null)per[e.place]=(per[e.place]||0)+v}
+  const start=TRIP.start||legs[0]?.from||today(),end=TRIP.returnDate||legs[legs.length-1]?.to||today();
+  let km=0;const pts=[[+home.lon,+home.lat],...legs.filter(l=>isFinite(l.lon)&&l.lon!=="").map(l=>[+l.lon,+l.lat]),[+home.lon,+home.lat]];for(let i=1;i<pts.length;i++)km+=hav(pts[i-1],pts[i]);
+  return{legs,home,days,per,tot,start,end,km:Math.round(km)}}
+function dayLine(n,d,date){const cs=[...d.places].map(p=>cityOf(p)),two=cs.length>1;
+  const parts=[`Day ${n}.`,two?`${cs.join(" to ")}.`:`${cs[0]||"On the road"}.`,`${d.n} stamp${d.n>1?"s":""}, ₹${fmt(Math.round(d.v))}.`];
+  if(d.top&&d.top.v>=d.v*.35)parts.push(`${cap1(d.top.desc)} led the day.`);return parts.join(" ")}
+const cap1=s=>String(s||"").charAt(0).toUpperCase()+String(s||"").slice(1);
+function filmScenes(){const F=filmData(),S=[],who=((ME&&PROF[ME]?.name)||"Satish Kataria");
+  // 1 title
+  S.push({d:4600,cls:"s-title",h:`<div class="ft-k">A FILM BY ${esc(who.toUpperCase())}</div><h1 class="ft-t">${letters(TRIP.name||"The Trip","kl",.5,.06)}</h1><div class="ft-d">${esc(short(F.start))} — ${esc(short(F.end))}</div>`});
+  // 2 route
+  if(WORLD&&F.legs.length){const P=[[+F.home.lon,+F.home.lat],...F.legs.filter(l=>isFinite(l.lon)&&l.lon!=="").map(l=>[+l.lon,+l.lat])].map(([lo,la])=>proj(lo,la));
+    let x0=Math.min(...P.map(p=>p[0])),x1=Math.max(...P.map(p=>p[0])),y0=Math.min(...P.map(p=>p[1])),y1=Math.max(...P.map(p=>p[1]));
+    let w=Math.max(x1-x0,20)*1.6,h=Math.max(y1-y0,14)*1.9;const ar=Math.max(.5,innerWidth/innerHeight);if(w/h<ar)w=h*ar;else h=w/ar;const vb=[(x0+x1)/2-w/2,(y0+y1)/2-h/2,w,h],k=w/300;
+    const arcs=[];for(let i=1;i<P.length;i++){const a=P[i-1],b=P[i],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2-Math.hypot(b[0]-a[0],b[1]-a[1])*.35;arcs.push(`M${a[0].toFixed(2)},${a[1].toFixed(2)} Q${mx.toFixed(2)},${my.toFixed(2)} ${b[0].toFixed(2)},${b[1].toFixed(2)}`)}
+    const ret=P.length>1?(()=>{const a=P[P.length-1],b=P[0],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2+Math.hypot(b[0]-a[0],b[1]-a[1])*.25;return`M${a[0].toFixed(2)},${a[1].toFixed(2)} Q${mx.toFixed(2)},${my.toFixed(2)} ${b[0].toFixed(2)},${b[1].toFixed(2)}`})():"";
+    const all=arcs.join(" ")+(ret?" "+ret.replace("M"," M"):"");
+    S.push({d:6400,cls:"s-route",h:`<svg class="fmap" viewBox="${vb.join(" ")}" preserveAspectRatio="xMidYMid slice"><g class="fl">${landPaths(vb,Object.fromEntries(F.legs.map(l=>[l.country,mix(pcol(l.place),"#0b0b16",.55)])))}</g>
+      ${arcs.map((d,i)=>`<path class="arc" d="${d}" pathLength="1" style="stroke-width:${(1.6*k).toFixed(2)};animation-delay:${(.6+i*.9).toFixed(2)}s"/>`).join("")}${ret?`<path class="arc ret" d="${ret}" pathLength="1" style="stroke-width:${(1.2*k).toFixed(2)};animation-delay:${(.6+arcs.length*.9).toFixed(2)}s"/>`:""}
+      ${P.map((p,i)=>`<g class="pin" style="animation-delay:${(i?.6+i*.9-.1:.3).toFixed(2)}s"><circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${(3.2*k).toFixed(2)}" fill="${i?pcol(F.legs[i-1].place):"#e3c27a"}"/><circle class="ring" cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${(3.2*k).toFixed(2)}" fill="none" stroke="${i?pcol(F.legs[i-1].place):"#e3c27a"}" stroke-width="${(.8*k).toFixed(2)}"/><text x="${p[0].toFixed(2)}" y="${(p[1]-6*k).toFixed(2)}" font-size="${(7*k).toFixed(2)}" text-anchor="middle">${esc(i?code3(F.legs[i-1].city||F.legs[i-1].place):code3(F.home.city||"Mumbai"))}</text></g>`).join("")}
+      <text class="plane" font-size="${(10*k).toFixed(2)}" text-anchor="middle" dominant-baseline="middle">✈<animateMotion dur="${(Math.max(1,P.length)*.9+.2).toFixed(1)}s" begin="0.6s" fill="freeze" rotate="auto" path="${all}"/></text></svg>
+      <div class="fcap"><b data-count="${F.km}" data-pre="" data-suf=" km">0 km</b><span>${P.length-1} hop${P.length>2?"s":""} · ${new Set(F.legs.map(l=>l.country)).size} countries</span></div>`,after:el=>{const b=el.querySelector("[data-count]");b&&setTimeout(()=>countUp(b,+b.dataset.count),900)}})}
+  // 3 each leg
+  const COAST=/hong kong|singapore|macau|mumbai|sydney|dubai|miami|rio|cape town|lisbon|barcelona|venice|seattle|vancouver|san francisco|new york|istanbul|busan|osaka|tokyo|bali|male/i;
+  F.legs.forEach((l,i)=>{const c=pcol(l.place),city=(l.city||l.place),n=Math.max(1,dayDiff(l.from||F.start,l.to||l.from||F.start)),sp=Math.round(F.per[l.place]||0);
+    S.push({d:5200,cls:"s-city",bg:`radial-gradient(120% 80% at 50% 100%,${mix(c,"#000000",.5)},#05050a 70%)`,h:`<div class="fc-k">${flagOf(l.country)} ${esc(isoName(l.country)).toUpperCase()} · ${esc(short(l.from||F.start))}</div>
+      <h2 class="fc-t" style="--c:${c}">${letters(city.toUpperCase(),"cl",.15,.07)}</h2>${skyline(l.place+i,c,COAST.test(city))}
+      <div class="fstamp" style="--sc:${c}"><small>ENTRY</small><b>${esc(code3(city))}</b><i>${esc(short(l.from||F.start))}</i></div>`});
+    if(sp>0)S.push({d:3800,cls:"s-stat",bg:`linear-gradient(170deg,${mix(c,"#000",.45)},#05050a)`,fx:coins(26,l.place),h:`<div class="fs-k">${esc(city).toUpperCase()} IN NUMBERS</div><div class="fs-v" data-count="${sp}">₹0</div><div class="fs-s">${n} day${n>1?"s":""} · ₹${fmt(Math.round(sp/n))} a day</div>`,after:el=>{const b=el.querySelector("[data-count]");setTimeout(()=>countUp(b,+b.dataset.count),300)}})});
+  // 4 day episodes
+  const ds=Object.keys(F.days).filter(d=>d>=F.start&&d<=F.end).sort();
+  ds.forEach(d=>{const n=dayDiff(F.start,d)+1,x=F.days[d],c=pcol([...x.places][0]);
+    S.push({d:2600,cls:"s-ep",bg:`linear-gradient(160deg,${mix(c,"#000",.35)},#05050a 75%)`,h:`<div class="ep-n">EPISODE ${n}</div><div class="ep-d">${esc(new Date(d+"T00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}))}</div><p class="ep-l">${esc(dayLine(n,x,d))}</p>`})});
+  // 5 biggest day
+  const big=ds.map(d=>[d,F.days[d]]).sort((a,b)=>b[1].v-a[1].v)[0];
+  if(big)S.push({d:4200,cls:"s-big",h:`<div class="bg-k">THE BIG DAY</div><div class="bg-v">₹${fmt(Math.round(big[1].v))}</div><div class="bg-d">${esc(new Date(big[0]+"T00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"}))} · ${esc([...big[1].places].map(cityOf).join(" · "))}</div>${big[1].top?`<div class="bg-t">${esc(cap1(big[1].top.desc))} · ₹${fmt(Math.round(big[1].top.v))}</div>`:""}`});
+  // 6 finale
+  const crew=(Array.isArray(TRIP.crew)?TRIP.crew:[]).map(id=>PROF[id]?.name).filter(Boolean);const cast=[...new Set([who,...crew])];
+  S.push({d:7600,cls:"s-end",h:`<div class="end-r">${[code3(F.home.city||"Mumbai"),...F.legs.map(l=>code3(l.city||l.place)),code3(F.home.city||"Mumbai")].map((c,i)=>`<span style="animation-delay:${(.2+i*.18).toFixed(2)}s">${esc(c)}</span>`).join("<em>→</em>")}</div>
+    <div class="end-v" data-count="${Math.round(F.tot)}">₹0</div><div class="end-s">${F.legs.length} cities · ${F.km.toLocaleString("en-IN")} km · ${Math.max(1,dayDiff(F.start,F.end)+1)} days</div>
+    <div class="credits"><div><small>STARRING</small><b>${cast.map(esc).join(" &amp; ")}</b></div><div><small>DIRECTED BY</small><b>Claude</b></div><div><small>FILMED ON LOCATION IN</small><b>${F.legs.map(l=>esc(l.city||l.place)).join(" · ")}</b></div></div><div class="the-end">THE END</div>`,after:el=>{const b=el.querySelector("[data-count]");setTimeout(()=>countUp(b,+b.dataset.count),600)}});
+  return S}
+function openFilm(){const el=$("film"),S=filmScenes();FILM={S,i:-1,t:null,paused:false,t0:0,left:0};
+  el.innerHTML=`<div class="fbar top"></div><div class="fbar bot"></div><div class="fstage" id="fStage"></div><div class="fgrain"></div><div class="fseg">${S.map(()=>`<i><b></b></i>`).join("")}</div><button class="fx" id="fX" aria-label="Close">✕</button><div class="fpause" id="fPause">❚❚</div>`;
+  el.classList.add("on");document.body.style.overflow="hidden";
+  $("fX").onclick=e=>{e.stopPropagation();closeFilm()};
+  el.onclick=e=>{if(e.target.closest(".fx"))return;const x=e.clientX/innerWidth;if(x<.25)filmGo(FILM.i-1);else if(x>.75)filmGo(FILM.i+1);else filmPause()};
+  filmGo(0)}
+function filmGo(i){const F=FILM;if(!F)return;if(i<0)i=0;if(i>=F.S.length){closeFilm();return}clearTimeout(F.t);F.i=i;F.paused=false;$("film").classList.remove("paused");
+  const sc=F.S[i],st=$("fStage");st.className="fstage "+(sc.cls||"");st.style.background=sc.bg||"";st.innerHTML=(sc.fx||"")+`<div class="fsc">${sc.h}</div>`;
+  $("film").querySelectorAll(".fseg i").forEach((x,k)=>{x.className=k<i?"done":k===i?"now":"";x.querySelector("b").style.animationDuration=sc.d+"ms"});
+  sc.after&&sc.after(st);F.t0=performance.now();F.left=sc.d;F.t=setTimeout(()=>filmGo(i+1),sc.d)}
+function filmPause(){const F=FILM;if(!F)return;const el=$("film");if(!F.paused){clearTimeout(F.t);F.left-=performance.now()-F.t0;F.paused=true;el.classList.add("paused")}else{F.paused=false;el.classList.remove("paused");F.t0=performance.now();F.t=setTimeout(()=>filmGo(F.i+1),Math.max(300,F.left))}}
+function closeFilm(){if(FILM)clearTimeout(FILM.t);FILM=null;const el=$("film");el.classList.remove("on");el.innerHTML="";document.body.style.overflow=""}
+addEventListener("keydown",e=>{if(!FILM)return;if(e.key==="ArrowRight")filmGo(FILM.i+1);if(e.key==="ArrowLeft")filmGo(FILM.i-1);if(e.key===" ")filmPause();if(e.key==="Escape")closeFilm()});
+$("filmBtn").onclick=()=>{if(!(ready.e&&ready.f)){toast("Opening your passport…");return}openFilm()};
 let atlasSel=null;
 function openTrip(id){if(id===TRIPID){go("today");return}try{localStorage.setItem("tp-trip",id)}catch{}location.hash="#today";location.reload()}
 $("shelf").onclick=e=>{const b=e.target.closest("[data-trip]");if(b)openTrip(b.dataset.trip)};
