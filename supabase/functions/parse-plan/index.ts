@@ -49,6 +49,15 @@ Deno.serve(async (req) => {
     const m = await fetch(`${url}/rest/v1/rpc/is_member`, { method: "POST", headers: { apikey: anon, Authorization: auth, "Content-Type": "application/json" }, body: "{}" });
     if (!m.ok || (await m.json()) !== true) return json({ error: "Not allowed: sign in with a passport account." }, 403);
 
+    // Monthly cap on plan reads (friends: 5 a month by default; the admin is unlimited)
+    const H = { apikey: anon, Authorization: auth, "Content-Type": "application/json" };
+    const capR = await fetch(`${url}/rest/v1/rpc/my_cap`, { method: "POST", headers: H, body: "{}" });
+    const cap = capR.ok ? Number(await capR.json()) : 5;
+    const since = new Date(); since.setUTCDate(1); since.setUTCHours(0, 0, 0, 0);
+    const u = await fetch(`${url}/rest/v1/plan_uses?select=id&at=gte.${encodeURIComponent(since.toISOString())}`, { headers: { ...H, Prefer: "count=exact", Range: "0-0" } });
+    const used = Number(((u.headers.get("content-range") || "*/0").split("/")[1])) || 0;
+    if (used >= cap) return json({ error: `You've used your ${cap} plan reads for this month. They reset on the 1st.` }, 429);
+
     const key = Deno.env.get("ANTHROPIC_API_KEY");
     if (!key) return json({ error: "ANTHROPIC_API_KEY secret is missing in Supabase." }, 500);
 
@@ -73,7 +82,9 @@ Deno.serve(async (req) => {
     const text = (out.content || []).filter((c: { type: string }) => c.type === "text").map((c: { text: string }) => c.text).join("");
     const a = text.indexOf("{"), b = text.lastIndexOf("}");
     if (a < 0 || b < a) return json({ error: "Couldn't understand the documents. Try clearer files." }, 422);
-    return json({ trip: JSON.parse(text.slice(a, b + 1)) });
+    const trip = JSON.parse(text.slice(a, b + 1));
+    await fetch(`${url}/rest/v1/plan_uses`, { method: "POST", headers: { ...H, Prefer: "return=minimal" }, body: "{}" }).catch(() => {});
+    return json({ trip, left: Math.max(0, cap - used - 1) });
   } catch (e) {
     return json({ error: String((e && (e as Error).message) || e) }, 500);
   }

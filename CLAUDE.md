@@ -18,4 +18,5 @@ Satish's personal travel app. Live at https://director176.github.io/trip-passpor
 - No feature bloat; reliability first. Find and fix bugs before shipping.
 - Sanchi is his wife; he pays for everything. No "who paid / owes" features.
 - Never store passport numbers, DOBs or ID numbers.
+- Multi-user: every docs row belongs to a `space` (one per person or family). RLS limits reads/writes to `my_space()`. Only the admin (director@nayashgroup.com) manages `members` (the invite list) from the Immigration desk page. Friends get `plan_cap` plan reads a month (table `plan_uses`). Never show the Passport office or Immigration desk to non-owners.
 - Ship changes on a branch + PR for Satish to approve. Do not push to `main` without his OK.
