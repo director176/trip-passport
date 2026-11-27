@@ -1207,6 +1207,15 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 /* audit fixes: visible keyboard focus (SC 2.4.7 / 1.4.11), tap target for account switch (SC 2.5.8) */
 :focus-visible{outline:2px solid #e3c27a!important;outline-offset:2px;box-shadow:0 0 0 4px #1d2a4a!important}
 #gSwap{min-height:44px;padding:0 12px}
+
+/* contents tabs + sticky Stamp it */
+.bk-idx{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;max-width:min(96vw,520px)}
+.bk-idx button{display:flex;align-items:center;gap:5px;min-height:36px;padding:0 11px;border:1px solid #e3c27a55;border-radius:0 0 10px 10px;border-top:3px solid #e3c27a88;background:#ffffff0f;color:#fff6dcd0;font:700 11.5px var(--sans)}
+.bk-idx button span{font-size:13px}
+@media (max-width:400px){.bk-idx{gap:4px;flex-wrap:nowrap}.bk-idx button{padding:0 7px;font-size:10.5px;gap:3px}.bk-idx button span{font-size:11px}}
+.bk-idx button.on{background:#e3c27a;color:#2a1c06;border-color:#e3c27a}
+.bk-idx button.nw{background:#a8231a;border-color:#a8231a;color:#fff6dc}
+#eSave{position:sticky;bottom:0;z-index:3;box-shadow:0 -12px 16px -6px var(--paper)}
 </style>
 </head>
 <body>
@@ -1227,7 +1236,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 <div class="opener" id="opener"><div class="ocover"><div class="nation gold">Republic of Wanderlust</div><div class="crest"><span class="mono2 gold" id="opMono">✦</span></div><div class="ot gold">PASSPORT</div></div></div>
 <div class="wrap">
   <main class="view" id="v-atlas">
-    <div class="bk-desk" id="bkDesk"><div class="bk-stage"><div class="bk" id="bk"></div></div><div class="bk-dots" id="bkDots"></div><div class="bk-hint" id="bkHint">Tap the cover to open</div></div>
+    <div class="bk-desk" id="bkDesk"><div class="bk-stage"><div class="bk" id="bk"></div></div><div class="bk-idx" id="bkIdx"></div><div class="bk-dots" id="bkDots"></div><div class="bk-hint" id="bkHint">Tap the cover to open</div></div>
     <div class="legacy">
     <div class="atlas-hd"><div class="nation gold">Republic of Wanderlust</div><h1 class="gold">ATLAS</h1><div class="sb" id="atlasSub">Every trip, every stamp</div></div>
     <div id="bpass"></div>
@@ -2067,7 +2076,7 @@ const ACH=[
  ["cur3","Polyglot Wallet","💱","Spend in 3 currencies",s=>[s.curs,3]],["food","Gourmand","🍜","₹50,000 on food abroad",s=>[s.food,5e4]],
  ["duo","Plus One","👫","A trip with company",s=>[s.duo,1]],["ready","Cleared for Takeoff","🧳","Tear every prep stub",s=>[s.ready,1]]];
 function achStats(){const T=ATLAS.trips.filter(t=>t.start&&t.start<=today()),hm=ATLAS.home;
-  const cs=new Set(T.flatMap(t=>t.legs.map(l=>l.country)).filter(c=>c&&c!==hm)),cont=new Set([...cs,hm].map(contOf).filter(Boolean));
+  const cs=new Set(T.flatMap(t=>t.legs.map(l=>l.country)).filter(c=>c&&c!==hm)),cont=new Set([...cs,...(cs.size?[hm]:[])].map(contOf).filter(Boolean));
   let km=0,hop=0,days=0;for(const t of T){km+=tripKm(t);const end=t.end&&t.end<today()?t.end:today();days+=Math.max(1,dayDiff(t.start,end)+1);
     const h=t.home&&isFinite(t.home.lon)?[+t.home.lon,+t.home.lat]:[72.88,19.08],pts=[h,...[...t.legs].sort((a,b)=>String(a.from).localeCompare(String(b.from))).filter(l=>isFinite(l.lon)&&l.lon!=="").map(l=>[+l.lon,+l.lat]),h];
     for(let i=1;i<pts.length;i++)hop=Math.max(hop,hav(pts[i-1],pts[i]))}
@@ -2422,6 +2431,13 @@ $("bk").addEventListener("click",e=>{const t=e.target;let b;
   if(b=t.closest("[data-gfilm]")){groupFilm(b.dataset.gfilm);return}});
 function bkRefresh(){const i=BK.idx,pg=BK.P&&BK.P[i];if(!pg)return;const b=$("bk").querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}
 /* ================= THE PASSPORT BOOK (home) ================= */
+/* contents tabs: jump between sections; New passport is always one tap */
+const BKIDX=[["map","🗺","Map"],["friends","👥","Friends"],["visa","✈","Trips"],["seals","⭐","Seals"]];
+function bkIndex(){const el=$("bkIdx");if(!el||!BK.P)return;const cur=BK.P[BK.idx]?.k;
+  el.innerHTML=BKIDX.filter(([k])=>BK.P.some(p=>p.k===k)).map(([k,e,l])=>`<button type="button" class="${cur===k?"on":""}" data-jump="${k}"><span>${e}</span>${l}</button>`).join("")+`<button type="button" class="nw" data-jump="new"><span>＋</span>New</button>`;
+  el.querySelectorAll("[data-jump]").forEach(b=>b.onclick=()=>{const k=b.dataset.jump;if(k==="new"){typeof openNew==="function"&&openNew();return}
+    const i=BK.P.findIndex(p=>p.k===k);if(i>=0&&i!==BK.idx){BK.idx=i;bkLayout();try{navigator.vibrate&&navigator.vibrate(8)}catch{}}})}
+
 let BK={key:"",idx:0,leaves:[]};
 try{BK.idx=+sessionStorage.getItem("tp-bk-idx")||0}catch{}
 const BKEMB=`<svg viewBox="0 0 100 100"><g fill="none" stroke="currentColor"><circle cx="50" cy="50" r="46" stroke-width="2"/><circle cx="50" cy="50" r="40" stroke-width=".8"/>${[...Array(16)].map((_,i)=>{const a=i*Math.PI/8,r1=i%2?14:8,r2=i%2?36:30;return`<line x1="${(50+r1*Math.cos(a)).toFixed(1)}" y1="${(50+r1*Math.sin(a)).toFixed(1)}" x2="${(50+r2*Math.cos(a)).toFixed(1)}" y2="${(50+r2*Math.sin(a)).toFixed(1)}" stroke-width="${i%2?.8:2}"/>`}).join("")}<polygon points="50,12 55,45 88,50 55,55 50,88 45,55 12,50 45,45" fill="currentColor" stroke="none"/><circle cx="50" cy="50" r="5" fill="currentColor"/></g></svg>`;
@@ -2476,10 +2492,10 @@ function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages()
     BK.leaves=[...box.querySelectorAll(".bk-leaf")];bindDesk();bindInstall();$("bkDots").innerHTML=P.map(()=>"<i></i>").join("");BK.idx=Math.min(BK.idx,P.length-1);bkLayout(true)}
   else{BK.P=P;P.forEach((pg,i)=>{if(["bearer","map","visa","end","friends","mail"].includes(pg.k)){const b=box.querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}})}
   bkSize()}
-function bkSize(){const d=$("bkDesk");if(!d)return;const vw=Math.min(innerWidth,1100),vh=innerHeight;let W=Math.min(vw*.88,460),H=W*1.42;const maxH=vh-110;if(H>maxH){H=maxH;W=H/1.42}d.style.setProperty("--W",W+"px");d.style.setProperty("--H",H+"px")}
+function bkSize(){const d=$("bkDesk");if(!d)return;const vw=Math.min(innerWidth,1100),vh=innerHeight;let W=Math.min(vw*.88,460),H=W*1.42;const maxH=vh-158;if(H>maxH){H=maxH;W=H/1.42}d.style.setProperty("--W",W+"px");d.style.setProperty("--H",H+"px")}
 addEventListener("resize",()=>{bkSize()});
 function bkAngle(l,a,drag){l.classList.toggle("drag",!!drag);l.style.transform=`rotateY(${a}deg)`;const f=l.querySelector(".bk-front");f&&f.style.setProperty("--sh",Math.min(1,Math.abs(a)/120).toFixed(2))}
-function bkLayout(quiet){const L=BK.leaves,n=L.length,i0=BK.idx;clearTimeout(BK.ht);L.forEach((l,i)=>{bkAngle(l,i<i0?-180:0);l.style.visibility=i<i0-1||i>i0+1?"hidden":"visible";l.style.zIndex=i<i0?100+i:n-i});
+function bkLayout(quiet){const L=BK.leaves,n=L.length,i0=BK.idx;bkIndex();clearTimeout(BK.ht);L.forEach((l,i)=>{bkAngle(l,i<i0?-180:0);l.style.visibility=i<i0-1||i>i0+1?"hidden":"visible";l.style.zIndex=i<i0?100+i:n-i});
   BK.ht=setTimeout(()=>{L.forEach((l,i)=>{if(i<BK.idx&&!l.classList.contains("drag"))l.style.visibility="hidden"})},quiet?0:760);
   $("bkDots").querySelectorAll("i").forEach((d,i)=>d.classList.toggle("on",i===i0));
   const pg=BK.P[i0];$("bkHint").textContent=i0===0?"Tap the cover to open":i0===n-1?"Swipe back to flip through":pg.k==="visa"?"Open the trip, or play it as a film":"Swipe to turn the page";
