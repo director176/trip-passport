@@ -19,7 +19,7 @@
 <style>
 :root{
   --cover:#22305a;--cover2:#2c3c6e;--gold:#e3c27a;--gold2:#b8924a;
-  --paper:#f3ead6;--paper2:#e9dec5;--ink:#2a2620;--mute:#8a7f6a;--line:#d6c8a8;
+  --paper:#f3ead6;--paper2:#e9dec5;--ink:#2a2620;--mute:#665a44;--line:#d6c8a8;
   --cn:#c8352b;--hk:#7b3fb0;--sg:#0e8a78;--tr:#2a63b8;--fx:#a07a2c;
   --serif:"Cormorant Garamond",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif;--type:"Courier Prime",monospace;
 }
@@ -146,7 +146,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .where{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .wb{border:2px solid var(--line);background:none;border-radius:12px;padding:9px 2px 7px;font:700 11px var(--sans);color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:3px}
 .wb .f{font-size:22px;line-height:1}
-.wb.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c)}
+.wb.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);color:color-mix(in srgb,var(--c) 78%,#000)}
 .amt{display:flex;align-items:baseline;justify-content:center;gap:6px;margin:16px 0 4px}
 .amt .sym{font:700 34px var(--serif);color:var(--accent,var(--cn))}
 .amt input{font:700 54px/1 var(--serif);width:5.6ch;border:0;background:none;color:var(--ink);outline:none;padding:0}
@@ -568,7 +568,7 @@ body{padding-bottom:120px}
 .addsheet .prev .zh{font:800 28px/1.2 "Noto Sans SC","PingFang SC",sans-serif}
 .addsheet .prev .za{font:600 16px "Noto Sans SC","PingFang SC",sans-serif;margin-top:4px}
 .addsheet .prev .en{font:12px var(--type);color:var(--mute);margin-top:6px}
-.addsheet .err{color:var(--cn);font:600 13px var(--sans);margin-top:10px;min-height:16px}
+.addsheet .err{color:#a8231a;font:600 13px var(--sans);margin-top:10px;min-height:16px}
 
 /* ---------- standalone: safe areas ---------- */
 body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:calc(env(safe-area-inset-bottom) + 120px)!important}
@@ -592,10 +592,10 @@ body{padding-top:calc(env(safe-area-inset-top) + 18px)!important;padding-bottom:
 .gate form{background:var(--paper);color:var(--ink);border-radius:20px;padding:18px;text-align:left;box-shadow:0 24px 50px -20px #000c}
 .gate label{display:block;font:700 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:12px 2px 6px}
 .gate label:first-child{margin-top:0}
-.gate .gerr{color:var(--cn);font:600 13px var(--sans);min-height:18px;margin-top:10px}
+.gate .gerr{color:#a8231a;font:600 13px var(--sans);min-height:18px;margin-top:10px}
 .gate .gsw{display:block;width:100%;margin-top:12px;border:0;background:none;color:var(--cover);font:700 13px var(--sans)}
 .gate .gnote{margin:0;font:14px/1.5 var(--sans)}
-.signout{display:block;margin:14px auto 0;border:0;background:none;color:#ffffff80;font:600 12px var(--sans)}
+.signout{display:block;margin:10px auto 0;border:0;background:none;color:#ffffffb8;font:600 13px var(--sans);min-height:44px;padding:0 18px}
 
 /* ================= ATLAS ================= */
 body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
@@ -1020,7 +1020,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-body{position:relative;min-height:100%}
 .bk-g{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
 .bk-wm{position:absolute;left:50%;top:52%;width:62%;transform:translate(-50%,-50%);opacity:.06;pointer-events:none;color:#1d2a4a}
-.bk-pno{position:absolute;right:16px;top:12px;font:700 11px var(--type);color:#1d2a4a88;letter-spacing:.1em;z-index:2}
+.bk-pno{position:absolute;right:16px;top:12px;font:700 11px var(--type);color:#1d2a4ab8;letter-spacing:.1em;z-index:2}
 .bk-perf{position:absolute;right:10px;top:34px;display:flex;flex-direction:column;gap:3px;z-index:2}.bk-perf i{width:4px;height:4px;border-radius:50%;background:#0b0d18;opacity:.55}
 .bk-ph{font:800 9.5px var(--sans);letter-spacing:.26em;color:#a8231a;border-bottom:1.5px solid #1d2a4a33;padding-bottom:6px;margin:0 18px 10px 0}
 .bk-cover{background:radial-gradient(130% 90% at 30% 20%,#7a2219,#5b1712 55%,#3a0d0a);box-shadow:inset 0 0 0 1px #00000040,inset 8px 0 14px -6px #0008,0 24px 50px #000a;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(var(--H)*.08) 0 calc(var(--H)*.07);text-align:center;cursor:pointer}
@@ -1038,10 +1038,10 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-photo svg{position:absolute;inset:0;width:100%;height:100%}
 .bk-holo{position:absolute;inset:0;background:linear-gradient(115deg,#0000 30%,#7fe7ff55 42%,#ff8af255 50%,#fff39a55 58%,#0000 70%);background-size:300% 300%;mix-blend-mode:screen;animation:bkholo 5s ease-in-out infinite}
 @keyframes bkholo{0%,100%{background-position:0 0}50%{background-position:100% 100%}}
-.bk-fld{margin-bottom:7px}.bk-fld small{display:block;font:700 7.5px var(--sans);letter-spacing:.16em;color:#1d2a4a88}.bk-fld b{font:700 calc(var(--W)*.036) var(--type);letter-spacing:.04em}
+.bk-fld{margin-bottom:7px}.bk-fld small{display:block;font:700 9px var(--sans);letter-spacing:.16em;color:#1d2a4ab8}.bk-fld b{font:700 calc(var(--W)*.036) var(--type);letter-spacing:.04em}
 .bk-sig{font:700 calc(var(--W)*.075)/1 "Caveat",cursive;color:#1d3a8a;transform:rotate(-4deg);display:inline-block}
 .bk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
-.bk-stats div{border:1.5px solid #1d2a4a22;border-radius:8px;padding:7px 4px;text-align:center}.bk-stats b{display:block;font:700 calc(var(--W)*.058)/1 var(--serif);color:#a8231a}.bk-stats span{font:800 7px var(--sans);letter-spacing:.14em;color:#1d2a4a99}
+.bk-stats div{border:1.5px solid #1d2a4a22;border-radius:8px;padding:7px 4px;text-align:center}.bk-stats b{display:block;font:700 calc(var(--W)*.058)/1 var(--serif);color:#a8231a}.bk-stats span{font:800 8.5px var(--sans);letter-spacing:.14em;color:#1d2a4ab8}
 .bk-mrz{margin:16px calc(var(--W)*-.08) 0 calc(var(--W)*-.1);padding:10px calc(var(--W)*.08) 12px calc(var(--W)*.1);background:#efe6cc;font:700 calc(var(--W)*.031)/1.5 var(--type);letter-spacing:.05em;color:#1d2a4acc;white-space:nowrap;overflow:hidden}
 .bk-map{margin:4px -6px 0;border-radius:8px;overflow:hidden;background:#e9e0c6;box-shadow:inset 0 0 0 1px #1d2a4a1a}
 .bk-map svg{display:block;width:100%;height:auto}
@@ -1049,16 +1049,17 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-map path.v{fill:url(#bkgold);stroke:#8a6526;stroke-width:.3}.bk-map path.v.up{fill:#e8d39a}.bk-map path.w{fill:url(#bkhatch)}.bk-map path.h{fill:#1d2a4a55}
 .bk-leg{display:flex;gap:12px;justify-content:center;margin-top:8px;font:600 10px var(--sans)}.bk-leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
 .bk-mtx{font:600 calc(var(--W)*.06)/1.2 "Caveat",cursive;margin-top:10px;text-align:center}
-.bk-tip{font:10px var(--type);color:#1d2a4a80;text-align:center;margin-top:6px}
+.bk-tip{font:10px var(--type);color:#1d2a4ab8;text-align:center;margin-top:6px}
 .bk-visa{position:relative;min-height:calc(var(--H)*.84)}
 .bk-vh{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-right:16px}
-.bk-vh h3{margin:0;font:700 calc(var(--W)*.064)/1.05 var(--serif)}.bk-vh span{font:700 9.5px var(--type);color:#1d2a4a99;text-align:right;white-space:nowrap}
+.bk-vh h3{margin:0;font:700 calc(var(--W)*.064)/1.05 var(--serif)}.bk-vh span{font:700 9.5px var(--type);color:#1d2a4ab8;text-align:right;white-space:nowrap}
 .bk-stamps{position:relative;height:calc(var(--H)*.5)}
 .bk-stamp{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--c);border:3px double var(--c);transform:rotate(var(--r));opacity:.86;mix-blend-mode:multiply;
   -webkit-mask:radial-gradient(circle at 30% 40%,#000 55%,#000b 70%,#000 86%);mask:radial-gradient(circle at 30% 40%,#000 55%,#000b 70%,#000 86%)}
+.bk-stamp{color:color-mix(in srgb,var(--c) 72%,#000)}
 .bk-stamp.rect{border-radius:8px;padding:6px 10px}.bk-stamp.circ{border-radius:50%;width:calc(var(--W)*.3);height:calc(var(--W)*.3)}.bk-stamp.oval{border-radius:50%;padding:12px 18px}
 .bk-stamp.up{border-style:dashed;opacity:.45}
-.bk-stamp small{font:900 7px var(--sans);letter-spacing:.2em}.bk-stamp b{font:900 calc(var(--W)*.055)/1 var(--serif);letter-spacing:.03em;max-width:calc(var(--W)*.4)}.bk-stamp i{font:700 9.5px var(--type);font-style:normal}
+.bk-stamp small{font:900 8px var(--sans);letter-spacing:.2em}.bk-stamp b{font:900 calc(var(--W)*.055)/1 var(--serif);letter-spacing:.03em;max-width:calc(var(--W)*.4)}.bk-stamp i{font:700 9.5px var(--type);font-style:normal}
 .bk-stamp.sl{animation:bkslam .5s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes bkslam{from{transform:rotate(var(--r)) scale(2.2);opacity:0}}
 .bk-ink{position:absolute;font:700 calc(var(--W)*.075)/1 "Caveat",cursive;color:#1d3a8a;transform:rotate(-3deg)}
@@ -1069,27 +1070,27 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-clip{position:absolute;top:22px;right:calc(var(--W)*.08 + 24px);width:22px;height:58px;border:3px solid #9aa3b5;border-radius:12px;z-index:3;box-shadow:1px 2px 2px #0003}
 .bk-paper #bpass{filter:none;margin:10px 0 0}
 .bk-paper #bpass .bp{filter:drop-shadow(0 8px 14px #0005)}
-.bk-paper .stubh{color:#1d2a4a88}
+.bk-paper .stubh{color:#1d2a4ab8}
 .bk-paper .wrapb,.bk-paper .duelb{margin-top:10px}
 .bk-note{font:600 calc(var(--W)*.055)/1.3 "Caveat",cursive;color:#1d3a8a;text-align:center;margin-top:14px}
 .bk-paper .ach{grid-template-columns:repeat(3,1fr);gap:12px 4px;padding-bottom:6px}
-.bk-paper .wax{color:#1d2a4a}.bk-paper .wax svg{width:60px;height:60px}.bk-paper .wax span{color:#1d2a4a99}.bk-paper .wax:not(.got) b{color:#1d2a4a99}
+.bk-paper .wax{color:#1d2a4a}.bk-paper .wax svg{width:60px;height:60px}.bk-paper .wax span{color:#1d2a4ab8}.bk-paper .wax:not(.got) b{color:#1d2a4ab8}
 .bk-paper .wax:not(.got) svg{filter:grayscale(1) opacity(.55)}
 .bk-paper .tgm{box-shadow:0 6px 14px #0003}
-.bk-paper .tgi{color:#1d2a4a;background:#1d2a4a0d;border-color:#1d2a4a22}.bk-paper .tgi small{color:#1d2a4a88}
+.bk-paper .tgi{color:#1d2a4a;background:#1d2a4a0d;border-color:#1d2a4a22}.bk-paper .tgi small{color:#1d2a4ab8}
 .bk-end{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(var(--H)*.82);text-align:center}
 .bk-end h3{margin:0;font:700 calc(var(--W)*.09)/1.05 var(--serif)}.bk-end p{font:600 calc(var(--W)*.06)/1.3 "Caveat",cursive;margin:10px 0 12px;color:#1d3a8a}
 .bk-wfl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.bk-wfl button{border:0;background:none;font-size:calc(var(--W)*.08);padding:2px}
 .bk-newp{margin-top:18px;border:3px double #a8231a;color:#a8231a;background:none;border-radius:10px;padding:10px 16px;font:900 12px var(--sans);letter-spacing:.2em;transform:rotate(-4deg)}
 .bk-dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:90vw}.bk-dots i{width:6px;height:6px;border-radius:50%;background:#ffffff33;transition:.3s}.bk-dots i.on{background:var(--gold);width:18px;border-radius:4px}
-.bk-hint{font:600 10.5px var(--sans);letter-spacing:.14em;color:#ffffff80;text-transform:uppercase}
+.bk-hint{font:600 10.5px var(--sans);letter-spacing:.14em;color:#ffffffb8;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.bk-leaf{transition-duration:.01s}.bk-holo,.bk-tap{animation:none}}
 /* immigration desk + install */
 .dk-form label{display:block;font:800 8.5px var(--sans);letter-spacing:.2em;color:#a8231a;margin-bottom:4px}
 .dk-form input{width:100%;border:0;border-bottom:2px solid #1d2a4a55;background:transparent;font:700 16px var(--type);color:#1d2a4a;padding:6px 2px;outline:none}
 .dk-tg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
 .dk-tg button{border:1.5px solid #1d2a4a33;background:transparent;border-radius:10px;padding:8px;text-align:left;color:#1d2a4a}
-.dk-tg button b{display:block;font:800 12px var(--sans)}.dk-tg button small{font:10px var(--sans);color:#1d2a4a99}
+.dk-tg button b{display:block;font:800 12px var(--sans)}.dk-tg button small{font:10px var(--sans);color:#1d2a4ab8}
 .dk-tg button.on{border-color:#1d2a4a;background:#1d2a4a;color:#fff6dc}.dk-tg button.on small{color:#fff6dcaa}
 .dk-go{width:100%;border:0;border-radius:999px;background:#a8231a;color:#fff6dc;font:800 14px var(--sans);letter-spacing:.06em;padding:12px;box-shadow:0 6px 14px #a8231a55}
 .dk-err{font:600 11px var(--sans);color:#a8231a;margin-top:6px;min-height:14px}
@@ -1097,12 +1098,12 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .dk-ok b{font:700 13px var(--type)}.dk-ok p{margin:6px 0;font:12px var(--sans)}
 .dk-stamp{display:inline-block;border:3px double #2e7d4f;color:#2e7d4f;font:900 16px var(--serif);letter-spacing:.2em;padding:3px 12px;border-radius:6px;--r:-6deg;transform:rotate(-6deg);margin-bottom:6px;animation:bkslam .5s cubic-bezier(.3,1.6,.5,1) both}
 .dk-sb{display:flex;gap:6px;justify-content:center}.dk-sb .dk-go{width:auto;padding:10px 16px}
-.dk-lh{font:800 8.5px var(--sans);letter-spacing:.2em;color:#1d2a4a99;margin:12px 0 6px}
+.dk-lh{font:800 8.5px var(--sans);letter-spacing:.2em;color:#1d2a4ab8;margin:12px 0 6px}
 .dk-pp{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed #1d2a4a22}
 .dk-pp .cv{width:26px;height:36px;border-radius:2px 5px 5px 2px;display:grid;place-items:center;flex:none;box-shadow:inset 3px 0 4px -2px #0006}
 .dk-pp .cv i{font-style:normal;color:#e3c27a;font-size:12px}
 .dk-pp.you .cv{background:#5b1712}.dk-pp.fam .cv{background:#1d2a4a}.dk-pp.own .cv{background:#1f6f5c}
-.dk-pp .em{flex:1;min-width:0;font:700 12px var(--type);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dk-pp .em small{display:block;font:10px var(--sans);color:#1d2a4a99;white-space:normal}
+.dk-pp .em{flex:1;min-width:0;font:700 12px var(--type);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dk-pp .em small{display:block;font:10px var(--sans);color:#1d2a4ab8;white-space:normal}
 .dk-pp .rv{border:0;background:#1d2a4a10;color:#1d2a4a;border-radius:999px;padding:6px 9px;font:700 11px var(--sans)}.dk-pp .rv.arm{background:#a8231a;color:#fff}
 .in-hero{font-size:44px;text-align:center;margin:6px 0}
 .in-card{border:1.5px solid #1d2a4a22;border-radius:12px;padding:10px 12px;margin-bottom:10px}.in-card.me{border-color:#1d2a4a;box-shadow:0 4px 10px #1d2a4a22}
@@ -1125,6 +1126,87 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-paper .stubs{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
 .bk-paper .stub{width:86px}
 .bk-vh h3{font-size:calc(var(--W)*.058)}
+
+/* ===== friends' atlas, postcards, group trips ===== */
+.fr-map path.fv{fill:#1f6f5c;stroke:#0f3d32;stroke-width:.3}
+.fr-map path.sel{stroke:#a8231a;stroke-width:1.2}
+.fr-pop{margin:10px 0 4px;padding:10px 12px;border-radius:10px;background:#1f6f5c12;border:1.5px solid #1f6f5c44}
+.fr-pop>b{font:700 16px var(--serif)}.fr-pop p{margin:6px 0 0;font:12px var(--sans)}
+.fr-pop div{display:flex;align-items:center;gap:8px;margin-top:6px;font:600 12px var(--sans)}
+.fr-pop div i,.grp-av i,.grp-list i{width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font:800 9px var(--sans);font-style:normal;flex:none}
+.fr-pop div span{flex:1}.fr-pop div em{font:10px var(--type);font-style:normal;color:#1d2a4ab8}
+.fr-list{margin-top:10px}
+.fr-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed #1d2a4a22}
+.fr-cv{width:30px;height:42px;border-radius:2px 6px 6px 2px;display:grid;place-items:center;flex:none;box-shadow:inset 3px 0 4px -2px #0006}
+.fr-cv i{font:800 11px var(--sans);font-style:normal;color:#fff}
+.fr-tx{flex:1;min-width:0}.fr-tx b{display:block;font:700 13px var(--sans)}.fr-tx small{display:block;font-size:13px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fr-tx em{display:inline-block;margin-top:3px;font:700 10px var(--sans);font-style:normal;padding:2px 7px;border-radius:999px;background:#1d2a4a12}
+.fr-tx em.now{background:#2e7d4f;color:#fff}
+.fr-pc{border:1.5px solid #a8231a;color:#a8231a;background:#fff6dc;border-radius:999px;padding:7px 10px;font:800 11px var(--sans);flex:none}
+.fr-inv{margin:10px 0;padding:10px 12px;border-radius:12px;background:#2a63b812;border:1.5px dashed #2a63b888}
+.fr-inv b{display:block;font:700 13px var(--sans)}.fr-inv small{font:10px var(--type);color:#1d2a4ab8}.fr-inv p{margin:6px 0 0;font:12px var(--sans)}
+.fr-inv button{display:block;width:100%;margin-top:6px;border:0;border-radius:999px;background:#2a63b8;color:#fff;font:800 12px var(--sans);padding:9px}
+.fr-empty{text-align:center;margin:26px 0 10px}.fr-e1{font-size:40px;color:#1f6f5c}.fr-empty b{font:700 20px var(--serif)}.fr-empty p{font:13px var(--sans);color:#1d2a4acc}
+.fr-prefs{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.fr-prefs button{display:flex;align-items:center;gap:10px;border:0;background:none;padding:4px 0;font:600 12px var(--sans);color:#1d2a4a;text-align:left}
+.fr-prefs button i{width:34px;height:20px;border-radius:999px;background:#1d2a4a33;position:relative;flex:none;transition:.2s}
+.fr-prefs button i::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s}
+.fr-prefs button.on i{background:#1f6f5c}.fr-prefs button.on i::after{left:16px}
+.fr-prefs button[disabled]{opacity:.4}
+.fr-prefs small{font:10px var(--type);color:#1d2a4ab8}
+/* postcards page */
+.ml-list{display:flex;flex-direction:column;gap:12px}
+.ml-env{position:relative;width:100%;border:0;border-radius:6px;padding:34px 14px 12px;text-align:center;color:#3a2c14;background:linear-gradient(170deg,#efe2bd,#e2d09f);box-shadow:0 6px 12px #0003;overflow:hidden}
+.ml-flap{position:absolute;left:0;right:0;top:0;height:40px;background:linear-gradient(170deg,#e6d5a8,#d8c48d);clip-path:polygon(0 0,100% 0,50% 100%)}
+.ml-wax{position:absolute;left:50%;top:20px;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#e8584a,#a8231a 60%,#5e0c08);color:#fff;font-size:14px;box-shadow:0 2px 4px #0005}
+.ml-env b{display:block;margin-top:18px;font:700 14px var(--serif)}.ml-env small{font:10.5px var(--sans);color:#6b5a3a}
+.ml-env:not(.ready){filter:saturate(.6);opacity:.85}
+.ml-env.ready{animation:mlglow 1.8s ease-in-out infinite}
+@keyframes mlglow{50%{box-shadow:0 6px 18px #a8231a66}}
+.ml-env.opening .ml-flap{transform-origin:top;animation:flap .5s ease forwards}
+@keyframes flap{to{transform:rotateX(180deg);opacity:0}}
+.ml-card{position:relative;border-radius:6px;padding:14px;background:#fffaf0;box-shadow:0 6px 12px #0002;border:1px solid #1d2a4a1a;animation:cardin .5s ease both;
+  background-image:repeating-linear-gradient(180deg,transparent 0 23px,#9fb7cf44 23px 24px)}
+@keyframes cardin{from{transform:rotateY(80deg);opacity:0}}
+.ml-body{font:600 20px/24px "Caveat",cursive;color:#1d3a8a;white-space:pre-wrap;word-break:break-word}
+.ml-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px;font:700 12px var(--sans)}
+.ml-st{border:2px dashed #a8231a;padding:3px 6px;text-align:center;font-size:18px;line-height:1}.ml-st small{display:block;font:800 7px var(--sans);letter-spacing:.1em;color:#a8231a}
+.mailpill{width:100%;display:flex;align-items:center;gap:12px;margin:10px 0 2px;padding:10px 12px;border-radius:14px;border:0;background:linear-gradient(170deg,#fdf6e2,#efdfb4);color:#3a2c14;text-align:left;box-shadow:0 8px 18px #0005;animation:mlglow 1.8s ease-in-out infinite}
+.mailpill>span:first-child{font-size:26px}.mailpill span:nth-child(2){flex:1;min-width:0}.mailpill b{display:block;font:700 14px var(--serif)}.mailpill small{font:11px var(--sans);color:#6b5a3a}
+.mailpill em{font:800 11px var(--sans);font-style:normal;background:#a8231a;color:#fff;padding:7px 11px;border-radius:999px}
+/* postcard composer + group picker */
+.pcard{position:fixed;inset:0;z-index:92;display:none;place-items:center;background:#05060dcc;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:16px}
+.pcard.on{display:grid}
+.pc-wrap{width:min(560px,100%)}
+.pc-card{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;padding:14px;border-radius:6px;background:#fbf5e4;color:#1d2a4a;box-shadow:0 20px 40px #000a;animation:cardin .5s ease both}
+.pc-l{border-right:1.5px solid #1d2a4a33;padding-right:12px;display:flex;flex-direction:column}
+.pc-k{font:800 9px var(--sans);letter-spacing:.3em;color:#a8231a;margin-bottom:6px}
+.pc-l textarea{flex:1;min-height:150px;border:0;resize:none;background:repeating-linear-gradient(180deg,transparent 0 23px,#9fb7cf55 23px 24px);font:600 20px/24px "Caveat",cursive;color:#1d3a8a;outline:none;padding:0}
+.pc-sig{font:700 20px "Caveat",cursive;color:#1d3a8a;text-align:right}
+.pc-r{display:flex;flex-direction:column;align-items:flex-end;gap:10px;position:relative}
+.pc-stamp{width:64px;padding:6px 4px;text-align:center;background:#fff;border:2px dashed #a8231a;box-shadow:0 1px 3px #0003}.pc-stamp span{font-size:28px}.pc-stamp small{display:block;font:800 7px var(--sans);letter-spacing:.08em;color:#a8231a}
+.pc-pm{position:absolute;right:30px;top:34px;width:84px;height:84px;border-radius:50%;border:2px solid #1d2a4ab8;color:#1d2a4ab8;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-14deg);opacity:0;font:700 8px var(--type);text-align:center}
+.pc-pm b{font:800 8.5px var(--sans);letter-spacing:.1em}
+.pc-pm.hit{animation:pmhit .5s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes pmhit{from{opacity:0;transform:rotate(-14deg) scale(2.4)}to{opacity:.9;transform:rotate(-14deg) scale(1)}}
+.pc-to{margin-top:auto;width:100%;border-top:1.5px solid #1d2a4a33;padding-top:6px}.pc-to small{display:block;font:9px var(--sans);color:#1d2a4ab8}.pc-to b{display:block;font:700 15px var(--serif)}
+.pc-btns{display:flex;gap:8px;margin-top:12px}.pc-btns>*{flex:1}
+@media (max-width:420px){.pc-card{grid-template-columns:1fr}.pc-l{border-right:0;border-bottom:1.5px solid #1d2a4a33;padding:0 0 10px}.pc-r{flex-direction:row;align-items:center;justify-content:space-between}.pc-pm{right:auto;left:80px;top:-6px}.pc-to{width:auto;margin:0;border:0}}
+.grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:absolute;left:0;right:0;bottom:56px;justify-content:center;font:700 11px var(--sans)}
+.grp-av{display:inline-flex}.grp-av i{margin-left:-6px;border:2px solid #f5eedb;width:24px;height:24px}.grp-av i:first-child{margin-left:0}
+.grp button{border:0;border-radius:999px;background:#1f6f5c;color:#fff;font:800 11px var(--sans);padding:6px 10px}
+.grp .grp-add{background:none;color:#1f6f5c;border:1.5px dashed #1f6f5c}
+.grp .grp-ed{background:#1d2a4a12;color:#1d2a4a;padding:6px 8px}
+.grp-sheet{padding:16px;border-radius:14px;background:#fbf5e4;color:#1d2a4a;box-shadow:0 20px 40px #000a}
+.grp-sheet p{font:13px/1.4 var(--sans);margin:4px 0 10px}
+.grp-list{display:flex;flex-direction:column;gap:6px}
+.grp-list button{display:flex;align-items:center;gap:10px;border:1.5px solid #1d2a4a22;background:none;border-radius:12px;padding:8px 10px;font:700 13px var(--sans);color:#1d2a4a;text-align:left}
+.grp-list button em{margin-left:auto;font-style:normal;opacity:0}.grp-list button.on{border-color:#1f6f5c;background:#1f6f5c14}.grp-list button.on em{opacity:1;color:#1f6f5c}
+.pcard .bk-b2{background:#ffffff1f;color:#fff6dc;justify-content:center}
+
+/* audit fixes: visible keyboard focus (SC 2.4.7 / 1.4.11), tap target for account switch (SC 2.5.8) */
+:focus-visible{outline:2px solid #e3c27a!important;outline-offset:2px;box-shadow:0 0 0 4px #1d2a4a!important}
+#gSwap{min-height:44px;padding:0 12px}
 </style>
 </head>
 <body>
@@ -1169,15 +1251,15 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
   <main class="view" id="v-today">
   <header class="cover">
     <div class="nation gold">Republic of Wanderlust</div>
-    <div class="crest" id="crestBtn" role="button" aria-label="Play trip story"><span class="mono2 gold" id="mono">✦</span><span class="play">▶ STORY</span></div>
+    <div class="crest" id="crestBtn" role="button" aria-label="Play the trip film"><span class="mono2 gold" id="mono">✦</span><span class="play">▶ FILM</span></div>
     <h1 class="gold">Passport</h1>
     <div class="who" id="bearer">Bearer</div>
     <div class="crew hidden" id="crew"></div>
     <div class="route" id="route"></div>
-    <button class="filmBtn" id="filmBtn"><span class="fr"></span><b>TRIP FILM</b><em>▶ Play</em><span class="fr"></span></button>
     <div class="greet" id="greet"></div>
     <div class="plan" id="plan"></div>
     <div id="geoPill"></div>
+    <div id="mailPill"></div>
     <div class="total" style="margin-top:14px">
       <div class="k">Total spent</div>
       <div class="v gold" id="tInr">₹—</div>
@@ -1236,7 +1318,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
     </section>
 
     <section class="page">
-      <div class="ph"><h2>Visa seals</h2><span class="r" id="sealN"></span></div>
+      <div class="ph"><h2>Trip seals</h2><span class="r" id="sealN"></span></div>
       <div class="seals" id="seals"></div>
     </section>
 
@@ -1294,13 +1376,13 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 
   <form id="expForm" autocomplete="off">
     <div class="where" id="where"></div>
-    <div class="amt"><span class="sym" id="eSym">¥</span><input id="eAmt" inputmode="decimal" placeholder="0"></div>
+    <div class="amt"><span class="sym" id="eSym">¥</span><input id="eAmt" inputmode="decimal" placeholder="0" aria-label="Amount"></div>
     <div class="curs" id="curs"></div>
-    <span class="lbl">What was it?</span><input id="eDesc" placeholder="e.g. Dim sum at Lin Heung"><div id="ptag"></div>
+    <span class="lbl">What was it?</span><input id="eDesc" placeholder="e.g. Dim sum at Lin Heung" aria-label="What was it?"><div id="ptag"></div>
     <span class="lbl">Category</span><div class="cats2" id="cats"></div>
     <span class="lbl">Paid with</span><div class="pays" id="pays"></div>
     <div class="row">
-      <div><span class="lbl">Date</span><input type="date" id="eDate"></div>
+      <div><span class="lbl">Date</span><input type="date" id="eDate" aria-label="Date"></div>
       <div id="inrBox"><span class="lbl">₹ charged</span><input id="eInr" inputmode="decimal" placeholder="optional"></div>
     </div>
     <button class="btn" id="eSave" type="submit">Stamp it</button>
@@ -1331,13 +1413,14 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 <div class="sheet csheet" id="csheet"><div class="grab"></div><div id="cBody"></div></div>
 <div id="border" class="border"></div>
 <div id="film" class="film"></div>
+<div id="pcard" class="pcard"></div>
 <div id="duel" class="duel"></div>
 <div class="sheet addsheet" id="addsheet">
   <div class="grab"></div>
   <span class="lbl" style="margin-top:4px">New taxi card</span>
   <div class="where" id="aCity"></div>
   <span class="lbl">Place or address (in English)</span>
-  <input id="aTxt" placeholder="e.g. Louvre furniture mall, Lecong, Foshan">
+  <input id="aTxt" placeholder="e.g. Louvre furniture mall, Lecong, Foshan" aria-label="Place or address in English">
   <div id="aZhWrap" class="hidden"><span class="lbl">Chinese name / address (paste it)</span><input id="aZh" placeholder="Ask hotel staff or copy from a map app"></div>
   <div class="sug">Claude writes it in Chinese for the driver. Ask hotel staff to double-check anything important.</div>
   <div class="prev" id="aPrev"></div>
@@ -1523,7 +1606,7 @@ function renderItin(){
   $("fab2n").textContent=todo;$("tbTripN").textContent=todo;$("tbTripN").classList.toggle("hidden",!todo);
   const st0=TRIP.start||days[0],tot=RET?dayDiff(st0,RET)+1:null,dn=dayDiff(st0,T)+1;
   $("iBig").innerHTML=T<st0?"Trip starts soon":tot&&dn>tot?"Trip complete ✓":`Day <em>${dn}</em>${tot?" of "+tot:""}`;
-  $("iSm").textContent=`${nd} of ${acts.length} stamped · ${pct}%`;
+  $("iSm").textContent=`${nd} of ${acts.length} plans ticked off · ${pct}%`;
   $("iPath").innerHTML=`<span class="tr"></span><span class="dn" style="width:${pct}%"></span><span class="e" style="left:-4px">🇮🇳</span><span class="e" style="right:-4px">🏠</span><span class="pl" style="left:${Math.min(94,Math.max(6,pct))}%">✈️</span>`;
   const leg=d=>legOn(d);
   $("itList").innerHTML=days.map(d=>{const L=leg(d),c=L?pcol(L.place):"var(--ink)",dt=new Date(d+"T00:00");
@@ -1719,7 +1802,7 @@ function showSlide(i){if(!SS)return;if(i<0)i=0;if(i>=SS.S.length){closeStory();r
   if(i===SS.S.length-1||i===0)thud()}
 const SDUR=5200;
 function tick(){if(!SS)return;let last=performance.now();const f=t=>{if(!SS)return;const dt=t-last;last=t;if(!SS.paused&&!document.hidden){SS.el+=dt;const bar=$("story").querySelectorAll(".bars i")[SS.i];if(bar)bar.firstChild.style.width=Math.min(100,SS.el/SDUR*100)+"%";if(SS.el>=SDUR)showSlide(SS.i+1)}if(SS)SS.raf=requestAnimationFrame(f)};SS.raf=requestAnimationFrame(f)}
-$("crestBtn").onclick=()=>{if(ready.e&&ready.f)openStory()};
+$("crestBtn").onclick=()=>{if(ready.e&&ready.f)openFilm()};
 addEventListener("keydown",e=>{if(!SS)return;if(e.key==="Escape")closeStory();if(e.key==="ArrowRight")showSlide(SS.i+1);if(e.key==="ArrowLeft")showSlide(SS.i-1)});
 
 
@@ -1830,7 +1913,7 @@ async function loadAtlas(){if(!db)return;
     for(const e of E){const v=inrOf(e,R);if(v==null)continue;total+=v;const c=iso(e.place);if(e.place==="Travel")trav+=v;if(e.place!=="Travel"){if(e.date){const d=byDate[e.date]=byDate[e.date]||{v:0,place:e.place};d.v+=v}catAll[e.cat]=(catAll[e.cat]||0)+v}if(e.cat==="Food"&&e.place!=="Travel"){const k=cityOfP(e.place);food[k]=(food[k]||0)+v}if(!top||v>top.v)top={v,desc:e.desc||e.cat,place:e.place,date:e.date};if(e.cur&&e.cur!=="INR")curs.add(e.cur);if(t.id!==TRIPID&&e.desc)PB.push({d:e.desc,c:e.cat,a:e.amount,u:e.cur,city:cityOfP(e.place),date:e.date||"",tn:T.name||"Trip",inr:v});if(c){per[c]=(per[c]||0)+v;(cats[c]=cats[c]||{})[e.cat]=(cats[c][e.cat]||0)+v}}
     if(T.home&&T.home.country)home=T.home.country;
     const color=(/^#[0-9a-f]{6}$/i.test(T.color||"")?T.color:null)||PALETTE[out.length%PALETTE.length];
-    const rec={id:t.id,name:T.name||t.name||"Trip",region:T.region||"",start:T.start||t.start||"",end:T.returnDate||t.returnDate||"",legs,total,per,cats,color,home:T.home||null,byDate,catAll,food,top,n:E.length,cityOfP,curs:[...curs],crew:Array.isArray(T.crew)?T.crew.length:0,trav};out.push(rec);
+    const rec={id:t.id,name:T.name||t.name||"Trip",region:T.region||"",start:T.start||t.start||"",end:T.returnDate||t.returnDate||"",legs,total,per,cats,color,home:T.home||null,byDate,catAll,food,top,n:E.length,cityOfP,curs:[...curs],crew:Array.isArray(T.crew)?T.crew.length:0,trav,group:T.group&&T.group.id?T.group:null};out.push(rec);
     legs.forEach(l=>{if(!l.country)return;const b=by[l.country]=by[l.country]||{total:0,trips:[],days:0,cats:{}};
       if(!b.trips.find(x=>x.id===rec.id))b.trips.push(rec);b.days+=Math.max(1,dayDiff(l.from||rec.start,l.to||rec.end));})
     Object.keys(per).forEach(c=>{const b=by[c];if(b){b.total+=per[c];Object.entries(cats[c]).forEach(([k,v])=>b.cats[k]=(b.cats[k]||0)+v)}})}
@@ -1865,7 +1948,7 @@ function renderAtlas(){if(!$("v-atlas"))return;const vis=Object.keys(ATLAS.byIso
   $("shelf").innerHTML=`<button class="book new" id="newTrip"><div class="in"><b>＋</b><span>New passport<br>Upload your travel plan</span></div></button>`+ATLAS.trips.map(t=>{const s=tripState(t),c=t.color;
     const ini=(t.region||t.name).split(/[\s·]+/).filter(Boolean).map(w=>w[0]).join("").slice(0,2).toUpperCase();
     return`<button class="book" data-trip="${esc(t.id)}" style="--b1:${mix(c,"#0b0b16",.5)};--b2:${mix(c,"#05050a",.3)}">${s==="now"?'<span class="rib">NOW</span>':s==="up"?'<span class="rib up">UPCOMING</span>':""}<div class="in"><div class="bn">PASSPORT</div><div class="bc">${esc(ini||"✈")}</div><div class="bt">${esc(t.name)}</div><div class="bf">${t.legs.map(l=>flagOf(l.country)).join("")}</div><div class="bd">${t.start?esc(short(t.start)):""}${t.end?" – "+esc(short(t.end)):""}</div><div class="bv">₹${fmt(t.total)}</div></div>${s==="done"?'<span class="done">COMPLETED</span>':""}</button>`}).join("");
-  $("newTrip").onclick=()=>typeof openNew==="function"&&openNew();renderPass();renderWrapBtn();renderAch();renderDuelBtn();renderOffice();renderBook()}
+  $("newTrip").onclick=()=>typeof openNew==="function"&&openNew();renderPass();renderWrapBtn();renderAch();renderDuelBtn();renderOffice();renderBook();loadSocial()}
 
 /* ---------- boarding pass for the next trip ---------- */
 const IATA={mumbai:"BOM",bombay:"BOM",delhi:"DEL","new delhi":"DEL",pune:"PNQ",bengaluru:"BLR",bangalore:"BLR",chennai:"MAA",kolkata:"CCU",hyderabad:"HYD",goa:"GOI",ahmedabad:"AMD",
@@ -2118,7 +2201,7 @@ function renderOffice(){const b=$("office");if(!b)return;if(WISHES===null){loadW
   const W=WISHES||[];
   b.innerHTML=`<div class="tgm"><div class="tgh"><span>TELEGRAM</span><span>№ ${String(W.length+1).padStart(3,"0")}</span></div>
     <div class="tgr"><small>TO</small><b>PASSPORT OFFICE (CLAUDE)</b></div><div class="tgr"><small>FROM</small><b>${esc((NM()).toUpperCase())}</b></div>
-    <textarea id="wishTx" rows="3" placeholder="I WISH THE APP COULD … STOP"></textarea>
+    <textarea id="wishTx" rows="3" aria-label="Your wish for the app" placeholder="I WISH THE APP COULD … STOP"></textarea>
     <button class="tgs" id="wishGo">Send telegram ✉</button>
     <div class="tgn">Opens GitHub with your wish filled in · tap <b>Submit</b> there. Claude builds wishes every week and sends them to you for approval.</div></div>
     ${W.length?`<div class="tgl">${W.map(i=>{const[st,c]=wishState(i);return`<a class="tgi" href="${esc(i.html_url)}" target="_blank" rel="noopener"><span>${esc(i.title)}</span><em style="--sc:${c}">${st}</em><small>${esc(short(String(i.created_at).slice(0,10)))}</small></a>`}).join("")}</div>`:""}`;
@@ -2153,9 +2236,9 @@ function dayLine(n,d,date){const cs=[...d.places].map(p=>cityOf(p)),two=cs.lengt
   const parts=[`Day ${n}.`,two?`${cs.join(" to ")}.`:`${cs[0]||"On the road"}.`,`${d.n} stamp${d.n>1?"s":""}, ₹${fmt(Math.round(d.v))}.`];
   if(d.top&&d.top.v>=d.v*.35)parts.push(`${cap1(d.top.desc)} led the day.`);return parts.join(" ")}
 const cap1=s=>String(s||"").charAt(0).toUpperCase()+String(s||"").slice(1);
-function filmScenes(){const F=filmData(),S=[],who=(NM());
+function filmScenes(F0){const F=F0||filmData(),S=[],who=(NM()),lc=l=>l.color||pcol(l.place);
   // 1 title
-  S.push({d:4600,cls:"s-title",h:`<div class="ft-k">A FILM BY ${esc(who.toUpperCase())}</div><h1 class="ft-t">${letters(TRIP.name||"The Trip","kl",.5,.06)}</h1><div class="ft-d">${esc(short(F.start))} — ${esc(short(F.end))}</div>`});
+  S.push({d:4600,cls:"s-title",h:`<div class="ft-k">A FILM BY ${esc(who.toUpperCase())}</div><h1 class="ft-t">${letters(F.title||TRIP.name||"The Trip","kl",.5,.06)}</h1><div class="ft-d">${esc(short(F.start))} — ${esc(short(F.end))}</div>`});
   // 2 route
   if(WORLD&&F.legs.length){const P=[[+F.home.lon,+F.home.lat],...F.legs.filter(l=>isFinite(l.lon)&&l.lon!=="").map(l=>[+l.lon,+l.lat])].map(([lo,la])=>proj(lo,la));
     let x0=Math.min(...P.map(p=>p[0])),x1=Math.max(...P.map(p=>p[0])),y0=Math.min(...P.map(p=>p[1])),y1=Math.max(...P.map(p=>p[1]));
@@ -2163,14 +2246,14 @@ function filmScenes(){const F=filmData(),S=[],who=(NM());
     const arcs=[];for(let i=1;i<P.length;i++){const a=P[i-1],b=P[i],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2-Math.hypot(b[0]-a[0],b[1]-a[1])*.35;arcs.push(`M${a[0].toFixed(2)},${a[1].toFixed(2)} Q${mx.toFixed(2)},${my.toFixed(2)} ${b[0].toFixed(2)},${b[1].toFixed(2)}`)}
     const ret=P.length>1?(()=>{const a=P[P.length-1],b=P[0],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2+Math.hypot(b[0]-a[0],b[1]-a[1])*.25;return`M${a[0].toFixed(2)},${a[1].toFixed(2)} Q${mx.toFixed(2)},${my.toFixed(2)} ${b[0].toFixed(2)},${b[1].toFixed(2)}`})():"";
     const all=arcs.join(" ")+(ret?" "+ret.replace("M"," M"):"");
-    S.push({d:6400,cls:"s-route",h:`<svg class="fmap" viewBox="${vb.join(" ")}" preserveAspectRatio="xMidYMid slice"><g class="fl">${landPaths(vb,Object.fromEntries(F.legs.map(l=>[l.country,mix(pcol(l.place),"#0b0b16",.55)])))}</g>
+    S.push({d:6400,cls:"s-route",h:`<svg class="fmap" viewBox="${vb.join(" ")}" preserveAspectRatio="xMidYMid slice"><g class="fl">${landPaths(vb,Object.fromEntries(F.legs.map(l=>[l.country,mix(lc(l),"#0b0b16",.55)])))}</g>
       ${arcs.map((d,i)=>`<path class="arc" d="${d}" pathLength="1" style="stroke-width:${(1.6*k).toFixed(2)};animation-delay:${(.6+i*.9).toFixed(2)}s"/>`).join("")}${ret?`<path class="arc ret" d="${ret}" pathLength="1" style="stroke-width:${(1.2*k).toFixed(2)};animation-delay:${(.6+arcs.length*.9).toFixed(2)}s"/>`:""}
-      ${P.map((p,i)=>`<g class="pin" style="animation-delay:${(i?.6+i*.9-.1:.3).toFixed(2)}s"><circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${(3.2*k).toFixed(2)}" fill="${i?pcol(F.legs[i-1].place):"#e3c27a"}"/><circle class="ring" cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${(3.2*k).toFixed(2)}" fill="none" stroke="${i?pcol(F.legs[i-1].place):"#e3c27a"}" stroke-width="${(.8*k).toFixed(2)}"/><text x="${p[0].toFixed(2)}" y="${(p[1]-6*k).toFixed(2)}" font-size="${(7*k).toFixed(2)}" text-anchor="middle">${esc(i?code3(F.legs[i-1].city||F.legs[i-1].place):code3(F.home.city||"Mumbai"))}</text></g>`).join("")}
+      ${P.map((p,i)=>`<g class="pin" style="animation-delay:${(i?.6+i*.9-.1:.3).toFixed(2)}s"><circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${(3.2*k).toFixed(2)}" fill="${i?lc(F.legs[i-1]):"#e3c27a"}"/><circle class="ring" cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${(3.2*k).toFixed(2)}" fill="none" stroke="${i?lc(F.legs[i-1]):"#e3c27a"}" stroke-width="${(.8*k).toFixed(2)}"/><text x="${p[0].toFixed(2)}" y="${(p[1]-6*k).toFixed(2)}" font-size="${(7*k).toFixed(2)}" text-anchor="middle">${esc(i?code3(F.legs[i-1].city||F.legs[i-1].place):code3(F.home.city||"Mumbai"))}</text></g>`).join("")}
       <text class="plane" font-size="${(10*k).toFixed(2)}" text-anchor="middle" dominant-baseline="middle">✈<animateMotion dur="${(Math.max(1,P.length)*.9+.2).toFixed(1)}s" begin="0.6s" fill="freeze" rotate="auto" path="${all}"/></text></svg>
       <div class="fcap"><b data-count="${F.km}" data-pre="" data-suf=" km">0 km</b><span>${P.length-1} hop${P.length>2?"s":""} · ${new Set(F.legs.map(l=>l.country)).size} countries</span></div>`,after:el=>{const b=el.querySelector("[data-count]");b&&setTimeout(()=>countUp(b,+b.dataset.count),900)}})}
   // 3 each leg
   const COAST=/hong kong|singapore|macau|mumbai|sydney|dubai|miami|rio|cape town|lisbon|barcelona|venice|seattle|vancouver|san francisco|new york|istanbul|busan|osaka|tokyo|bali|male/i;
-  F.legs.forEach((l,i)=>{const c=pcol(l.place),city=(l.city||l.place),n=Math.max(1,dayDiff(l.from||F.start,l.to||l.from||F.start)),sp=Math.round(F.per[l.place]||0);
+  F.legs.forEach((l,i)=>{const c=lc(l),city=(l.city||l.place),n=Math.max(1,dayDiff(l.from||F.start,l.to||l.from||F.start)),sp=Math.round(F.per[l.place]||0);
     S.push({d:5200,cls:"s-city",bg:`radial-gradient(120% 80% at 50% 100%,${mix(c,"#000000",.5)},#05050a 70%)`,h:`<div class="fc-k">${flagOf(l.country)} ${esc(isoName(l.country)).toUpperCase()} · ${esc(short(l.from||F.start))}</div>
       <h2 class="fc-t" style="--c:${c}">${letters(city.toUpperCase(),"cl",.15,.07)}</h2>${skyline(l.place+i,c,COAST.test(city))}
       <div class="fstamp" style="--sc:${c}"><small>ENTRY</small><b>${esc(code3(city))}</b><i>${esc(short(l.from||F.start))}</i></div>`});
@@ -2183,12 +2266,12 @@ function filmScenes(){const F=filmData(),S=[],who=(NM());
   const big=ds.map(d=>[d,F.days[d]]).sort((a,b)=>b[1].v-a[1].v)[0];
   if(big)S.push({d:4200,cls:"s-big",h:`<div class="bg-k">THE BIG DAY</div><div class="bg-v">₹${fmt(Math.round(big[1].v))}</div><div class="bg-d">${esc(new Date(big[0]+"T00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"}))} · ${esc([...big[1].places].map(cityOf).join(" · "))}</div>${big[1].top?`<div class="bg-t">${esc(cap1(big[1].top.desc))} · ₹${fmt(Math.round(big[1].top.v))}</div>`:""}`});
   // 6 finale
-  const crew=(Array.isArray(TRIP.crew)?TRIP.crew:[]).map(id=>PROF[id]?.name).filter(Boolean);const cast=[...new Set([who,...crew])];
+  const crew=F0?[]:(Array.isArray(TRIP.crew)?TRIP.crew:[]).map(id=>PROF[id]?.name).filter(Boolean);const cast=F.cast||[...new Set([who,...crew])];
   S.push({d:7600,cls:"s-end",h:`<div class="end-r">${[code3(F.home.city||"Mumbai"),...F.legs.map(l=>code3(l.city||l.place)),code3(F.home.city||"Mumbai")].map((c,i)=>`<span style="animation-delay:${(.2+i*.18).toFixed(2)}s">${esc(c)}</span>`).join("<em>→</em>")}</div>
-    <div class="end-v" data-count="${Math.round(F.tot)}">₹0</div><div class="end-s">${F.legs.length} cities · ${F.km.toLocaleString("en-IN")} km · ${Math.max(1,dayDiff(F.start,F.end)+1)} days</div>
+    ${F.tot==null?`<div class="end-v" data-count="${F.stamps||0}" data-pre="" data-suf=" stamps">0</div>`:`<div class="end-v" data-count="${Math.round(F.tot)}">₹0</div>`}<div class="end-s">${F.legs.length} cities · ${F.km.toLocaleString("en-IN")} km · ${Math.max(1,dayDiff(F.start,F.end)+1)} days</div>
     <div class="credits"><div><small>STARRING</small><b>${cast.map(esc).join(" &amp; ")}</b></div><div><small>DIRECTED BY</small><b>Claude</b></div><div><small>FILMED ON LOCATION IN</small><b>${F.legs.map(l=>esc(l.city||l.place)).join(" · ")}</b></div></div><div class="the-end">THE END</div>`,after:el=>{const b=el.querySelector("[data-count]");setTimeout(()=>countUp(b,+b.dataset.count),600)}});
   return S}
-function openFilm(){const el=$("film"),S=filmScenes();FILM={S,i:-1,t:null,paused:false,t0:0,left:0};
+function openFilm(F0){const el=$("film"),S=filmScenes(F0&&F0.legs?F0:null);FILM={S,i:-1,t:null,paused:false,t0:0,left:0};
   el.innerHTML=`<div class="fbar top"></div><div class="fbar bot"></div><div class="fstage" id="fStage"></div><div class="fgrain"></div><div class="fseg">${S.map(()=>`<i><b></b></i>`).join("")}</div><button class="fx" id="fX" aria-label="Close">✕</button><div class="fpause" id="fPause">❚❚</div>`;
   el.classList.add("on");document.body.style.overflow="hidden";
   $("fX").onclick=e=>{e.stopPropagation();closeFilm()};
@@ -2201,7 +2284,7 @@ function filmGo(i){const F=FILM;if(!F)return;if(i<0)i=0;if(i>=F.S.length){closeF
 function filmPause(){const F=FILM;if(!F)return;const el=$("film");if(!F.paused){clearTimeout(F.t);F.left-=performance.now()-F.t0;F.paused=true;el.classList.add("paused")}else{F.paused=false;el.classList.remove("paused");F.t0=performance.now();F.t=setTimeout(()=>filmGo(F.i+1),Math.max(300,F.left))}}
 function closeFilm(){if(FILM)clearTimeout(FILM.t);FILM=null;const el=$("film");el.classList.remove("on");el.innerHTML="";document.body.style.overflow=""}
 addEventListener("keydown",e=>{if(!FILM)return;if(e.key==="ArrowRight")filmGo(FILM.i+1);if(e.key==="ArrowLeft")filmGo(FILM.i-1);if(e.key===" ")filmPause();if(e.key==="Escape")closeFilm()});
-$("filmBtn").onclick=()=>{if(!(ready.e&&ready.f)){toast("Opening your passport…");return}openFilm()};
+if($("filmBtn"))$("filmBtn").onclick=()=>{if(!(ready.e&&ready.f)){toast("Opening your passport…");return}openFilm()};
 
 /* ---------- friends: install + immigration desk ---------- */
 function NM(){return(ME&&PROF[ME]?.name)||(window.TP_WHO&&TP_WHO()?.name)||"Traveller"}
@@ -2233,6 +2316,111 @@ function bindDesk(){if(!$("dkGo"))return;deskList();
       deskList()}
     catch(e){er.textContent=/duplicate|23505/.test(String(e.message||e.code))?"That email already has a passport.":"Couldn't issue: "+(e.message||e)}
     finally{$("dkGo").disabled=false}}}
+/* ================= FRIENDS: atlas, postcards, group trips ================= */
+let SOC={friends:null,mail:[],prefs:{visible:true,spend:false},t:0,v:0,busy:false,sel:null};
+try{const c=JSON.parse(localStorage.getItem("tp-soc")||"null");if(c){SOC.friends=c.friends||null;SOC.mail=c.mail||[]}}catch{}
+const socMe=()=>(window.TP_SOCIAL&&TP_SOCIAL.me())||"";
+const socFriends=()=>(SOC.friends||[]).filter(f=>f.email!==socMe()&&f.visible);
+const socMail=()=>(SOC.mail||[]).filter(m=>m.to_email===socMe());
+const socTrips=f=>(f.card&&Array.isArray(f.card.trips)?f.card.trips:[]).filter(t=>t&&t.start);
+const iniOf=n=>String(n||"?").trim().split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
+const FCOL=["#1f6f5c","#2a63b8","#7b3fb0","#b0306a","#a35f0f","#2e6e2a"];
+const fcol=email=>FCOL[[...String(email)].reduce((a,c)=>a+c.charCodeAt(0),0)%FCOL.length];
+function socCard(){const sp=!!SOC.prefs.spend;
+  return{home:ATLAS.trips[0]?.home?{city:ATLAS.trips[0].home.city||"",country:ATLAS.trips[0].home.country||""}:null,
+    trips:ATLAS.trips.filter(t=>t.start).map(t=>({id:t.id,name:t.name,start:t.start,end:t.end||"",n:t.n||0,total:sp?Math.round(t.total||0):null,group:t.group||null,
+      legs:(t.legs||[]).map(l=>({country:l.country||"",city:l.city||l.place||"",lat:isFinite(+l.lat)&&l.lat!==""?+l.lat:null,lon:isFinite(+l.lon)&&l.lon!==""?+l.lon:null,from:l.from||"",to:l.to||""}))}))}}
+async function loadSocial(force){if(!window.TP_SOCIAL||!ATLAS||SOC.busy)return;if(!force&&Date.now()-SOC.t<60000)return;SOC.busy=true;SOC.t=Date.now();
+  try{try{const d=await db.doc("atlas/social").get();if(d.exists)SOC.prefs={...SOC.prefs,...d.data()}}catch{}
+    const card=socCard(),key=JSON.stringify([NM(),SOC.prefs.visible,card]);
+    if(localStorage.getItem("tp-soc-pub")!==key){await TP_SOCIAL.publish(NM(),SOC.prefs.visible,card);try{localStorage.setItem("tp-soc-pub",key)}catch{}}
+    const [fr,ml]=await Promise.all([TP_SOCIAL.friends(),TP_SOCIAL.mail()]);SOC.friends=fr;SOC.mail=ml;SOC.v++;
+    try{localStorage.setItem("tp-soc",JSON.stringify({friends:fr,mail:ml}))}catch{}
+    if(CUR==="atlas")renderBook();else try{renderMailPill()}catch{}}
+  catch(e){/* offline or social tables not set up yet */if(SOC.friends===null){SOC.friends=[];SOC.v++;if(CUR==="atlas")renderBook()}}
+  finally{SOC.busy=false}}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&ATLAS)loadSocial()});
+function fStatus(f){const T=socTrips(f).sort((a,b)=>a.start.localeCompare(b.start)),td=today();
+  const now=T.find(t=>t.start<=td&&(t.end||t.start)>=td);if(now){const lg=now.legs.find(l=>l.from<=td&&(l.to||l.from)>=td)||now.legs[0];return{k:"now",t:now,leg:lg}}
+  const nx=T.find(t=>t.start>td);if(nx)return{k:"next",t:nx,leg:nx.legs[0]};return null}
+function fVisited(f){const td=today(),hm=f.card?.home?.country;return[...new Set(socTrips(f).filter(t=>t.start<=td).flatMap(t=>t.legs.map(l=>l.country)).filter(c=>c&&c!==hm))]}
+function friendsPage(){const F=socFriends(),me=socMe();
+  if(SOC.friends===null)return`<div class="bk-ph">FRIENDS' ATLAS</div><div class="bk-tip" style="margin-top:30px">Connecting to your friends…</div>`;
+  const by={};F.forEach(f=>fVisited(f).forEach(c=>(by[c]=by[c]||[]).push(f)));const mx=Math.max(1,...Object.values(by).map(a=>a.length));
+  const inv=[];F.forEach(f=>socTrips(f).forEach(t=>{if(t.group&&Array.isArray(t.group.with)&&t.group.with.includes(me)&&!ATLAS.trips.some(x=>x.group&&x.group.id===t.group.id))inv.push({f,t})}));
+  let h=`<div class="bk-ph">FRIENDS' ATLAS</div>`;
+  if(!F.length)return h+`<div class="fr-empty"><div class="fr-e1">✦</div><b>No friends here yet</b><p>${IS_OWNER?"Issue passports at the Immigration desk, a few pages on.":"When friends join, their travels appear on this page."}</p></div>${socPrefs()}`;
+  h+=`<div class="bk-map fr-map"><svg viewBox="-265 -130 530 238">${WORLD?WORLD.map(o=>{const n=(by[o.iso]||[]).length;return`<path d="${o.d}" data-fiso="${o.iso}" class="${n?"fv":""} ${SOC.sel===o.iso?"sel":""}" ${n?`style="fill-opacity:${(.35+.65*n/mx).toFixed(2)}"`:""}/>`}).join(""):""}</svg></div>
+    <div class="bk-leg"><span><i style="background:#1f6f5c"></i>Friends have been</span><span><i style="background:#1f6f5c55"></i>Fewer friends</span></div>`;
+  if(SOC.sel){const who=by[SOC.sel]||[];h+=`<div class="fr-pop"><b>${flagOf(SOC.sel)} ${esc(isoName(SOC.sel))}</b>${who.length?who.map(f=>{const t=socTrips(f).filter(t=>t.legs.some(l=>l.country===SOC.sel)&&t.start<=today()).sort((a,b)=>b.start.localeCompare(a.start))[0];const d=t?Math.max(1,dayDiff(t.start,t.end||t.start)+1):0;
+      return`<div><i style="background:${fcol(f.email)}">${esc(iniOf(f.name))}</i><span>${esc(f.name||f.email)}</span><em>${t?esc(new Date(t.start+"T00:00").toLocaleDateString("en-GB",{month:"short",year:"numeric"}))+" · "+d+"d"+(t.total!=null?" · ₹"+shortN(t.total):""):""}</em></div>`}).join(""):`<p>None of your friends yet. Be the first.</p>`}</div>`}
+  h+=inv.map(({f,t})=>{const mine=ATLAS.trips.filter(x=>x.start&&Math.abs(dayDiff(x.start,t.start))<=5);
+    return`<div class="fr-inv"><b>${esc(f.name||f.email)} added you to ${esc(t.name)}</b><small>${esc(short(t.start))}${t.end?" — "+esc(short(t.end)):""}</small>${mine.length?mine.map(x=>`<button type="button" data-link="${esc(t.group.id)}|${esc(f.email)}|${esc(x.id)}">Link my “${esc(x.name)}”</button>`).join(""):`<p>Create your passport for this trip, then link it here.</p>`}</div>`}).join("");
+  h+=`<div class="fr-list">${F.map(f=>{const st=fStatus(f),vis=fVisited(f),c=fcol(f.email);
+      const pcIso=st&&st.t.legs.map(l=>l.country).find(c2=>c2&&c2!==f.card?.home?.country);
+      return`<div class="fr-row"><span class="fr-cv" style="background:${c}"><i>${esc(iniOf(f.name))}</i></span><span class="fr-tx"><b>${esc(f.name||f.email)}</b><small>${vis.length?vis.map(flagOf).join(" "):"No stamps yet"}</small>
+        ${st?`<em class="${st.k}">${st.k==="now"?"✈ Now in":"Next ·"} ${flagOf(st.leg?.country||"")} ${esc(st.leg?.city||"")}${st.k==="next"?" · "+esc(short(st.t.start)):""}</em>`:""}</span>
+        ${pcIso?`<button type="button" class="fr-pc" data-pc="${esc(f.email)}|${esc(pcIso)}">✉ ${flagOf(pcIso)}</button>`:""}</div>`}).join("")}</div>`;
+  return h+socPrefs()}
+function socPrefs(){const p=SOC.prefs;return`<div class="fr-prefs"><button type="button" data-pref="visible" class="${p.visible?"on":""}"><i></i>Show my travels to friends</button><button type="button" data-pref="spend" class="${p.spend&&p.visible?"on":""}" ${p.visible?"":"disabled"}><i></i>Show my trip totals too</button><small>Only countries, cities and dates are shared. Spends stay private unless you switch them on.</small></div>`}
+function unsealed(iso){const td=today();return ATLAS.trips.some(t=>(t.legs||[]).some(l=>l.country===iso&&(l.from||t.start)<=td))||(typeof GEO!=="undefined"&&GEO&&GEO.iso===iso)}
+function mailPage(){const M=socMail(),sent=(SOC.mail||[]).filter(m=>m.from_email===socMe()).length;
+  return`<div class="bk-ph">POSTCARDS · ${M.length}</div><div class="ml-list">${M.map(m=>{const u=unsealed(m.iso);
+    if(m.opened)return`<div class="ml-card open"><div class="ml-body">${esc(m.body)}</div><div class="ml-foot"><span>— ${esc(m.from_name||m.from_email)}</span><span class="ml-st">${flagOf(m.iso)}<small>${esc(String(isoName(m.iso)).toUpperCase())}</small></span></div></div>`;
+    return`<button type="button" class="ml-env ${u?"ready":""}" ${u?`data-openpc="${m.id}"`:""}><span class="ml-flap"></span><span class="ml-wax">${u?"✉":"🔒"}</span><b>From ${esc(m.from_name||m.from_email)}</b><small>${u?"Tap to open":"Opens when you land in "+flagOf(m.iso)+" "+esc(isoName(m.iso))}</small></button>`}).join("")}</div>${sent?`<div class="bk-tip">You've sent ${sent} postcard${sent>1?"s":""}</div>`:""}`}
+function renderMailPill(){const b=$("mailPill");if(!b)return;const legs=(TRIP&&TRIP.legs||[]).map(l=>l&&l.country);const M=socMail().filter(m=>!m.opened&&unsealed(m.iso)&&legs.includes(m.iso));
+  b.innerHTML=M.length?`<button class="mailpill" id="mailGo"><span>📮</span><span><b>${M.length} postcard${M.length>1?"s":""} waiting</b><small>From ${esc([...new Set(M.map(m=>m.from_name||"a friend"))].join(", "))} · for ${flagOf(M[0].iso)} ${esc(isoName(M[0].iso))}</small></span><em>Open</em></button>`:"";
+  if(M.length)$("mailGo").onclick=()=>{go("atlas");setTimeout(()=>{const i=BK.P?BK.P.findIndex(p=>p.k==="mail"):-1;if(i>=0){BK.idx=i;bkLayout()}},400)}}
+/* postcard composer */
+function composePc(email,iso){const f=socFriends().find(x=>x.email===email);if(!f)return;const el=$("pcard"),hc=(ATLAS.trips[0]?.home?.city)||"";
+  const d=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}).toUpperCase();
+  el.innerHTML=`<div class="pc-wrap"><div class="pc-card"><div class="pc-l"><div class="pc-k">POSTCARD</div><textarea id="pcTx" maxlength="400" aria-label="Postcard message" placeholder="Tips for ${esc(isoName(iso))}… where to eat, what to skip"></textarea><div class="pc-sig">— ${esc(NM().split(" ")[0])}</div></div>
+    <div class="pc-r"><div class="pc-stamp"><span>${flagOf(iso)}</span><small>${esc(String(isoName(iso)).toUpperCase())}</small></div><div class="pc-pm" id="pcPm"><b>${esc(hc.toUpperCase()||"WANDERLUST")}</b><i>${d}</i></div>
+      <div class="pc-to"><small>TO</small><b>${esc(f.name||f.email)}</b><small>Opens when they land in ${esc(isoName(iso))}</small></div></div></div>
+    <div class="pc-btns"><button type="button" class="bk-b2" id="pcX">Cancel</button><button type="button" class="dk-go" id="pcGo">Post it ✉</button></div><div class="dk-err" id="pcErr"></div></div>`;
+  el.classList.add("on");setTimeout(()=>$("pcTx").focus(),200);
+  $("pcX").onclick=()=>el.classList.remove("on");el.onclick=e=>{if(e.target===el)el.classList.remove("on")};
+  $("pcGo").onclick=async()=>{const tx=$("pcTx").value.trim();if(!tx){$("pcTx").focus();return}$("pcGo").disabled=true;
+    try{await TP_SOCIAL.send(email,iso,tx,NM());$("pcPm").classList.add("hit");thud();try{navigator.vibrate&&navigator.vibrate([20,60,20])}catch{}
+      setTimeout(()=>{el.classList.remove("on");toast(`Posted to ${f.name||"your friend"} ✉`)},1100);loadSocial(true)}
+    catch(e){$("pcErr").textContent="Couldn't post: "+(e.message||e);$("pcGo").disabled=false}}}
+/* group trips */
+function grpMembers(t){if(!t.group)return[];return socFriends().filter(f=>socTrips(f).some(x=>x.group&&x.group.id===t.group.id))}
+function grpChip(t){if(!socFriends().length&&!t.group)return"";const M=grpMembers(t);
+  if(t.group)return`<div class="grp"><span class="grp-av">${M.map(f=>`<i style="background:${fcol(f.email)}">${esc(iniOf(f.name))}</i>`).join("")||"<i>…</i>"}</span><span>${M.length?"With "+esc(M.map(f=>(f.name||f.email).split(" ")[0]).join(" & ")):"Waiting for friends to link"}</span>${M.length?`<button type="button" data-gfilm="${esc(t.id)}">Group film ▶</button>`:""}<button type="button" class="grp-ed" data-grp="${esc(t.id)}">✎</button></div>`;
+  return`<div class="grp"><button type="button" class="grp-add" data-grp="${esc(t.id)}">＋ Travelling with friends?</button></div>`}
+function pickGroup(tid){const t=ATLAS.trips.find(x=>x.id===tid),F=socFriends();if(!t)return;const cur=new Set(t.group?.with||[]),el=$("pcard");
+  el.innerHTML=`<div class="pc-wrap"><div class="grp-sheet"><div class="pc-k">TRAVELLING TOGETHER · ${esc(t.name)}</div><p>Pick who's on this trip. They link their own passport, and the trip becomes one story. Each person's spends stay private.</p>
+    <div class="grp-list">${F.map(f=>`<button type="button" class="${cur.has(f.email)?"on":""}" data-gp="${esc(f.email)}"><i style="background:${fcol(f.email)}">${esc(iniOf(f.name))}</i>${esc(f.name||f.email)}<em>✓</em></button>`).join("")||"<p>No friends yet.</p>"}</div></div>
+    <div class="pc-btns"><button type="button" class="bk-b2" id="pcX">Cancel</button><button type="button" class="dk-go" id="gpGo">Save</button></div></div>`;
+  el.classList.add("on");el.querySelectorAll("[data-gp]").forEach(b=>b.onclick=()=>b.classList.toggle("on"));
+  $("pcX").onclick=()=>el.classList.remove("on");el.onclick=e=>{if(e.target===el)el.classList.remove("on")};
+  $("gpGo").onclick=async()=>{const w=[...el.querySelectorAll("[data-gp].on")].map(b=>b.dataset.gp);
+    const g=w.length?{id:t.group?.id||(t.id+"-"+Math.random().toString(36).slice(2,8)),by:t.group?.by||socMe(),with:w}:null;
+    try{await db.doc(`t/${t.id}/settings/trip`).update({group:g});el.classList.remove("on");toast(w.length?"Saved · friends will see the invite":"Group removed");SOC.t=0;setTimeout(()=>{loadAtlas&&loadAtlas()},300)}catch(e){toast("Couldn't save: "+(e.message||e))}}}
+async function linkGroup(gid,inviter,tid){const f=socFriends().find(x=>x.email===inviter),ft=f&&socTrips(f).find(t=>t.group&&t.group.id===gid);if(!ft)return;
+  const w=[...new Set([inviter,...(ft.group.with||[])])].filter(e=>e!==socMe());
+  try{await db.doc(`t/${tid}/settings/trip`).update({group:{id:gid,by:inviter,with:w}});toast("Linked ✓ One trip, one story");SOC.t=0;setTimeout(()=>{loadAtlas&&loadAtlas()},300)}catch(e){toast("Couldn't link: "+(e.message||e))}}
+function groupFilm(tid){const t=ATLAS.trips.find(x=>x.id===tid);if(!t||!t.group)return;const M=grpMembers(t);
+  const mine=(t.legs||[]).map(l=>({place:l.place,country:l.country,city:l.city||l.place,lat:l.lat,lon:l.lon,from:l.from||t.start,to:l.to||""}));
+  const theirs=M.flatMap(f=>socTrips(f).filter(x=>x.group&&x.group.id===t.group.id).flatMap(x=>x.legs.map(l=>({place:l.city,country:l.country,city:l.city,lat:l.lat,lon:l.lon,from:l.from||x.start,to:l.to}))));
+  const seen=new Set(),legs=[...mine,...theirs].filter(l=>l.city&&l.lat!=null&&l.lon!=null).sort((a,b)=>String(a.from).localeCompare(String(b.from))).filter(l=>{const k=l.city.toLowerCase();if(seen.has(k))return false;seen.add(k);return true})
+    .map((l,i)=>({...l,color:PALETTE[i%PALETTE.length]}));
+  const ft=M.map(f=>socTrips(f).find(x=>x.group&&x.group.id===t.group.id)).filter(Boolean);
+  const totals=[t.total,...ft.map(x=>x.total)],allT=totals.every(v=>v!=null);
+  const h=t.home||{},home={city:h.city||"Home",country:h.country||ATLAS.home,lat:isFinite(+h.lat)&&h.lat!==""&&h.lat!=null?+h.lat:19.08,lon:isFinite(+h.lon)&&h.lon!==""&&h.lon!=null?+h.lon:72.88};
+  const start=[t.start,...ft.map(x=>x.start)].sort()[0],end=[t.end||t.start,...ft.map(x=>x.end||x.start)].sort().pop();
+  openFilm({title:t.name+" · together",legs,home,days:{},per:{},tot:allT?totals.reduce((a,b)=>a+b,0):null,stamps:(t.n||0)+ft.reduce((a,x)=>a+(x.n||0),0),start,end,km:tripKm(t),cast:[NM(),...M.map(f=>f.name||f.email)]})}
+$("bk").addEventListener("click",e=>{const t=e.target;let b;
+  if((b=t.closest("[data-fiso]"))&&BK.P[BK.idx]?.k==="friends"){SOC.sel=SOC.sel===b.dataset.fiso?null:b.dataset.fiso;bkRefresh();return}
+  if(b=t.closest("[data-pc]")){const[em,iso]=b.dataset.pc.split("|");composePc(em,iso);return}
+  if(b=t.closest("[data-pref]")){const k=b.dataset.pref;SOC.prefs={...SOC.prefs,[k]:!SOC.prefs[k]};if(k==="visible"&&!SOC.prefs.visible)SOC.prefs.spend=false;db.doc("atlas/social").set(SOC.prefs).catch(()=>{});try{localStorage.removeItem("tp-soc-pub")}catch{}bkRefresh();loadSocial(true);return}
+  if(b=t.closest("[data-link]")){const[g,inv,tid]=b.dataset.link.split("|");linkGroup(g,inv,tid);return}
+  if(b=t.closest("[data-openpc]")){const id=+b.dataset.openpc,m=SOC.mail.find(x=>x.id===id);if(!m)return;b.classList.add("opening");try{navigator.vibrate&&navigator.vibrate(15)}catch{}
+    setTimeout(()=>{m.opened=true;bkRefresh();TP_SOCIAL.open(id).catch(()=>{})},520);return}
+  if(b=t.closest("[data-grp]")){pickGroup(b.dataset.grp);return}
+  if(b=t.closest("[data-gfilm]")){groupFilm(b.dataset.gfilm);return}});
+function bkRefresh(){const i=BK.idx,pg=BK.P&&BK.P[i];if(!pg)return;const b=$("bk").querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}
 /* ================= THE PASSPORT BOOK (home) ================= */
 let BK={key:"",idx:0,leaves:[]};
 try{BK.idx=+sessionStorage.getItem("tp-bk-idx")||0}catch{}
@@ -2241,7 +2429,7 @@ function bkGuil(seed){let p="";for(let k=0;k<14;k++){let d="";for(let x=0;x<=400
 function bkPaper(n,inner,cls=""){return`<div class="bk-face bk-front bk-paper ${cls}">${bkGuil(n)}<div class="bk-wm">${BKEMB}</div><div class="bk-pno">${String(n).padStart(2,"0")}</div><div class="bk-perf">${"<i></i>".repeat(5)}</div><div class="bk-in">${inner}</div></div>`}
 function bkTrips(){return ATLAS.trips.filter(t=>t.start).sort((a,b)=>b.start.localeCompare(a.start))}
 function bkPages(){const T=bkTrips(),started=T.filter(t=>t.start<=today()),later=T.filter(t=>t.start>today()&&(!ATLAS.next||t.id!==ATLAS.next.id));
-  const P=[{k:"cover"},{k:"bearer"},{k:"map"},{k:"depart"},...started.map(t=>({k:"visa",t})),...later.map(t=>({k:"visa",t,up:1}))];
+  const P=[{k:"cover"},{k:"bearer"},{k:"map"},{k:"friends"},...(socMail().length?[{k:"mail"}]:[]),{k:"depart"},...started.map(t=>({k:"visa",t})),...later.map(t=>({k:"visa",t,up:1}))];
   if(started.length)P.push({k:"year"});P.push({k:"seals"});if(IS_OWNER)P.push({k:"office"},{k:"desk"});if(!bkStandalone())P.push({k:"install"});P.push({k:"end"});return P}
 function bkStamp(l,i,t,up){const pos=[[3,20,-11],[46,10,8],[10,48,-4],[50,42,12],[24,30,6],[4,62,-8]],p=pos[i%pos.length],c=PALETTE[(i+(t.id.length%3))%PALETTE.length],shape=["rect","circ","oval"][i%3];
   return`<div class="bk-stamp ${shape} ${up?"up":""}" style="--c:${c};--r:${p[2]}deg;left:${p[0]}%;top:${p[1]}%"><small>${up?"VISA PENDING":"ENTRY"} · ${esc(code3(l.city||l.place))}</small><b>${esc(String(l.city||l.place).toUpperCase())}</b><i>${esc(short(l.from||t.start))} ${flagOf(l.country)}</i></div>`}
@@ -2259,13 +2447,15 @@ function bkInner(pg,n){const nm=(NM()),parts=nm.trim().split(/\s+/),sur=(parts.l
   if(pg.k==="visa"){const t=pg.t,legs=[...t.legs].sort((a,b)=>String(a.from).localeCompare(String(b.from))),km=tripKm(t),days=t.end?Math.max(1,dayDiff(t.start,t.end)+1):"";
     return`<div class="bk-visa"><div class="bk-vh"><h3>${esc(t.name)}</h3><span>${esc(short(t.start))}${t.end?" — "+esc(short(t.end)):""}<br>${days?days+" DAYS · ":""}${fmt(km)} KM</span></div>
       <div class="bk-stamps">${legs.map((l,i)=>bkStamp(l,i,t,pg.up)).join("")}</div>
-      ${pg.up?`<div class="bk-ink" style="right:4%;bottom:76px">Departs ${esc(short(t.start))}</div>`:`<div class="bk-ink" style="right:4%;bottom:76px">₹${fmt(Math.round(t.total))}</div>`}
-      <div class="bk-btns"><button class="bk-b2" data-open="${esc(t.id)}">Open</button>${pg.up?"":`<button class="bk-b1" data-film="${esc(t.id)}"><span class="fr"></span>Play this trip</button>`}</div></div>`}
+      ${pg.up?`<div class="bk-ink" style="right:4%;bottom:76px">Departs ${esc(short(t.start))}</div>`:`<div class="bk-ink" style="right:4%;bottom:${t.group||socFriends().length?104:76}px">₹${fmt(Math.round(t.total))}</div>`}
+      ${grpChip(t)}<div class="bk-btns"><button class="bk-b2" data-open="${esc(t.id)}">Open</button>${pg.up?"":`<button class="bk-b1" data-film="${esc(t.id)}"><span class="fr"></span>Play this trip</button>`}</div></div>`}
+  if(pg.k==="friends")return friendsPage();
+  if(pg.k==="mail")return mailPage();
   if(pg.k==="year")return`<div class="bk-ph">THE YEAR IN TRAVEL</div><div class="bk-slot" data-slot="wrapBox"></div><div class="bk-slot" data-slot="duelBox"></div><div class="bk-note">Your year as a film, and two trips in the ring.</div>`;
   if(pg.k==="seals")return`<div class="bk-ph">SEALS · <span class="bk-slot inl" data-slot="achN"></span> PRESSED</div><div class="bk-slot" data-slot="ach"></div>`;
   if(pg.k==="office")return`<div class="bk-ph">PASSPORT OFFICE · WISHES</div><div class="bk-slot" data-slot="office"></div>`;
   if(pg.k==="desk")return`<div class="bk-ph">IMMIGRATION DESK · ISSUE PASSPORTS</div>
-    <div class="dk-form"><label>FRIEND'S EMAIL</label><input id="dkMail" type="email" inputmode="email" autocomplete="off" placeholder="friend@email.com">
+    <div class="dk-form"><label>FRIEND'S EMAIL</label><input id="dkMail" type="email" aria-label="Friend's email" inputmode="email" autocomplete="off" placeholder="friend@email.com">
       <div class="dk-tg" id="dkTg"><button type="button" data-sh="0" class="on"><b>Own passport</b><small>Private · their trips only</small></button><button type="button" data-sh="1"><b>Share mine</b><small>Family · sees your trips</small></button></div>
       <button type="button" class="dk-go" id="dkGo">Issue passport</button><div class="dk-err" id="dkErr"></div></div>
     <div class="dk-share" id="dkShare"></div>
@@ -2277,14 +2467,14 @@ function bkInner(pg,n){const nm=(NM()),parts=nm.trim().split(/\s+/),sur=(parts.l
     <div class="bk-tip">It then opens full screen like a real app, and works offline.</div>`}
   if(pg.k==="end"){const wf=ATLAS.wish.slice(0,8);return`<div class="bk-end"><div class="bk-ph" style="border:0">PAGES REMAINING · ${Math.max(4,32-n)}</div><h3>Where next?</h3><p>${wf.length?"On the wishlist":"Tap a country on the map to wish for it"}</p><div class="bk-wfl">${wf.map(i=>`<button data-iso="${i}">${flagOf(i)}</button>`).join("")}</div><button class="bk-newp" id="bkNew">＋ NEW PASSPORT PAGE</button><div class="bk-tip">Upload a travel plan · Claude stamps the page</div></div>`}
   return""}
-function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages(),key=P.map(p=>p.k+(p.t?p.t.id:"")+(p.up?"u":"")).join("|")+(WORLD?"w":"")+(BIP?"b":"");
+function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages(),key=P.map(p=>p.k+(p.t?p.t.id:"")+(p.up?"u":"")).join("|")+"|s"+SOC.v+(WORLD?"w":"")+(BIP?"b":"");
   if(key!==BK.key){BK.key=key;BK.P=P;
     // park the live widgets before rebuilding
     const park=$("v-atlas").querySelector(".legacy");["bpass","wrapBox","duelBox","achN","ach","office"].forEach(id=>{const el=$(id);if(el&&!park.contains(el))park.appendChild(el)});
     box.innerHTML=P.map((pg,i)=>`<div class="bk-leaf" data-i="${i}">${pg.k==="cover"?`<div class="bk-face bk-front bk-cover"><div class="c1 bk-foil">REPUBLIC OF WANDERLUST</div><div class="bk-emb bk-foil">${BKEMB}</div><div><div class="c2 bk-foil">PASSPORT</div><div class="bk-chip"></div></div><div class="bk-tap">TAP TO OPEN</div></div>`:bkPaper(i,`<div class="bk-body" data-body="${i}">${bkInner(pg,i)}</div>`,pg.k)}<div class="bk-face bk-back">${i===0?bkGuil(99):""}</div></div>`).join("");
     box.querySelectorAll("[data-slot]").forEach(sl=>{const el=$(sl.dataset.slot);if(el)sl.appendChild(el)});
     BK.leaves=[...box.querySelectorAll(".bk-leaf")];bindDesk();bindInstall();$("bkDots").innerHTML=P.map(()=>"<i></i>").join("");BK.idx=Math.min(BK.idx,P.length-1);bkLayout(true)}
-  else{BK.P=P;P.forEach((pg,i)=>{if(["bearer","map","visa","end"].includes(pg.k)){const b=box.querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}})}
+  else{BK.P=P;P.forEach((pg,i)=>{if(["bearer","map","visa","end","friends","mail"].includes(pg.k)){const b=box.querySelector(`[data-body="${i}"]`);if(b)b.innerHTML=bkInner(pg,i)}})}
   bkSize()}
 function bkSize(){const d=$("bkDesk");if(!d)return;const vw=Math.min(innerWidth,1100),vh=innerHeight;let W=Math.min(vw*.88,460),H=W*1.42;const maxH=vh-110;if(H>maxH){H=maxH;W=H/1.42}d.style.setProperty("--W",W+"px");d.style.setProperty("--H",H+"px")}
 addEventListener("resize",()=>{bkSize()});
@@ -2408,13 +2598,13 @@ function inrOf(e,R){if(e.inr>0)return e.inr;if(e.cur==="INR")return e.amount;ret
 /* ---------- render ---------- */
 function render(){
   if(!(ready.e&&ready.f))return;
-  const R=inrRates(),T=today();personal();setupForm();try{if(localStorage.getItem("tp-film-auto")===TRIPID){localStorage.removeItem("tp-film-auto");setTimeout(()=>{if(ready.e&&ready.f&&typeof openFilm==="function")openFilm()},700)}}catch{}try{renderGeoPill();if(!render.g){render.g=1;setTimeout(()=>geoCheck(),1500)}}catch{}
+  const R=inrRates(),T=today();personal();setupForm();try{renderMailPill()}catch{}try{if(localStorage.getItem("tp-film-auto")===TRIPID){localStorage.removeItem("tp-film-auto");setTimeout(()=>{if(ready.e&&ready.f&&typeof openFilm==="function")openFilm()},700)}}catch{}try{renderGeoPill();if(!render.g){render.g=1;setTimeout(()=>geoCheck(),1500)}}catch{}
   let tot=0,unk=0,tod=0;const place={},cat={};
   for(const e of EXP){const v=inrOf(e,R);if(v==null){unk++;continue}tot+=v;if(e.date===T)tod+=v;
     place[e.place]=(place[e.place]||0)+v;cat[e.cat]=(cat[e.cat]||0)+v}
   let fxInr=0;for(const x of FX)if(x.fromCur==="INR")fxInr+=x.fromAmt;
   const dates=[...EXP.map(e=>e.date),...FX.map(x=>x.date)].sort(),start=TRIP.start||dates[0]||T;
-  $("tDay").textContent=Math.max(1,dayDiff(start,T)+1);
+  {const tl=RET?dayDiff(start,RET)+1:0,dn=Math.max(1,dayDiff(start,T)+1);$("tDay").textContent=tl&&dn>tl?tl+" ✓":dn}
   countUp($("tInr"),tot);
   $("tNote").textContent=[...CURS.filter(c=>c!=="INR"&&R[c]&&legsU().some(l=>l.currency===c)).map(c=>`${SYM[c].trim()}1 = ₹${fmt(R[c],2)}`),unk&&`${unk} awaiting a rate`].filter(Boolean).join("  ·  ");
   $("tToday").textContent="₹"+fmt(tod);$("tFx").textContent="₹"+fmt(fxInr);

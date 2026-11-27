@@ -198,6 +198,19 @@
     return data;
   };
   window.TP_WHO = () => WHO;
+  /* friends: public travel cards + postcards (rules in supabase/passport-social.sql) */
+  window.TP_SOCIAL = {
+    me: () => (WHO && WHO.email ? WHO.email.toLowerCase() : null),
+    publish: async (name, visible, card) => {
+      if (!sb || !WHO) return;
+      const { error } = await sb.from("shared_atlas").upsert({ email: WHO.email.toLowerCase(), name: name || "", visible: !!visible, card, updated_at: new Date().toISOString() }, { onConflict: "email" });
+      if (error) throw error;
+    },
+    friends: async () => { const { data, error } = await sb.from("shared_atlas").select("email,name,visible,card,updated_at"); if (error) throw error; return data || []; },
+    send: async (to, iso, body, fromName) => { const { error } = await sb.from("postcards").insert({ from_email: WHO.email.toLowerCase(), from_name: fromName || "", to_email: String(to).toLowerCase(), iso, body }); if (error) throw error; },
+    mail: async () => { const { data, error } = await sb.from("postcards").select("id,from_email,from_name,to_email,iso,body,opened,created_at").order("created_at", { ascending: false }).limit(60); if (error) throw error; return data || []; },
+    open: async (id) => { const { error } = await sb.from("postcards").update({ opened: true }).eq("id", id); if (error) throw error; },
+  };
   window.TP_SIGN_OUT = async () => { try { await sb.auth.signOut(); } catch {} try { localStorage.removeItem(LS_WHO); localStorage.removeItem(LS_CACHE); localStorage.removeItem(LS_SPACE); } catch {} location.reload(); };
   /* invite desk — only works for the admin (the database refuses everyone else) */
   window.TP_ADMIN = {
