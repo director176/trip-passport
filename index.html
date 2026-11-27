@@ -194,8 +194,8 @@ select{font-weight:700;background-image:linear-gradient(45deg,transparent 50%,va
 .top5 li:nth-child(1) .rk{background:linear-gradient(135deg,#f3d896,#c99a45)}
 .top5 li:nth-child(2) .rk{background:linear-gradient(135deg,#e8e8ee,#a9abb6)}
 .top5 li:nth-child(3) .rk{background:linear-gradient(135deg,#f0c39a,#b0703d)}
-.top5 .tx{flex:1;min-width:0}.top5 .tx b{display:block;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.top5 .tx span{font:11px var(--type);color:var(--mute)}
+.top5 .tx5{flex:1;min-width:0}.top5 .tx5 b{display:block;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top5 .tx5 span{font:11px var(--type);color:var(--mute)}
 .top5 .am{text-align:right;font:700 15px var(--type)}.top5 .am span{display:block;font:400 11px var(--type);color:var(--mute)}
 .filt{position:sticky;top:6px;z-index:5;margin-top:16px;background:color-mix(in srgb,var(--cover) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid #e3c27a40;border-radius:16px;padding:10px 10px 8px}
 .fchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
@@ -1066,7 +1066,7 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-b1,.bk-b2{border:0;border-radius:999px;font:800 12px var(--sans);letter-spacing:.06em;padding:11px 16px;display:flex;align-items:center;gap:8px}
 .bk-b1{background:#1d2a4a;color:var(--gold);box-shadow:0 6px 14px #1d2a4a55}.bk-b2{background:#1d2a4a14;color:#1d2a4a}
 .bk-b1 .fr{width:11px;height:15px;background:repeating-linear-gradient(180deg,var(--gold) 0 2px,transparent 2px 4px);opacity:.8}
-.bk-clip{position:absolute;top:22px;right:26%;width:22px;height:58px;border:3px solid #9aa3b5;border-radius:12px;z-index:3;box-shadow:1px 2px 2px #0003}
+.bk-clip{position:absolute;top:22px;right:calc(var(--W)*.08 + 24px);width:22px;height:58px;border:3px solid #9aa3b5;border-radius:12px;z-index:3;box-shadow:1px 2px 2px #0003}
 .bk-paper #bpass{filter:none;margin:10px 0 0}
 .bk-paper #bpass .bp{filter:drop-shadow(0 8px 14px #0005)}
 .bk-paper .stubh{color:#1d2a4a88}
@@ -1107,6 +1107,24 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .in-hero{font-size:44px;text-align:center;margin:6px 0}
 .in-card{border:1.5px solid #1d2a4a22;border-radius:12px;padding:10px 12px;margin-bottom:10px}.in-card.me{border-color:#1d2a4a;box-shadow:0 4px 10px #1d2a4a22}
 .in-card>b{font:700 18px var(--serif)}.in-card ol{margin:6px 0 0;padding-left:18px;font:13px/1.6 var(--sans)}.in-card .dk-go{margin-top:8px}
+
+/* alignment: pass, clip and stubs inside the book page */
+.bk-paper #bpass .bp{-webkit-mask:radial-gradient(circle at calc(100% - 66px) 0,#0000 10px,#000 10.5px) top/100% 51% no-repeat,radial-gradient(circle at calc(100% - 66px) 100%,#0000 10px,#000 10.5px) bottom/100% 50% no-repeat;mask:radial-gradient(circle at calc(100% - 66px) 0,#0000 10px,#000 10.5px) top/100% 51% no-repeat,radial-gradient(circle at calc(100% - 66px) 100%,#0000 10px,#000 10.5px) bottom/100% 50% no-repeat}
+.bk-paper #bpass .bp::after{right:66px}
+.bk-paper #bpass .bpst{width:66px;padding:8px 2px}
+.bk-paper #bpass .bpm{padding:12px 10px 10px 12px}
+.bk-paper #bpass .bph{font-size:7.5px;letter-spacing:.14em;gap:6px}
+.bk-paper #bpass .bpr b{font-size:calc(var(--W)*.088)}
+.bk-paper #bpass .bpr small{max-width:70px;font-size:8px}
+.bk-paper #bpass .bparc{margin:0 6px}
+.bk-paper #bpass .bpv{font-size:9px}
+.bk-paper #bpass .bpg{grid-template-columns:1.2fr 1.2fr .5fr;gap:6px}.bk-paper #bpass .bpg b{font-size:10.5px}
+.bk-paper #bpass .bpcd{gap:4px}.bk-paper #bpass .bpcd b{font-size:calc(var(--W)*.055)}
+.bk-paper #bpass .bpn{font-size:19px}.bk-paper #bpass .bpring{width:34px;height:34px;-webkit-mask:radial-gradient(circle,transparent 11px,#000 12px);mask:radial-gradient(circle,transparent 11px,#000 12px)}
+.bk-paper #bpass .bp.standby .bpst b{font-size:12px}
+.bk-paper .stubs{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+.bk-paper .stub{width:86px}
+.bk-vh h3{font-size:calc(var(--W)*.058)}
 </style>
 </head>
 <body>
@@ -2271,7 +2289,8 @@ function renderBook(){const box=$("bk");if(!box||!ATLAS)return;const P=bkPages()
 function bkSize(){const d=$("bkDesk");if(!d)return;const vw=Math.min(innerWidth,1100),vh=innerHeight;let W=Math.min(vw*.88,460),H=W*1.42;const maxH=vh-110;if(H>maxH){H=maxH;W=H/1.42}d.style.setProperty("--W",W+"px");d.style.setProperty("--H",H+"px")}
 addEventListener("resize",()=>{bkSize()});
 function bkAngle(l,a,drag){l.classList.toggle("drag",!!drag);l.style.transform=`rotateY(${a}deg)`;const f=l.querySelector(".bk-front");f&&f.style.setProperty("--sh",Math.min(1,Math.abs(a)/120).toFixed(2))}
-function bkLayout(quiet){const L=BK.leaves,n=L.length,i0=BK.idx;L.forEach((l,i)=>{bkAngle(l,i<i0?-180:0);l.style.visibility=i<i0-1||i>i0+1?"hidden":"visible";l.style.zIndex=i<i0?100+i:n-i});
+function bkLayout(quiet){const L=BK.leaves,n=L.length,i0=BK.idx;clearTimeout(BK.ht);L.forEach((l,i)=>{bkAngle(l,i<i0?-180:0);l.style.visibility=i<i0-1||i>i0+1?"hidden":"visible";l.style.zIndex=i<i0?100+i:n-i});
+  BK.ht=setTimeout(()=>{L.forEach((l,i)=>{if(i<BK.idx&&!l.classList.contains("drag"))l.style.visibility="hidden"})},quiet?0:760);
   $("bkDots").querySelectorAll("i").forEach((d,i)=>d.classList.toggle("on",i===i0));
   const pg=BK.P[i0];$("bkHint").textContent=i0===0?"Tap the cover to open":i0===n-1?"Swipe back to flip through":pg.k==="visa"?"Open the trip, or play it as a film":"Swipe to turn the page";
   if(pg&&pg.k==="visa"&&!quiet)bkSlam(i0);try{sessionStorage.setItem("tp-bk-idx",i0)}catch{}}
@@ -2423,7 +2442,7 @@ function render(){
 
   /* top 5 */
   const ranked=EXP.filter(e=>e.date>=start).map(e=>({e,v:inrOf(e,R)})).filter(x=>x.v!=null).sort((a,b)=>b.v-a.v).slice(0,5);
-  $("top5").innerHTML=ranked.length?ranked.map((x,i)=>`<li data-e="${esc(x.e.id)}"><span class="rk">${i+1}</span><div class="tx"><b>${esc(x.e.desc||x.e.cat)}</b><span>${esc(x.e.place)} · ${short(x.e.date)}</span></div><div class="am">₹${fmt(x.v)}<span>${money(x.e.amount,x.e.cur)}</span></div></li>`).join(""):`<div class="blank">Nothing yet</div>`;
+  $("top5").innerHTML=ranked.length?ranked.map((x,i)=>`<li data-e="${esc(x.e.id)}"><span class="rk">${i+1}</span><div class="tx5"><b>${esc(x.e.desc||x.e.cat)}</b><span>${esc(x.e.place)} · ${short(x.e.date)}</span></div><div class="am">₹${fmt(x.v)}<span>${money(x.e.amount,x.e.cur)}</span></div></li>`).join(""):`<div class="blank">Nothing yet</div>`;
 
   renderWho(R,start);renderCrew();renderMap(place);renderBorder(w,R);renderSeals(R,start);if(CARDS.length)renderTaxis();
   { const L=[...EXP].sort((a,b)=>(b.created||0)-(a.created||0)).slice(0,8);
