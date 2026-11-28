@@ -33,18 +33,6 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     repeating-linear-gradient(115deg,transparent 0 14px,#ffffff05 14px 15px),
     linear-gradient(180deg,var(--cover2),var(--cover) 40%)}
 .wrap{max-width:520px;margin:0 auto}
-@media (min-width:700px){
-  .wrap{max-width:min(880px,100%)}
-  .tabbar{width:min(calc(100% - 24px),600px)}
-  .stamps{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
-  .visas{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
-  .tgrid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
-  .seals{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
-  .astats{grid-template-columns:repeat(4,1fr);max-width:640px;margin-left:auto;margin-right:auto}
-  .sheet{max-width:640px}
-  .facts{max-width:640px;margin-left:auto;margin-right:auto}
-}
-.gold{background:linear-gradient(100deg,#f6dfa4,#d9b061 35%,#fff0c2 50%,#c99a45 70%,#f0d48f);-webkit-background-clip:text;background-clip:text;color:transparent}
 .typ{font-family:var(--type)}
 
 /* ---------- cover ---------- */
@@ -1216,6 +1204,19 @@ body.atlasmode .tabbar,body.atlasmode #atlasBtn{display:none!important}
 .bk-idx button.on{background:#e3c27a;color:#2a1c06;border-color:#e3c27a}
 .bk-idx button.nw{background:#a8231a;border-color:#a8231a;color:#fff6dc}
 #eSave{position:sticky;bottom:0;z-index:3;box-shadow:0 -12px 16px -6px var(--paper)}
+/* wide screens (unfolded Duo, tablets): kept last so it wins over the base rules above */
+@media (min-width:700px){
+  .wrap{max-width:min(880px,100%)}
+  .tabbar{width:min(calc(100% - 24px),600px)}
+  .stamps{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+  .visas{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+  .tgrid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+  .seals{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .astats{grid-template-columns:repeat(4,1fr);max-width:640px;margin-left:auto;margin-right:auto}
+  .sheet{max-width:640px}
+  .facts{max-width:640px;margin-left:auto;margin-right:auto}
+}
+.gold{background:linear-gradient(100deg,#f6dfa4,#d9b061 35%,#fff0c2 50%,#c99a45 70%,#f0d48f);-webkit-background-clip:text;background-clip:text;color:transparent}
 </style>
 </head>
 <body>
@@ -1607,8 +1608,13 @@ function _openIt(){
 function closeIt(){}
 
 function renderItin(){
-  const acts=(Array.isArray(TRIP.acts)?TRIP.acts:[]).filter(a=>a&&a.id&&a.date&&a.t);
-  $("fab2").classList.toggle("hidden",!acts.length);if(!acts.length)return;
+  let acts=(Array.isArray(TRIP.acts)?TRIP.acts:[]).filter(a=>a&&a.id&&a.date&&a.t);
+  if(!acts.length){/* no activity rows: build boarding-pass tickets from the day plan, else from the stops */
+    const isD=v=>typeof v==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(v);
+    acts=Object.entries(TRIP.plan||{}).filter(([d,v])=>isD(d)&&typeof v==="string"&&v.trim()).map(([d,v])=>{const L=legOn(d);return{id:"p"+d,date:d,e:L?flagOf(L.country):"📍",t:v.trim(),s:L&&L.stay?"Stay · "+L.stay:""}});
+    if(!acts.length)acts=legsU().filter(l=>isD(l.from)).map((l,i)=>({id:"l"+i+l.from,date:l.from,e:flagOf(l.country),t:"Land in "+(l.city||l.place),s:l.stay?"Stay · "+l.stay:""}))}
+  $("fab2").classList.toggle("hidden",!acts.length);
+  if(!acts.length){$("iBig").textContent="Your trip";$("iSm").textContent="Read a travel plan to print your boarding pass";$("iPath").innerHTML="";$("itList").innerHTML="";$("iEnd").textContent="";$("tbTripN").classList.add("hidden");return}
   const T=today(),days=[...new Set(acts.map(a=>a.date))].sort();
   const nd=acts.filter(a=>CHECKS[a.id]?.done).length,pct=Math.round(nd/acts.length*100);
   const todo=acts.filter(a=>a.date===T&&!CHECKS[a.id]?.done).length;
@@ -1616,7 +1622,7 @@ function renderItin(){
   const st0=TRIP.start||days[0],tot=RET?dayDiff(st0,RET)+1:null,dn=dayDiff(st0,T)+1;
   $("iBig").innerHTML=T<st0?"Trip starts soon":tot&&dn>tot?"Trip complete ✓":`Day <em>${dn}</em>${tot?" of "+tot:""}`;
   $("iSm").textContent=`${nd} of ${acts.length} plans ticked off · ${pct}%`;
-  $("iPath").innerHTML=`<span class="tr"></span><span class="dn" style="width:${pct}%"></span><span class="e" style="left:-4px">🇮🇳</span><span class="e" style="right:-4px">🏠</span><span class="pl" style="left:${Math.min(94,Math.max(6,pct))}%">✈️</span>`;
+  $("iPath").innerHTML=`<span class="tr"></span><span class="dn" style="width:${pct}%"></span><span class="e" style="left:-4px">${flagOf((TRIP.home&&TRIP.home.country)||"IN")}</span><span class="e" style="right:-4px">🏠</span><span class="pl" style="left:${Math.min(94,Math.max(6,pct))}%">✈️</span>`;
   const leg=d=>legOn(d);
   $("itList").innerHTML=days.map(d=>{const L=leg(d),c=L?pcol(L.place):"var(--ink)",dt=new Date(d+"T00:00");
     return `<div class="tday ${d===T?"today":""} ${d<T?"past":""}" style="--c:${c}"><div class="dstamp"><span>${dt.toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase()}</span><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"}).toUpperCase()}</span></div><div class="dcol"><div class="dl">Day ${dayDiff(st0,d)+1}${L?" · "+esc(L.place):""}${d===T?'<span class="here">YOU ARE HERE</span>':""}</div>${acts.filter(a=>a.date===d).map(a=>{const k=CHECKS[a.id]||{};
